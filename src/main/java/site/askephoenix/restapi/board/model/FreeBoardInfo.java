@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import site.askephoenix.restapi.user.model.UserInfo;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -40,5 +41,7 @@ public class FreeBoardInfo {
     private Date updateDate;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    UserInfo userInfo;
 
 }
