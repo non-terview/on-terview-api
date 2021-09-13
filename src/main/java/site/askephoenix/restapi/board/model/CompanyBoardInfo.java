@@ -3,6 +3,7 @@ package site.askephoenix.restapi.board.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.persistence.*;
 
@@ -22,5 +23,8 @@ public class CompanyBoardInfo {
 
     @Column(name = "writer")
     private String writer;
+
+    @Column(name = "title")
+    private String title;
 
 }
