@@ -36,6 +36,7 @@ public class UserService implements UserDetailsService {
                         .email(infoDto.getEmail())
                         .auth(infoDto.getAuth())
                         .password(infoDto.getPassword())
+                        .name(infoDto.getName())
                         .build()
         );
 
