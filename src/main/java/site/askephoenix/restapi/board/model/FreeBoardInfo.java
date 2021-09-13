@@ -3,8 +3,8 @@ package site.askephoenix.restapi.board.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,16 +12,12 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-
-public class CompanyBoardInfo {
-
+@ToString(exclude = "userInfo")
+public class FreeBoardInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq")
-    private String seq;
-
-    @Column(name = "company_name")
-    private String companyName;
+    private Long seq;
 
     @Column(name = "writer")
     private String writer;
@@ -35,13 +31,14 @@ public class CompanyBoardInfo {
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
-
     @Column(name = "create_date")
     @CreationTimestamp
     private Date createDate;
 
     @Column(name = "update_date")
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date updateDate;
+
+
 
 }
