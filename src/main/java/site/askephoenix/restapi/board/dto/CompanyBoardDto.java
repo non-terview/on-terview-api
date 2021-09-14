@@ -13,6 +13,7 @@ public class CompanyBoardDto {
     private String writer;
     private String title;
     private String content;
+    private String type;
     private boolean isDeleted;
 
 

@@ -20,6 +20,10 @@ public class FreeBoardInfo {
     @Column(name = "seq")
     private Long seq;
 
+    //자유게시판용 카테고리
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "writer")
     private String writer;
 

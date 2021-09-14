@@ -23,6 +23,10 @@ public class CompanyBoardInfo {
     @Column(name = "company_name")
     private String companyName;
 
+    //회사 카테고리
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "writer")
     private String writer;
 

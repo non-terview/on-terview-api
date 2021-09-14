@@ -11,6 +11,7 @@ public class FreeBoardDto {
     private String title;
     private String content;
     private String writer;
+    private String type;
     private boolean isDeleted;
 
 }
