@@ -39,7 +39,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2.1.0
       env:
         SLACK_CHANNEL: group-dev
-        SLACK_COLOR: ${{ job.status }}
+        SLACK_COLOR: "#FF0000"
         SLACK_USERNAME: 'Github Action'
         SLACK_ICON: https://avatars.githubusercontent.com/u/9919?s=48&v=4
         SLACK_TITLE: Build Failure - ${{ github.event.pull_request.title }}
@@ -51,7 +51,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2.1.0
       env:
         SLACK_CHANNEL: group-dev
-        SLACK_COLOR: ${{ job.status }}
+        SLACK_COLOR: "#7EB33D"
         SLACK_USERNAME: 'Github Action'
         SLACK_ICON: https://avatars.githubusercontent.com/u/9919?s=48&v=4
         SLACK_TITLE: Build Success - ${{ github.event.pull_request.title }}
