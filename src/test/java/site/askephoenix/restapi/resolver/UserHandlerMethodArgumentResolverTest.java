@@ -21,8 +21,4 @@ class UserHandlerMethodArgumentResolverTest {
         assertTrue(userHandlerMethodArgumentResolver.supportsParameter(returnType));
     }
 
-    @Test
-    void resolveArgument() {
-        fail();
-    }
 }
