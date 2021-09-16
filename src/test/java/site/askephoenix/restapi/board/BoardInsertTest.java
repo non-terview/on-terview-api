@@ -3,12 +3,10 @@ package site.askephoenix.restapi.board;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.BootstrapWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import site.askephoenix.restapi.board.model.CompanyBoardInfo;
@@ -91,5 +89,16 @@ public class BoardInsertTest {
         Page<CompanyBoardInfo> results = repo.findAllByCompanyNameContainingOrderBySeq("16", pageable);
         results.get().forEach(System.out::println);
     }
+
+/*
+    @Test
+    public void somethingTest() {
+        Pageable pageable = PageRequest.of(0, 20);
+        Page<CompanyBoardInfo> results = repo.findByWriterAndAndCompanyNameContainingOrderBySeq("16", pageable);
+        results.getContent().forEach(System.out::println);
+
+    }
+*/
+
 
 }

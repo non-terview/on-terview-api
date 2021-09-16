@@ -4,7 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 import site.askephoenix.restapi.board.model.CompanyBoardInfo;
+
 
 
 public interface CompanyBoardRepository extends CrudRepository<CompanyBoardInfo,Long> {
@@ -31,4 +34,7 @@ public interface CompanyBoardRepository extends CrudRepository<CompanyBoardInfo,
 
     //회사 이름으로 검색 하기 위한 jpa 메소드
     public Page<CompanyBoardInfo> findAllByCompanyNameContainingOrderBySeq(String name, Pageable pageable);
+
+
+
 }
