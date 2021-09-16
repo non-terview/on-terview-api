@@ -40,6 +40,7 @@ public class BoardController {
         Pageable pageable = vo.makePageable(0, "seq");
         Page<CompanyBoardInfo> result = repo.findAllByCompanyNameContainingOrderBySeq("번째", pageable);
         return Maps.newHashMap(ImmutableMap.of("pageInfo", new PageMaker(result)));
+        //커밋을 위한 주석
     }
 
 
