@@ -33,7 +33,7 @@ public class PageMaker {
         this.currentPageNum = currentPage.getPageNumber() + 1;
         this.totalPageNum = results.getTotalPages();
         this.pageableList = new ArrayList<>();
-
+        calcPages();
     }
 
     //페이징에는 이게 핵심입니다 .
@@ -59,10 +59,10 @@ public class PageMaker {
         }
         for (int i = startNum; i <= tempEndNum; i++) {
             pageableList.add(startPage);
-            startPage = startPage.next();
+            startPage = startPage.next();//이경우에는 마지막 후에는 다음페이지를 받음
         }
-        //위에서 페이지 전체를 받았음 ex)1~10까지의 페이지 현재 startPage 의 값에는 마지막 페이지값이있음
-        //만약에 이다음페이지가 총페이지보다클경우 다음 페이지는
+        //위에서 페이지 전체를 받았음 ex)1~10까지의 페이지를 받은후 startPage 는 다음페이지까지 받음 이유는 아래
+        //다음 페이지는 위에서 받은 스타트인덱스 +1 보다 총 페이지가 크다면 위에 정의한 스타트 페이지를 리턴 아닐경우 마지막이므로 null 을 리턴
         this.nextPage = startPage.getPageNumber() +1 <totalPageNum? startPage:null;
 
 
