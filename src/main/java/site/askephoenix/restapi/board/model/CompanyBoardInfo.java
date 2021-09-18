@@ -27,9 +27,6 @@ public class CompanyBoardInfo {
 
     private Long seq;
 
-    private String seq;
-
-
     @Column(name = "company_name")
     private String companyName;
 
