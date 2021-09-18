@@ -14,6 +14,9 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString(exclude = "userInfo")
+
+@Table(name = "free_board")
+
 public class FreeBoardInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
