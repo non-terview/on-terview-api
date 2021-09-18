@@ -38,10 +38,11 @@ public class UserInfo implements UserDetails {
     private String auth;
 
     @Builder
-    public UserInfo(String email, String password, String auth) {
+    public UserInfo(String email, String password, String auth , String name) {
         this.email = email;
         this.password = password;
         this.auth = auth;
+        this.name = name;
     }
 
     @Override

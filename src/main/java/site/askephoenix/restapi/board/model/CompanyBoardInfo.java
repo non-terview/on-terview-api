@@ -5,7 +5,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.CreationTimestamp;
+
 import site.askephoenix.restapi.user.model.CompanyInfo;
+
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,14 +15,20 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+
 @ToString(exclude = "companyInfo")
 @Table(name = "company_board")
+
 public class CompanyBoardInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq")
+
     private Long seq;
+
+    private String seq;
+
 
     @Column(name = "company_name")
     private String companyName;
@@ -49,6 +57,7 @@ public class CompanyBoardInfo {
     @Column(name = "update_date")
     @CreationTimestamp
     private Date updateDate;
+
 
     @ManyToOne
     private CompanyInfo companyInfo;
