@@ -33,14 +33,10 @@ class UserControllerTest {
     @MockBean
     UserService userService;
 
-    @Mock
-    HashMap<String, Object> resultMap;
-
     @Test
     @DisplayName("멤버 테스트")
     @WithMockUser(username = "kim-test", authorities = "ROLE_USER")
     void userTest() throws Exception {
-        resultMap = Maps.newHashMap(ImmutableMap.of("test", "success"));
         mvc.perform(get("/user/test"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
