@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import site.askephoenix.restapi.evaluation.repository.EvaluationRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,9 +18,12 @@ class EvaluationServiceImplTest {
     @Mock
     EvaluationServiceImpl evaluationService;
 
+    @Mock
+    EvaluationRepository evaluationRepository;
+
     @BeforeEach
-    void setEvaluationService() {
-        evaluationService = new EvaluationServiceImpl();
+    void setUp(){
+        evaluationService = new EvaluationServiceImpl(evaluationRepository);
     }
 
     @Test
@@ -35,5 +39,12 @@ class EvaluationServiceImplTest {
                 Maps.newHashMap(ImmutableMap.of("result", "not login")));
     }
 
+    @Test
+    @DisplayName("board 를 통해서 evaluation 가져오는지")
+    void load() {
+        final Integer board = 1;
+        final Integer evaluation = 1;
+        evaluationService.load(board, evaluation);
+    }
 
 }
