@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.repository.EvaluationRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,9 +22,15 @@ class EvaluationServiceImplTest {
     @Mock
     EvaluationRepository evaluationRepository;
 
+    @Mock
+    BoardRepository boardRepository;
+
     @BeforeEach
     void setUp(){
-        evaluationService = new EvaluationServiceImpl(evaluationRepository);
+        evaluationService = new EvaluationServiceImpl(
+                evaluationRepository,
+                boardRepository
+        );
     }
 
     @Test

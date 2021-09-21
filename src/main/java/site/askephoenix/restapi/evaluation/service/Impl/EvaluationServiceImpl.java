@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.repository.EvaluationRepository;
 import site.askephoenix.restapi.evaluation.service.EvaluationService;
 import site.askephoenix.restapi.user.model.UserInfo;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 @Service
 public class EvaluationServiceImpl implements EvaluationService {
     private final EvaluationRepository evaluationRepository;
+    private final BoardRepository boardRepository;
 
     @Override
     public int validate(UserInfo userInfo) {
