@@ -8,12 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.web.WebAppConfiguration;
-import site.askephoenix.restapi.board.model.CompanyBoardInfo;
-import site.askephoenix.restapi.board.repository.CompanyBoardRepository;
-
-
-import java.util.stream.IntStream;
+import site.askephoenix.restapi.board.model.BoardInfo;
+import site.askephoenix.restapi.board.repository.BoardRepository;
 
 
 @ExtendWith(SpringExtension.class)
@@ -21,7 +17,7 @@ import java.util.stream.IntStream;
 public class BoardInsertTest {
 
     @Autowired
-    private CompanyBoardRepository repo;
+    private BoardRepository repo;
 
 /*
     @Test
@@ -79,14 +75,14 @@ public class BoardInsertTest {
     public void searByCompanyName() {
         Pageable pageable = PageRequest.of(0, 20);
         // like 로 사용하려면 % %<<이것을 넣어줘야만 포함됨
-        Page<CompanyBoardInfo> results = repo.findAllByCompanyNameLikeOrderBySeqDesc("%19%", pageable);
+        Page<BoardInfo> results = repo.findAllByCompanyNameLikeOrderBySeqDesc("%19%", pageable);
         results.get().forEach(System.out::println);
     }
 
     @Test
     public void searchByCompanyNameContaining() {
         Pageable pageable = PageRequest.of(0, 20);
-        Page<CompanyBoardInfo> results = repo.findAllByCompanyNameContainingOrderBySeq("16", pageable);
+        Page<BoardInfo> results = repo.findAllByCompanyNameContainingOrderBySeq("16", pageable);
         results.get().forEach(System.out::println);
     }
 

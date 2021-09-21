@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
-import site.askephoenix.restapi.board.model.CompanyBoardInfo;
+import site.askephoenix.restapi.board.model.BoardInfo;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@ToString(exclude = "companyBoardInfoList")
+@Table(name = "company_info")
 public class CompanyInfo {
 
     @Id
@@ -30,7 +30,5 @@ public class CompanyInfo {
     @CreationTimestamp
     private Date joinDate;
 
-    @OneToMany
-    private List<CompanyBoardInfo> companyBoardInfoList;
 
 }
