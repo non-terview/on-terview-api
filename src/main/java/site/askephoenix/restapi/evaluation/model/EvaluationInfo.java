@@ -3,7 +3,7 @@ package site.askephoenix.restapi.evaluation.model;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import site.askephoenix.restapi.board.model.CompanyBoardInfo;
+import site.askephoenix.restapi.board.model.BoardInfo;
 
 import javax.persistence.*;
 
@@ -18,7 +18,7 @@ public class EvaluationInfo {
     private Long id;
 
     @ManyToOne
-    private CompanyBoardInfo companyBoardInfo;
+    private BoardInfo boardInfo;
 
 
 }
