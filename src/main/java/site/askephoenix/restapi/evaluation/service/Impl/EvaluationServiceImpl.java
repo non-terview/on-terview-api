@@ -22,4 +22,11 @@ public class EvaluationServiceImpl implements EvaluationService {
         return Maps.newHashMap(
                 ImmutableMap.of("result", DefaultMessage.getMessage(validate)));
     }
+
+    @Override
+    public HashMap<String, Object> load(Integer board, Integer evaluation) {
+        return null;
+    }
+
+
 }

@@ -17,20 +17,21 @@ import java.util.HashMap;
 public class EvaluationController {
     private final EvaluationService service;
 
+    // 평가 지표 가져오기
     @GetMapping("/boards/{board}/evaluations/{evaluation}")
     public HashMap<String, Object> readEvaluationOfBoard(
             @LoginUser UserInfo userInfo,
             @PathVariable(name = "board") Integer board,
             @PathVariable(name = "evaluation") Integer evaluation) {
 
+        // validate 전처리 작업
         final HashMap<String, Object> message = service.message(service.validate(userInfo));
 
-        // validate 검사입니다.
+        // validate 검사
         if (!"success".equals(message.get("result")))
             return message;
 
-
-
-        return null;
+        // evaluation 가져오기
+        return service.load(board, evaluation);
     }
 }
