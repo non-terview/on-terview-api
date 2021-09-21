@@ -14,12 +14,10 @@ import java.util.Date;
 
 @Entity
 @Getter
-@Setter
-
 @ToString(exclude = "companyInfo")
-@Table(name = "company_board")
+@Table(name = "board")
 
-public class CompanyBoardInfo {
+public class BoardInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +28,13 @@ public class CompanyBoardInfo {
     @Column(name = "company_name")
     private String companyName;
 
-    //회사 카테고리
+    //자게인지 회사게인지
     @Column(name = "type")
     private String type;
+
+    //자게 , 회사게 어떤 카테고리인지
+    @Column(name = "category")
+    private String category;
 
     @Column(name = "writer")
     private String writer;
