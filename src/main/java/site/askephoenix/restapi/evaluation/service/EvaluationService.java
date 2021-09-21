@@ -8,4 +8,6 @@ public interface EvaluationService {
     int validate(UserInfo userInfo);
 
     HashMap<String, Object> message(int validate);
+
+    HashMap<String, Object> load(Integer board, Integer evaluation);
 }
