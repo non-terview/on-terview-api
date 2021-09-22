@@ -39,6 +39,5 @@ public class EvaluationController {
         } catch (NoSuchFieldException e) {
             return Maps.newHashMap(ImmutableMap.of("status", "not field"));
         }
-
     }
 }

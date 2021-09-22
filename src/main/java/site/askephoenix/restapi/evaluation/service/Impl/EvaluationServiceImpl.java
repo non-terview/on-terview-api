@@ -25,6 +25,11 @@ public class EvaluationServiceImpl implements EvaluationService {
     }
 
     @Override
+    public HashMap<String, Object> save() {
+        return null;
+    }
+
+    @Override
     public HashMap<String, Object> message(int validate) {
         return Maps.newHashMap(
                 ImmutableMap.of("result", DefaultMessage.getMessage(validate)));
