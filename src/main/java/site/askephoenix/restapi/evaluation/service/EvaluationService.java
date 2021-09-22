@@ -9,5 +9,5 @@ public interface EvaluationService {
 
     HashMap<String, Object> message(int validate);
 
-    HashMap<String, Object> load(Integer board, Integer evaluation);
+    HashMap<String, Object> load(int evaluation, long board ) throws NoSuchFieldException;
 }

@@ -19,7 +19,6 @@ public class BoardInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq")
-
     private Long seq;
 
     @Column(name = "company_name")

@@ -8,6 +8,7 @@ import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 import java.util.Optional;
 
 public interface EvaluationRepository extends JpaRepository<EvaluationInfo, Long> {
-    Optional<EvaluationInfo> findByBoardInfo(BoardInfo boardInfo);
-
+    Optional<EvaluationInfo> findByBoardInfoAndGradations(
+            BoardInfo boardInfo, int gradations
+    );
 }

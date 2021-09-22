@@ -5,6 +5,7 @@ import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import site.askephoenix.restapi.board.repository.BoardRepository;
+import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 import site.askephoenix.restapi.evaluation.repository.EvaluationRepository;
 import site.askephoenix.restapi.evaluation.service.EvaluationService;
 import site.askephoenix.restapi.user.model.UserInfo;
@@ -30,8 +31,10 @@ public class EvaluationServiceImpl implements EvaluationService {
     }
 
     @Override
-    public HashMap<String, Object> load(Integer board, Integer evaluation) {
-        return null;
+    public HashMap<String, Object> load(int evaluation,long board) throws NoSuchFieldException {
+        EvaluationInfo evaluationInfo = evaluationRepository.findByBoardInfoAndGradations(
+                boardRepository.findBySeq(board) , evaluation ).orElseThrow(NoSuchFieldException::new);
+        return Maps.newHashMap(ImmutableMap.of("load", evaluationInfo, "test", "success"));
     }
 
 }
