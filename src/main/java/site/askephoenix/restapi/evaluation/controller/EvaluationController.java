@@ -1,5 +1,7 @@
 package site.askephoenix.restapi.evaluation.controller;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +23,8 @@ public class EvaluationController {
     @GetMapping("/boards/{board}/evaluations/{evaluation}")
     public HashMap<String, Object> readEvaluationOfBoard(
             @LoginUser UserInfo userInfo,
-            @PathVariable(name = "board") Integer board,
-            @PathVariable(name = "evaluation") Integer evaluation) {
+            @PathVariable(name = "board") long board,
+            @PathVariable(name = "evaluation") int evaluation) {
 
         // validate 전처리 작업
         final HashMap<String, Object> message = service.message(service.validate(userInfo));
@@ -32,6 +34,11 @@ public class EvaluationController {
             return message;
 
         // evaluation 가져오기
-        return service.load(board, evaluation);
+        try {
+            return service.load(evaluation, board);
+        } catch (NoSuchFieldException e) {
+            return Maps.newHashMap(ImmutableMap.of("status", "not field"));
+        }
+
     }
 }

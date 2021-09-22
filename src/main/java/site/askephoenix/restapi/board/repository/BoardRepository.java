@@ -21,7 +21,7 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
     @Query(value = "select board from  BoardInfo  board where board.content like %?1% order by  board.seq desc ")
     Page<BoardInfo> searchByContent(String content, Pageable pageable);
 
-
+    BoardInfo findBySeq(Long Seq);
     //최신 등록글(seq 높은순) 보기위한 jpa 메소드
     Page<BoardInfo> findAllBySeqGreaterThanOrderBySeqDesc(Long seq, Pageable pageable);
 

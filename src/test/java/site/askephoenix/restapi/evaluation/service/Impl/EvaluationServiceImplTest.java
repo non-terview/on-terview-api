@@ -5,12 +5,21 @@ import com.google.common.collect.Maps;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import site.askephoenix.restapi.board.repository.BoardRepository;
+import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 import site.askephoenix.restapi.evaluation.repository.EvaluationRepository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
 class EvaluationServiceImplTest {
     // 해당 테스트는 서비스 테스트로 빈 테스트는 제외합니다.
     // 이유 : 빈테스트는 오래 걸리며, 개발하며 작성되는 테스트이기 때문에
@@ -26,8 +35,8 @@ class EvaluationServiceImplTest {
     BoardRepository boardRepository;
 
     @BeforeEach
-    void setUp(){
-        evaluationService = new EvaluationServiceImpl(
+    void setUp() {
+        this.evaluationService = new EvaluationServiceImpl(
                 evaluationRepository,
                 boardRepository
         );
@@ -48,10 +57,16 @@ class EvaluationServiceImplTest {
 
     @Test
     @DisplayName("board 를 통해서 evaluation 가져오는지")
-    void load() {
-        final Integer board = 1;
-        final Integer evaluation = 1;
-        evaluationService.load(board, evaluation);
+    void load() throws NoSuchFieldException {
+        final int evaluation = 1;
+        final long board = 1L;
+        when(evaluationRepository.findByBoardInfoAndGradations(any(), anyInt()))
+                .thenReturn(
+                        Optional.of(EvaluationInfo.builder()
+                                .id(1L)
+                                .gradations(123).build())
+                );
+        assertEquals(evaluationService.load(evaluation,board).get("test"), "success");
     }
 
 }
