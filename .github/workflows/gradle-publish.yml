@@ -78,7 +78,7 @@ jobs:
       if: success()
       run: |
         cd ~
-        cp -r /home/runner/work/on-terview-api/on-terview-api/src/main/resources/static/docs ~/rest_json/
+        cp -r /home/runner/work/on-terview-api/src/main/resources/static/docs ~/rest_json/
         
     - name: Push rest-json
       if: success()
