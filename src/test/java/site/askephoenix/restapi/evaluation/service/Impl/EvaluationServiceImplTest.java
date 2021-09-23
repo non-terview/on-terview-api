@@ -10,7 +10,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
+import site.askephoenix.restapi.evaluation.repository.EvaluationDetailRepository;
 import site.askephoenix.restapi.evaluation.repository.EvaluationRepository;
+import site.askephoenix.restapi.evaluation.repository.EvaluationTypeListRepository;
 
 import java.util.Optional;
 
@@ -27,17 +29,22 @@ class EvaluationServiceImplTest {
 
     @Mock
     EvaluationServiceImpl evaluationService;
-
     @Mock
     EvaluationRepository evaluationRepository;
-
     @Mock
     BoardRepository boardRepository;
+    @Mock
+    EvaluationDetailRepository detailRepository;
+    @Mock
+    EvaluationTypeListRepository typeListRepository;
+
 
     @BeforeEach
     void setUp() {
         this.evaluationService = new EvaluationServiceImpl(
                 evaluationRepository,
+                detailRepository,
+                typeListRepository,
                 boardRepository
         );
     }
