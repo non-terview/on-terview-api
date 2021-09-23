@@ -17,15 +17,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
 
     @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/css/**", "/js/**",
-                "/img", "/favicon.ico", "/resources/**", "/error");
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/css/**", "/js/**",
+                        "/img", "/favicon.ico", "/resources/**", "/error", "/docs/**").permitAll()
                 .antMatchers("/user", "/login", "/user/token", "/sign-on").permitAll()
                 .antMatchers("/").hasRole("USER")
                 .antMatchers("/admin").hasRole("ADMIN")
