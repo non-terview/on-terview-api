@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
+import site.askephoenix.restapi.evaluation.repository.EvaluationDetailRepository;
 import site.askephoenix.restapi.evaluation.repository.EvaluationRepository;
+import site.askephoenix.restapi.evaluation.repository.EvaluationTypeListRepository;
 import site.askephoenix.restapi.evaluation.service.EvaluationService;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.util.DefaultMessage;
@@ -17,6 +19,8 @@ import java.util.HashMap;
 @Service
 public class EvaluationServiceImpl implements EvaluationService {
     private final EvaluationRepository evaluationRepository;
+    private final EvaluationDetailRepository detailRepository;
+    private final EvaluationTypeListRepository typeListRepository;
     private final BoardRepository boardRepository;
 
     @Override
