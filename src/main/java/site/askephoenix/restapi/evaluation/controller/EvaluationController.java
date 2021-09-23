@@ -3,11 +3,9 @@ package site.askephoenix.restapi.evaluation.controller;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
+import site.askephoenix.restapi.evaluation.dto.EvaluationDetailInfoDto;
 import site.askephoenix.restapi.evaluation.service.EvaluationService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
@@ -40,4 +38,22 @@ public class EvaluationController {
             return Maps.newHashMap(ImmutableMap.of("status", "not field"));
         }
     }
+
+    // 평가지표 create : post
+    @PostMapping("/boards/{board}/evaluations/{evaluation}")
+    public HashMap<String, Object> createEvaluation(
+            @LoginUser UserInfo userInfo,
+            @PathVariable(name = "board") long board,
+            @PathVariable(name = "evaluation") int evaluation,
+            @RequestParam EvaluationDetailInfoDto detailInfoDto
+            ) {
+        // validate
+        // exception validate
+        // create evaluation
+        // exception create evaluation
+        return null;
+    }
+
+
+
 }
