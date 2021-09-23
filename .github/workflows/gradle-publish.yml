@@ -57,4 +57,26 @@ jobs:
         SLACK_TITLE: Build Success - ${{ github.event.pull_request.title }}
         SLACK_MESSAGE: PR Url - ${{ github.event.pull_request.url }} - 빌드 및 테스트 성공
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        
+    - name: Make deploy key
+      if: success()
+      env:
+        GH_ACTION_DEPLOY: ${{ secrets.GH_ACTION_DEPLOY }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$GH_ACTION_DEPLOY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        
+    - name: clone rest-json
+      if: success()
+      run: |
+        cd ~
+        git clone git@github.com:non-terview/rest-json.github.io.git rest_json
+        
+    - name: move static file to rest-json
+      if: success()
+      run: |
+        cd ~
+        ls -lia
 
