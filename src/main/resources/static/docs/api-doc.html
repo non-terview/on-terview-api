@@ -446,7 +446,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_1_개요">1. 개요</a></li>
-<li><a href="#_2_인증">2. 인증</a></li>
+<li><a href="#_2_인증">2. 인증</a>
+<ul class="sectlevel2">
+<li><a href="#_3_1_csrf_token_받기">3-1. _csrf token 받기</a></li>
+</ul>
+</li>
 <li><a href="#_3_사용자">3. 사용자</a>
 <ul class="sectlevel2">
 <li><a href="#_3_1_회원가입">3-1. 회원가입</a></li>
@@ -465,7 +469,65 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_2_인증">2. 인증</h2>
 <div class="sectionbody">
-
+<div class="sect2">
+<h3 id="_3_1_csrf_token_받기">3-1. _csrf token 받기</h3>
+<div class="sect4">
+<h5 id="_request_example">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /user/token HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response">Response</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">토큰 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token.parameterName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">파라미터 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token.headerName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">헤더 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>token.token</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">토큰 값</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_response_example">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{"token":{"token":"b6dc35d8-5503-43c2-8845-7a6450654320","parameterName":"_csrf","headerName":"X-CSRF-TOKEN"}}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -476,19 +538,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="_3_1_1_성공">3-1-1. 성공</h4>
 <div class="sect4">
-<h5 id="_request_example">Request Example</h5>
+<h5 id="_request_example_2">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /user HTTP/1.1
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=c6d2e4fc-d987-40a0-b795-ac5d4d7c8cca</code></pre>
+_csrf=9fadcff6-0571-49c2-93b7-f730c643789f</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response">Response</h5>
+<h5 id="_response_2">Response</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -512,7 +574,7 @@ _csrf=c6d2e4fc-d987-40a0-b795-ac5d4d7c8cca</code></pre>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_response_example">Response Example</h5>
+<h5 id="_response_example_2">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{"create_user_id":300}</code></pre>
@@ -523,19 +585,19 @@ _csrf=c6d2e4fc-d987-40a0-b795-ac5d4d7c8cca</code></pre>
 <div class="sect3">
 <h4 id="_3_1_2_실패">3-1-2. 실패</h4>
 <div class="sect4">
-<h5 id="_request_example_2">Request Example</h5>
+<h5 id="_request_example_3">Request Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /user HTTP/1.1
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=f2744059-31a1-4318-a85b-2f029f671ec5</code></pre>
+_csrf=84073aee-212c-4cdc-84b4-0580a92a0432</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_2">Response</h5>
+<h5 id="_response_3">Response</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -559,7 +621,7 @@ _csrf=f2744059-31a1-4318-a85b-2f029f671ec5</code></pre>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_response_example_2">Response Example</h5>
+<h5 id="_response_example_3">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{"status":"fail"}</code></pre>
@@ -574,7 +636,7 @@ _csrf=f2744059-31a1-4318-a85b-2f029f671ec5</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-09-24 10:14:04 +0900
+Last updated 2021-09-24 11:06:00 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
