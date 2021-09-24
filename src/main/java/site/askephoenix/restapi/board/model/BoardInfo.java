@@ -1,16 +1,16 @@
 package site.askephoenix.restapi.board.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.CreationTimestamp;
 
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Table(name = "board")
@@ -47,10 +47,29 @@ public class BoardInfo {
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private LocalDate createDate;
 
     @Column(name = "update_date")
     @CreationTimestamp
-    private Date updateDate;
+    private LocalDate updateDate;
+
+    @Builder
+    public BoardInfo(
+            Long seq, String companyName, String type,
+            String category, String writer, String title,
+            String content, boolean isDeleted, LocalDate createDate,
+            LocalDate updateDate
+    ){
+        this.seq = seq;
+        this.category = category;
+        this.content = content;
+        this.updateDate = updateDate;
+        this.companyName = companyName;
+        this.writer = writer;
+        this.isDeleted = isDeleted;
+        this.type = type;
+        this.title = title;
+        this.createDate = createDate;
+    }
 
 }
