@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import site.askephoenix.restapi.board.model.BoardInfo;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 /*
@@ -44,18 +45,27 @@ public class EvaluationInfo {
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Date createDate;
+    private LocalDate createDate;
 
     @Column(name = "update_date")
     @CreationTimestamp
-    private Date updateDate;
+    private LocalDate updateDate;
 
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
     @Builder
-    public EvaluationInfo(int gradations, Long id) {
+    public EvaluationInfo(
+            int gradations, Long id, String title,
+            LocalDate createDate, LocalDate updateDate, boolean isDeleted,
+            BoardInfo boardInfo
+    ) {
         this.gradations = gradations;
         this.id = id;
+        this.title = title;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.isDeleted = isDeleted;
+        this.boardInfo = boardInfo;
     }
 }

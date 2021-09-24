@@ -6,7 +6,8 @@
 == 1. 개요
 === 설명
 == 2. 인증
-=== 2-1. _csrf token 받기
+=== 2-1. _csrf 토큰 정보
+==== 2-1-1. 가져오기
 ===== Request Example
 include::{snippets}/user-get-token/http-request.adoc[]
 ===== Response
@@ -29,3 +30,15 @@ include::{snippets}/user-post-fail/http-request.adoc[]
 include::{snippets}/user-post-fail/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-post-fail/response-body.adoc[]
+== 4. 평가 기준표
+=== 3-1. 가져오기
+==== 3-1-1. 성공
+
+===== path parameter
+include::{snippets}/evaluation-get/path-parameters.adoc[]
+===== Request Example
+include::{snippets}/evaluation-get/http-request.adoc[]
+===== Response
+include::{snippets}/evaluation-get/response-fields.adoc[]
+===== Response Example
+include::{snippets}/evaluation-get/response-body.adoc[]
