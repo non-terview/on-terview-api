@@ -78,9 +78,32 @@ class UserControllerTest {
                 .andDo(print())
                 .andDo(document("user-post",
                         responseFields(
-                           fieldWithPath("create_user_id").description("사용자 번호")
+                                fieldWithPath("create_user_id").description("사용자 번호")
                         )
-                        ));
+                ));
+    }
+
+    @Test
+    @DisplayName("회원가입 실패")
+    void signup_fail() throws Exception {
+        final Long user_id = -1L;
+
+        given(userService.save(any(UserInfoDto.class))).willReturn(user_id);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.post("/user").with(csrf())
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("user-post-fail",
+                                responseFields(
+                                        fieldWithPath("status").description("상태")
+                                )
+                        )
+                );
+    }
+
 
 //
 //        when(userService.save(any())).thenReturn(user_id);
@@ -89,7 +112,6 @@ class UserControllerTest {
 //                .andExpect(content().json(
 //                        new ObjectMapper().writeValueAsString(Maps.newHashMap(ImmutableMap.of("create_user_id", user_id)))
 //                ));
-    }
 
 //
 //    @Test

@@ -7,9 +7,17 @@
 == 2. 인증
 == 3. 사용자
 === 3-1. 회원가입
+==== 3-1-1. 성공
 ===== Request Example
 include::{snippets}/user-post/http-request.adoc[]
 ===== Response
 include::{snippets}/user-post/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-post/response-body.adoc[]
+==== 3-1-2. 실패
+===== Request Example
+include::{snippets}/user-post-fail/http-request.adoc[]
+===== Response
+include::{snippets}/user-post-fail/response-fields.adoc[]
+===== Response Example
+include::{snippets}/user-post-fail/response-body.adoc[]
