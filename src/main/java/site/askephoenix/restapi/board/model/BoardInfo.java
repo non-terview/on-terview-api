@@ -6,7 +6,6 @@ import lombok.ToString;
 import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.CreationTimestamp;
 
-import site.askephoenix.restapi.user.model.CompanyInfo;
 
 
 import javax.persistence.*;
@@ -14,9 +13,7 @@ import java.util.Date;
 
 @Entity
 @Getter
-@ToString(exclude = "companyInfo")
 @Table(name = "board")
-
 public class BoardInfo {
 
     @Id
@@ -56,9 +53,5 @@ public class BoardInfo {
     @Column(name = "update_date")
     @CreationTimestamp
     private Date updateDate;
-
-
-    @ManyToOne
-    private CompanyInfo companyInfo;
 
 }

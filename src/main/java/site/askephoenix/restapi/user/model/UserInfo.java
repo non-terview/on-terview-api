@@ -37,6 +37,9 @@ public class UserInfo implements UserDetails {
     @Column(name = "auth")
     private String auth;
 
+    @Column(name = "type")
+    private String type;
+
     @Builder
     public UserInfo(String email, String password, String auth , String name) {
         this.email = email;
