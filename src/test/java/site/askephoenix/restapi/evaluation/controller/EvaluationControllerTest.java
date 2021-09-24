@@ -1,6 +1,9 @@
 package site.askephoenix.restapi.evaluation.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -10,33 +13,34 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import site.askephoenix.restapi.board.model.BoardInfo;
+import site.askephoenix.restapi.evaluation.dto.EvaluationDetailInfoDto;
+import site.askephoenix.restapi.evaluation.dto.EvaluationInfoDto;
+import site.askephoenix.restapi.evaluation.dto.EvaluationTypeListDto;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 import site.askephoenix.restapi.evaluation.service.EvaluationService;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.service.UserService;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -71,7 +75,6 @@ class EvaluationControllerTest {
 
     @Test
     @DisplayName("평가 지표 가져오기")
-    @WithMockUser(username = "tester", authorities = "ROLE_USER")
     void readEvaluationOfBoard() throws Exception {
         BoardInfo testBoard = BoardInfo.builder()
                 .seq(1L)
@@ -94,13 +97,9 @@ class EvaluationControllerTest {
                 .updateDate(LocalDate.now())
                 .isDeleted(false)
                 .build();
-        HashMap<String, Object> data = Maps.newHashMap(ImmutableMap.of(
-                "board", 1L,
-                "evaluation", 1
-        ));
 
         given(evaluationService.validate(any(UserInfo.class))).willReturn(1);
-        given(evaluationService.message(anyInt())).willReturn(Maps.newHashMap(ImmutableMap.of("result","success")));
+        given(evaluationService.message(anyInt())).willReturn(Maps.newHashMap(ImmutableMap.of("result", "success")));
         given(evaluationService.load(anyInt(), anyLong())).willReturn(
                 Maps.newHashMap(ImmutableMap.of(
                         "load",
@@ -109,7 +108,7 @@ class EvaluationControllerTest {
                         "success")));
 
         ResultActions perform = this.mvc.perform(
-                RestDocumentationRequestBuilders.get("/api/boards/{board}/evaluations/{evaluation}",1L,1)
+                RestDocumentationRequestBuilders.get("/api/boards/{board}/evaluations/{evaluation}", 1L, 1)
                         .with(csrf()).with(user(UserInfo.builder()
                                 .auth("ROLE_USER")
                                 .email("tester")
@@ -147,8 +146,81 @@ class EvaluationControllerTest {
                                 fieldWithPath("load.deleted").description("평가 기준표 삭제 여부"),
                                 fieldWithPath("test").description("테스트 성공 여부")
                         )
-                ))
-        ;
+                ));
+    }
 
+    @Test
+    @DisplayName("평가 지표 생성하기")
+    void createEvaluation() throws Exception {
+        EvaluationTypeListDto type1 = new EvaluationTypeListDto("매우 좋음", 1);
+        EvaluationTypeListDto type2 = new EvaluationTypeListDto("좋음", 2);
+        EvaluationTypeListDto type3 = new EvaluationTypeListDto("보통", 3);
+        EvaluationTypeListDto type4 = new EvaluationTypeListDto("나쁨", 4);
+        EvaluationTypeListDto type5 = new EvaluationTypeListDto("매우 나쁨", 5);
+
+        List<EvaluationTypeListDto> types = Lists.newArrayList(ImmutableList.of(type1, type2, type3, type4, type5));
+        EvaluationDetailInfoDto detail1 = new EvaluationDetailInfoDto(types, "인성 점수", 10);
+        EvaluationDetailInfoDto detail2 = new EvaluationDetailInfoDto(types, "적성 평가", 10);
+        EvaluationDetailInfoDto detail3 = new EvaluationDetailInfoDto(types, "배경지식", 10);
+        EvaluationDetailInfoDto detail4 = new EvaluationDetailInfoDto(types, "전문성", 10);
+        EvaluationDetailInfoDto detail5 = new EvaluationDetailInfoDto(types, "학습 의지", 10);
+        List<EvaluationDetailInfoDto> details = Lists.newArrayList(ImmutableList.of(detail1, detail2, detail3, detail4, detail5));
+
+        EvaluationInfoDto infoDto = new EvaluationInfoDto(1, "객관성 점수 평가", details);
+        HashMap<String, Object> map = Maps.newHashMap(ImmutableMap.of("infoDto", infoDto));
+
+
+        given(evaluationService.validate(any(UserInfo.class))).willReturn(1);
+        given(evaluationService.message(anyInt())).willReturn(Maps.newHashMap(ImmutableMap.of("result", "success")));
+        given(evaluationService.save(anyInt(), anyLong(), any(EvaluationInfoDto.class))).willReturn(
+                Maps.newHashMap(ImmutableMap.of(
+                        "evaluation_key",
+                        1,
+                        "code",
+                        "success")));
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.post("/api/boards/{board}/evaluations/{evaluation}", 1L, 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(map))
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(UserInfo.builder()
+                                .auth("ROLE_USER")
+                                .email("tester")
+                                .build()
+                        ))
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print()
+                )
+                .andDo(document("evaluation-post",
+                                preprocessRequest(prettyPrint()),
+                                preprocessResponse(prettyPrint())
+                                ,
+                                pathParameters(
+                                        parameterWithName("board").description("게시판 식별 번호"),
+                                        parameterWithName("evaluation").description("평가 기준표 식별 번호")
+                                ),
+                                requestParameters(
+                                        parameterWithName("_csrf").description("인증 데이터")
+                                ),
+                                requestFields(
+                                        fieldWithPath("infoDto").description("폼 데이터"),
+                                        fieldWithPath("infoDto.gradations").description("평가 지표 등록순번"),
+                                        fieldWithPath("infoDto.title").description("평가 지표 등록순번"),
+                                        fieldWithPath("infoDto.details[]").description("지표 상세내용"),
+                                        fieldWithPath("infoDto.details[].example").description("지표 상세내용, 질문 내용"),
+                                        fieldWithPath("infoDto.details[].score").description("지표 상세내용, 질문 점수"),
+                                        fieldWithPath("infoDto.details[].type[]").description("지표 상세내용 평가 카테고리"),
+                                        fieldWithPath("infoDto.details[].type[].name").description("카테고리 명칭"),
+                                        fieldWithPath("infoDto.details[].type[].gradations").description("카테고리 순번")
+                                ),
+                                responseFields(
+                                        fieldWithPath("evaluation_key").description("생성된 평가지표 식별번호"),
+                                        fieldWithPath("code").description("성공 여부")
+                                )
+                        )
+                );
     }
 }

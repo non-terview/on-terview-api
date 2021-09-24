@@ -13,4 +13,16 @@ public class EvaluationInfoDto {
     private String title;
     private List<EvaluationDetailInfoDto> details;
 
+    public EvaluationInfoDto(){
+
+    }
+
+    public EvaluationInfoDto(
+            int gradations, String title,
+            List<EvaluationDetailInfoDto> details
+    ) {
+        this.details = details;
+        this.gradations = gradations;
+        this.title = title;
+    }
 }

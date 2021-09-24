@@ -1,12 +1,16 @@
 package site.askephoenix.restapi.evaluation.model;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Table(name = "evaluation_detail_info_type")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class EvaluationTypeList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +26,15 @@ public class EvaluationTypeList {
 
     @Column(name = "gradations")
     private int gradations;
+
+    @Builder
+    public EvaluationTypeList(
+            EvaluationDetailInfo evaluationDetailInfo,
+            String name, int gradations
+    ) {
+        this.evaluationDetailInfo = evaluationDetailInfo;
+        this.name = name;
+        this.gradations = gradations;
+    }
 
 }

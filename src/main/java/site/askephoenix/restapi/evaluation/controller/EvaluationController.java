@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.evaluation.dto.EvaluationDetailInfoDto;
+import site.askephoenix.restapi.evaluation.dto.EvaluationInfoDto;
 import site.askephoenix.restapi.evaluation.service.EvaluationService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
@@ -45,14 +46,26 @@ public class EvaluationController {
             @LoginUser UserInfo userInfo,
             @PathVariable(name = "board") long board,
             @PathVariable(name = "evaluation") int evaluation,
-            @RequestParam EvaluationDetailInfoDto detailInfoDto
+            @RequestBody EvaluationInfoDto infoDto
             ) {
+
         // validate
+        final HashMap<String, Object> message = service.message(service.validate(userInfo));
+
         // exception validate
+        if (!"success".equals(message.get("result")))
+            return message;
+
         // create evaluation
-        // exception create evaluation
-        return null;
+        try {
+            return service.save(evaluation, board, infoDto);
+        } catch (Exception e) {
+            // exception create evaluation
+            return Maps.newHashMap(ImmutableMap.of("status", "not field"));
+        }
     }
+
+
 
 
 
