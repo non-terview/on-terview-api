@@ -26,14 +26,17 @@ public class UserController {
 
     @GetMapping(value = "/token")
     public HashMap<String, Object> getToken(CsrfToken token) {
-        return Maps.newHashMap(ImmutableMap.of("token", token));
+        return Maps.newHashMap(ImmutableMap.of(
+                        "token", token
+                ));
     }
+
     @PostMapping(value = "")
     public HashMap<String, Object> signup(UserInfoDto infoDto) {
         Long id = userService.save(infoDto);
 //            이미 이메일이 있는 경우
-        if ( -1L == id ) return Maps.newHashMap(ImmutableMap.of("status", "fail" ));
-        return Maps.newHashMap(ImmutableMap.of("create_user_id", id ));
+        if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
+        return Maps.newHashMap(ImmutableMap.of("create_user_id", id));
     }
 
 }
