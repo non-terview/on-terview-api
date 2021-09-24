@@ -452,12 +452,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_2_인증">2. 인증</a>
 <ul class="sectlevel2">
-<li><a href="#_2_1_csrf_token_받기">2-1. _csrf token 받기</a></li>
+<li><a href="#_2_1_csrf_token_받기">2-1. _csrf token 받기</a>
+<ul class="sectlevel4">
+<li><a href="#_request_example">Request Example</a></li>
+<li><a href="#_response">Response</a></li>
+<li><a href="#_response_example">Response Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_3_사용자">3. 사용자</a>
 <ul class="sectlevel2">
-<li><a href="#_3_1_회원가입">3-1. 회원가입</a></li>
+<li><a href="#_3_1_회원가입">3-1. 회원가입</a>
+<ul class="sectlevel3">
+<li><a href="#_3_1_1_성공">3-1-1. 성공</a></li>
+<li><a href="#_3_1_2_실패">3-1-2. 실패</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -532,7 +543,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "bc66a9c5-404b-4455-89a4-7b8d93896de6",
+    "token" : "76db8fe9-18d1-47de-be54-5434d0ca0fa3",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -558,7 +569,7 @@ Host: localhost:8080</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=bcef9bb2-2b20-4f28-9319-3518cfeea845</code></pre>
+_csrf=9b7aa9e0-5bc0-4d4d-ac51-aebc3d22f8e8</code></pre>
 </div>
 </div>
 </div>
@@ -607,7 +618,7 @@ _csrf=bcef9bb2-2b20-4f28-9319-3518cfeea845</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=bef9f54a-93e2-4665-8b5e-d9ec8439e970</code></pre>
+_csrf=6047d9ce-23e2-4f2a-967f-91852049e1fd</code></pre>
 </div>
 </div>
 </div>
@@ -653,7 +664,7 @@ _csrf=bef9f54a-93e2-4665-8b5e-d9ec8439e970</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-09-24 13:02:39 +0900
+Last updated 2021-09-24 13:11:22 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

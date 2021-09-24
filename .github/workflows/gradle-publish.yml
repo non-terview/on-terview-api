@@ -87,6 +87,6 @@ jobs:
         git config --global user.email "aistarteverything@gmail.com"
         git config --global user.name "askePhoenix"
         git add .
-        git commit -m "(git -C ~/rest_json log --format=%B -n 1)"
+        git commit -m "`(git -C ~/rest_json log --format=%B -n 1)`"
         git push origin master
 
