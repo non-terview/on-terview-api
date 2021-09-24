@@ -445,10 +445,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_1_개요">1. 개요</a></li>
+<li><a href="#_1_개요">1. 개요</a>
+<ul class="sectlevel2">
+<li><a href="#_설명">설명</a></li>
+</ul>
+</li>
 <li><a href="#_2_인증">2. 인증</a>
 <ul class="sectlevel2">
-<li><a href="#_3_1_csrf_token_받기">3-1. _csrf token 받기</a></li>
+<li><a href="#_2_1_csrf_token_받기">2-1. _csrf token 받기</a></li>
 </ul>
 </li>
 <li><a href="#_3_사용자">3. 사용자</a>
@@ -463,14 +467,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_1_개요">1. 개요</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_설명">설명</h3>
 
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_2_인증">2. 인증</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_3_1_csrf_token_받기">3-1. _csrf token 받기</h3>
+<h3 id="_2_1_csrf_token_받기">2-1. _csrf token 받기</h3>
 <div class="sect4">
 <h5 id="_request_example">Request Example</h5>
 <div class="listingblock">
@@ -523,7 +530,13 @@ Host: localhost:8080</code></pre>
 <h5 id="_response_example">Response Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{"token":{"token":"b6dc35d8-5503-43c2-8845-7a6450654320","parameterName":"_csrf","headerName":"X-CSRF-TOKEN"}}</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "token" : {
+    "token" : "bc66a9c5-404b-4455-89a4-7b8d93896de6",
+    "parameterName" : "_csrf",
+    "headerName" : "X-CSRF-TOKEN"
+  }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -545,7 +558,7 @@ Host: localhost:8080</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=9fadcff6-0571-49c2-93b7-f730c643789f</code></pre>
+_csrf=bcef9bb2-2b20-4f28-9319-3518cfeea845</code></pre>
 </div>
 </div>
 </div>
@@ -577,7 +590,9 @@ _csrf=9fadcff6-0571-49c2-93b7-f730c643789f</code></pre>
 <h5 id="_response_example_2">Response Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{"create_user_id":300}</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "create_user_id" : 300
+}</code></pre>
 </div>
 </div>
 </div>
@@ -592,7 +607,7 @@ _csrf=9fadcff6-0571-49c2-93b7-f730c643789f</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=84073aee-212c-4cdc-84b4-0580a92a0432</code></pre>
+_csrf=bef9f54a-93e2-4665-8b5e-d9ec8439e970</code></pre>
 </div>
 </div>
 </div>
@@ -624,7 +639,9 @@ _csrf=84073aee-212c-4cdc-84b4-0580a92a0432</code></pre>
 <h5 id="_response_example_3">Response Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{"status":"fail"}</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "status" : "fail"
+}</code></pre>
 </div>
 </div>
 </div>
@@ -636,7 +653,7 @@ _csrf=84073aee-212c-4cdc-84b4-0580a92a0432</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-09-24 11:06:00 +0900
+Last updated 2021-09-24 13:02:39 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

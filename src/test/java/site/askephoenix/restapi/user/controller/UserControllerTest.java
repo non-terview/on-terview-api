@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
+import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -21,6 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -60,10 +62,12 @@ class UserControllerTest {
         perform.andExpect(status().isOk())
                 .andDo(print())
                 .andDo(document("user-post",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
                         responseFields(
-                                fieldWithPath("create_user_id").description("사용자 번호")
-                        )
-                ));
+                                                fieldWithPath("create_user_id").type(JsonFieldType.NUMBER).description("사용자 번호")
+                                        )
+                                ));
     }
 
     @Test
@@ -80,8 +84,10 @@ class UserControllerTest {
         perform.andExpect(status().isOk())
                 .andDo(print())
                 .andDo(document("user-post-fail",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
                                 responseFields(
-                                        fieldWithPath("status").description("상태")
+                                        fieldWithPath("status").type(JsonFieldType.STRING).description("상태")
                                 )
                         )
                 );
@@ -97,11 +103,13 @@ class UserControllerTest {
         perform.andExpect(status().isOk())
                 .andDo(print())
                 .andDo(document("user-get-token",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
                         responseFields(
-                                fieldWithPath("token").description("토큰 정보"),
-                                fieldWithPath("token.parameterName").description("파라미터 이름"),
-                                fieldWithPath("token.headerName").description("헤더 이름"),
-                                fieldWithPath("token.token").description("토큰 값")
+                                fieldWithPath("token").type(JsonFieldType.OBJECT).description("토큰 정보"),
+                                fieldWithPath("token.parameterName").type(JsonFieldType.STRING).description("파라미터 이름"),
+                                fieldWithPath("token.headerName").type(JsonFieldType.STRING).description("헤더 이름"),
+                                fieldWithPath("token.token").type(JsonFieldType.STRING).description("토큰 값")
                         )
                 ));
     }
