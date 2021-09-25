@@ -6,7 +6,8 @@
 == 1. 개요
 === 설명
 == 2. 인증
-=== 2-1. _csrf token 받기
+=== 2-1. csrf 토큰 읽기 : GET
+==== 2-1-1. 성공
 ===== Request Example
 include::{snippets}/user-get-token/http-request.adoc[]
 ===== Response
@@ -14,7 +15,7 @@ include::{snippets}/user-get-token/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-get-token/response-body.adoc[]
 == 3. 사용자
-=== 3-1. 회원가입
+=== 3-1. 회원가입 : POST
 ==== 3-1-1. 성공
 ===== Request Example
 include::{snippets}/user-post/http-request.adoc[]
@@ -29,3 +30,37 @@ include::{snippets}/user-post-fail/http-request.adoc[]
 include::{snippets}/user-post-fail/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-post-fail/response-body.adoc[]
+== 4. 평가 기준표
+=== 3-1. 평가기준표 읽기 : GET
+==== 3-1-1. 성공
+
+===== path parameter
+include::{snippets}/evaluation-get/path-parameters.adoc[]
+===== Request Example
+include::{snippets}/evaluation-get/http-request.adoc[]
+===== Response
+include::{snippets}/evaluation-get/response-fields.adoc[]
+===== Response Example
+include::{snippets}/evaluation-get/response-body.adoc[]
+
+=== 3-2. 평가기준표 생성 : POST
+==== 3-2-1. 성공
+===== path parameter
+include::{snippets}/evaluation-post/path-parameters.adoc[]
+===== Request
+include::{snippets}/evaluation-post/request-fields.adoc[]
+===== Request Example
+include::{snippets}/evaluation-post/http-request.adoc[]
+===== Response
+include::{snippets}/evaluation-post/response-fields.adoc[]
+===== Response Example
+include::{snippets}/evaluation-post/response-body.adoc[]
+
+=== 3-3. 지문 타입 읽기 : GET
+include::{snippets}/evaluation-get-types/path-parameters.adoc[]
+===== Request Example
+include::{snippets}/evaluation-get-types/http-request.adoc[]
+===== Response
+include::{snippets}/evaluation-get-types/response-fields.adoc[]
+===== Response Example
+include::{snippets}/evaluation-get-types/response-body.adoc[]

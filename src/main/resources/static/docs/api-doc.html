@@ -452,21 +452,40 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_2_인증">2. 인증</a>
 <ul class="sectlevel2">
-<li><a href="#_2_1_csrf_token_받기">2-1. _csrf token 받기</a>
-<ul class="sectlevel4">
-<li><a href="#_request_example">Request Example</a></li>
-<li><a href="#_response">Response</a></li>
-<li><a href="#_response_example">Response Example</a></li>
+<li><a href="#_2_1_csrf_토큰_읽기_get">2-1. csrf 토큰 읽기 : GET</a>
+<ul class="sectlevel3">
+<li><a href="#_2_1_1_성공">2-1-1. 성공</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_3_사용자">3. 사용자</a>
 <ul class="sectlevel2">
-<li><a href="#_3_1_회원가입">3-1. 회원가입</a>
+<li><a href="#_3_1_회원가입_post">3-1. 회원가입 : POST</a>
 <ul class="sectlevel3">
 <li><a href="#_3_1_1_성공">3-1-1. 성공</a></li>
 <li><a href="#_3_1_2_실패">3-1-2. 실패</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_4_평가_기준표">4. 평가 기준표</a>
+<ul class="sectlevel2">
+<li><a href="#_3_1_평가기준표_읽기_get">3-1. 평가기준표 읽기 : GET</a>
+<ul class="sectlevel3">
+<li><a href="#_3_1_1_성공_2">3-1-1. 성공</a></li>
+</ul>
+</li>
+<li><a href="#_3_2_평가기준표_생성_post">3-2. 평가기준표 생성 : POST</a>
+<ul class="sectlevel3">
+<li><a href="#_3_2_1_성공">3-2-1. 성공</a></li>
+</ul>
+</li>
+<li><a href="#_3_3_지문_타입_읽기_get">3-3. 지문 타입 읽기 : GET</a>
+<ul class="sectlevel4">
+<li><a href="#_request_example_6">Request Example</a></li>
+<li><a href="#_response_6">Response</a></li>
+<li><a href="#_response_example_6">Response Example</a></li>
 </ul>
 </li>
 </ul>
@@ -488,7 +507,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_2_인증">2. 인증</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_2_1_csrf_token_받기">2-1. _csrf token 받기</h3>
+<h3 id="_2_1_csrf_토큰_읽기_get">2-1. csrf 토큰 읽기 : GET</h3>
+<div class="sect3">
+<h4 id="_2_1_1_성공">2-1-1. 성공</h4>
 <div class="sect4">
 <h5 id="_request_example">Request Example</h5>
 <div class="listingblock">
@@ -543,7 +564,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "76db8fe9-18d1-47de-be54-5434d0ca0fa3",
+    "token" : "535135b6-ff5a-4124-9ba2-3b4e1e628e48",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -554,11 +575,12 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="_3_사용자">3. 사용자</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_3_1_회원가입">3-1. 회원가입</h3>
+<h3 id="_3_1_회원가입_post">3-1. 회원가입 : POST</h3>
 <div class="sect3">
 <h4 id="_3_1_1_성공">3-1-1. 성공</h4>
 <div class="sect4">
@@ -569,7 +591,7 @@ Host: localhost:8080</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=9b7aa9e0-5bc0-4d4d-ac51-aebc3d22f8e8</code></pre>
+_csrf=cfb85f75-4af7-436d-8cf2-8c2f97a054d3</code></pre>
 </div>
 </div>
 </div>
@@ -618,7 +640,7 @@ _csrf=9b7aa9e0-5bc0-4d4d-ac51-aebc3d22f8e8</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=6047d9ce-23e2-4f2a-967f-91852049e1fd</code></pre>
+_csrf=64e4e09c-4b82-4968-9611-221aa446a8ab</code></pre>
 </div>
 </div>
 </div>
@@ -660,11 +682,508 @@ _csrf=6047d9ce-23e2-4f2a-967f-91852049e1fd</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_4_평가_기준표">4. 평가 기준표</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_3_1_평가기준표_읽기_get">3-1. 평가기준표 읽기 : GET</h3>
+<div class="sect3">
+<h4 id="_3_1_1_성공_2">3-1-1. 성공</h4>
+<div class="sect4">
+<h5 id="_path_parameter">path parameter</h5>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. /api/boards/{board}/evaluations/{evaluation}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>board</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 식별 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>evaluation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 식별 번호</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_request_example_4">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=49209fef-3316-46d4-9548-16ee69b6c024 HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_4">Response</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">정보 map</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표를 작성한 게시판</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.seq</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.writer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 카테고리</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.companyName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 작성 회사명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 삭제 여부(true 시, 삭제된것)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 종류(일반, 회사면접)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.createDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 생성 일시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.boardInfo.updateDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 수정 일시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.gradations</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 순서</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.createDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 생성 일시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.updateDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 가져온 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load.deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 삭제 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>test</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">테스트 성공 여부</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_response_example_4">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "load" : {
+    "id" : 1,
+    "boardInfo" : {
+      "seq" : 1,
+      "companyName" : "테스트 회사",
+      "type" : "사용자",
+      "category" : "회사 게시판",
+      "writer" : "테스트 유저",
+      "title" : "테스트 타이틀입니다.",
+      "content" : "내용",
+      "createDate" : [ 2021, 9, 25 ],
+      "updateDate" : [ 2021, 9, 25 ],
+      "deleted" : false
+    },
+    "gradations" : 1,
+    "title" : "테스트 지표 1",
+    "createDate" : [ 2021, 9, 25 ],
+    "updateDate" : [ 2021, 9, 25 ],
+    "deleted" : false
+  },
+  "test" : "success"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_2_평가기준표_생성_post">3-2. 평가기준표 생성 : POST</h3>
+<div class="sect3">
+<h4 id="_3_2_1_성공">3-2-1. 성공</h4>
+<div class="sect4">
+<h5 id="_path_parameter_2">path parameter</h5>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. /api/boards/{board}/evaluations/{evaluation}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>board</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 식별 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>evaluation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 식별 번호</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_request">Request</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표에 해당하는 지문 리스트</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 식별 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.seq</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.company</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 회사명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 게시판 권한 종류</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 게시판 종류</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.writer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 삭제 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.gradations</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 정렬순서</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 삭제 여부</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_request_example_5">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=29a6a71c-cb44-4fb2-bb5e-fc4bcafb3740 HTTP/1.1
+Content-Type: application/json;charset=utf-8
+Content-Length: 509
+Host: localhost:8080
+
+{
+  "infoDto" : {
+    "id" : 3,
+    "boardDto" : {
+      "seq" : 1,
+      "company" : "(주)바다기업",
+      "writer" : "면접관 A",
+      "title" : "마늘을 잘 먹는 직원을 구합니다.",
+      "content" : "~~~~ 이런 내용으로 면접 모집 공지하는 내용입니다.",
+      "category" : "면접 모집",
+      "type" : "회사 게시판",
+      "deleted" : false
+    },
+    "gradations" : 3,
+    "title" : "인사직원 채점 지표",
+    "details" : [ ],
+    "deleted" : false
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_5">Response</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>evaluation_key</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">생성된 평가지표 식별번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>code</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_response_example_5">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "evaluation_key" : 1,
+  "code" : "success"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_지문_타입_읽기_get">3-3. 지문 타입 읽기 : GET</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. /api/boards/{board}/evaluations/{evaluation}/types</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>board</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 식별 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>evaluation</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가 기준표 식별 번호</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="_request_example_6">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=d54999c2-b1a8-498b-989b-bd8ae3374349 HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_6">Response</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가기준표 지문 타입</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가기준표 지문 타입 식별번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load[].name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">타입 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>load[].gradations</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">타입 순서</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>test</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">성공 여부</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_response_example_6">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "load" : [ {
+    "id" : 3000,
+    "name" : "매우 좋음",
+    "gradations" : 1
+  }, {
+    "id" : 3002,
+    "name" : "좋음",
+    "gradations" : 2
+  }, {
+    "id" : 3006,
+    "name" : "보통",
+    "gradations" : 3
+  }, {
+    "id" : 2001,
+    "name" : "나쁨",
+    "gradations" : 4
+  }, {
+    "id" : 300,
+    "name" : "매우 나쁨",
+    "gradations" : 5
+  } ],
+  "test" : "success"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-09-24 13:11:22 +0900
+Last updated 2021-09-25 13:01:49 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
