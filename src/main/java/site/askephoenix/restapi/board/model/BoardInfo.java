@@ -3,7 +3,7 @@ package site.askephoenix.restapi.board.model;
 import lombok.*;
 import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.CreationTimestamp;
-
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 import javax.persistence.*;
@@ -50,7 +50,7 @@ public class BoardInfo {
     private LocalDate createDate;
 
     @Column(name = "update_date")
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDate updateDate;
 
     @Builder
