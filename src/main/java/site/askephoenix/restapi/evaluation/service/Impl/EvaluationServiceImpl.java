@@ -49,12 +49,15 @@ public class EvaluationServiceImpl implements EvaluationService {
         return Maps.newHashMap(
                 ImmutableMap.of("result", DefaultMessage.getMessage(validate)));
     }
+    public EvaluationInfo loadEvaluationInfo(int evaluation, Long board) throws NoSuchFieldException {
+        return evaluationRepository.findByBoardInfoAndGradations(
+                boardRepository.findBySeq(board), evaluation).orElseThrow(NoSuchFieldException::new);
+    }
 
     @Override
     public HashMap<String, Object> load(int evaluation, long board) throws NoSuchFieldException {
-        final EvaluationInfo evaluationInfo = evaluationRepository.findByBoardInfoAndGradations(
-                boardRepository.findBySeq(board), evaluation).orElseThrow(NoSuchFieldException::new);
-        return Maps.newHashMap(ImmutableMap.of("load", evaluationInfo, "test", "success"));
+        final EvaluationInfoDto result = new EvaluationInfoDto(loadEvaluationInfo(evaluation,board));
+        return Maps.newHashMap(ImmutableMap.of("load", result, "test", "success"));
     }
 
     @Override

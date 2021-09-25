@@ -154,21 +154,25 @@ class EvaluationControllerTest {
     @Test
     @DisplayName("평가 지표 생성하기 Success")
     void createEvaluation() throws Exception {
-        EvaluationTypeListDto type1 = new EvaluationTypeListDto(1L,"매우 좋음", 1);
-        EvaluationTypeListDto type2 = new EvaluationTypeListDto(3L,"좋음", 2);
-        EvaluationTypeListDto type3 = new EvaluationTypeListDto(10L,"보통", 3);
-        EvaluationTypeListDto type4 = new EvaluationTypeListDto(4L,"나쁨", 4);
-        EvaluationTypeListDto type5 = new EvaluationTypeListDto(5L,"매우 나쁨", 5);
+        BoardInfo boardInfo = BoardInfo.builder()
+                .seq(1L)
+                .companyName("(주)바다기업")
+                .type("회사 게시판")
+                .category("면접 모집")
+                .writer("면접관 A")
+                .title("마늘을 잘 먹는 직원을 구합니다.")
+                .content("~~~~ 이런 내용으로 면접 모집 공지하는 내용입니다.")
+                .isDeleted(false)
+                .build();
+        EvaluationInfo evaluationInfo = EvaluationInfo.builder()
+                .id(3L)
+                .boardInfo(boardInfo)
+                .gradations(3)
+                .title("인사직원 채점 지표")
+                .isDeleted(false)
+                .build();
 
-        List<EvaluationTypeListDto> types = Lists.newArrayList(ImmutableList.of(type1, type2, type3, type4, type5));
-        EvaluationDetailInfoDto detail1 = new EvaluationDetailInfoDto(1L,types, "인성 점수", 10);
-        EvaluationDetailInfoDto detail2 = new EvaluationDetailInfoDto(12L,types, "적성 평가", 10);
-        EvaluationDetailInfoDto detail3 = new EvaluationDetailInfoDto(10L,types, "배경지식", 10);
-        EvaluationDetailInfoDto detail4 = new EvaluationDetailInfoDto(13L,types, "전문성", 10);
-        EvaluationDetailInfoDto detail5 = new EvaluationDetailInfoDto(91L,types, "학습 의지", 10);
-        List<EvaluationDetailInfoDto> details = Lists.newArrayList(ImmutableList.of(detail1, detail2, detail3, detail4, detail5));
-
-        EvaluationInfoDto infoDto = new EvaluationInfoDto(1, "객관성 점수 평가", details);
+        EvaluationInfoDto infoDto = new EvaluationInfoDto(evaluationInfo);
         HashMap<String, Object> map = Maps.newHashMap(ImmutableMap.of("infoDto", infoDto));
 
 
@@ -208,17 +212,23 @@ class EvaluationControllerTest {
                                         parameterWithName("_csrf").description("인증 데이터")
                                 ),
                                 requestFields(
-                                        fieldWithPath("infoDto").description("폼 데이터"),
-                                        fieldWithPath("infoDto.gradations").description("평가 지표 등록순번"),
-                                        fieldWithPath("infoDto.title").description("평가 지표 등록순번"),
-                                        fieldWithPath("infoDto.details[]").description("지표 상세내용"),
-                                        fieldWithPath("infoDto.details[].id").description("지표 상세내용 식별번호"),
-                                        fieldWithPath("infoDto.details[].example").description("지표 상세내용, 질문 내용"),
-                                        fieldWithPath("infoDto.details[].score").description("지표 상세내용, 질문 점수"),
-                                        fieldWithPath("infoDto.details[].type[]").description("지표 상세내용 평가 카테고리"),
-                                        fieldWithPath("infoDto.details[].type[].id").description("지표 상세내용 카테고리 식별번호"),
-                                        fieldWithPath("infoDto.details[].type[].name").description("카테고리 명칭"),
-                                        fieldWithPath("infoDto.details[].type[].gradations").description("카테고리 순번")
+                                        fieldWithPath("infoDto").description("평가지표 data"),
+                                        fieldWithPath("infoDto.details[]").description("평가지표에 해당하는 지문 리스트"),
+                                        fieldWithPath("infoDto.id").description("평가지표 - 식별 번호"),
+                                        fieldWithPath("infoDto.boardDto").description("게시판 정보 data"),
+                                        fieldWithPath("infoDto.boardDto.seq").description("게시판 정보 - 번호"),
+                                        fieldWithPath("infoDto.boardDto.company").description("게시판 정보 - 회사명"),
+                                        fieldWithPath("infoDto.boardDto.type").description("게시판 정보 - 게시판 권한 종류"),
+                                        fieldWithPath("infoDto.boardDto.category").description("게시판 정보 - 게시판 종류"),
+                                        fieldWithPath("infoDto.boardDto.writer").description("게시판 정보 - 작성자"),
+                                        fieldWithPath("infoDto.boardDto.title").description("게시판 정보 - 제목"),
+                                        fieldWithPath("infoDto.boardDto.content").description("게시판 정보 - 내용"),
+                                        fieldWithPath("infoDto.boardDto.deleted").description("게시판 정보 - 삭제 여부"),
+
+                                        fieldWithPath("infoDto.gradations").description("평가지표 - 정렬순서"),
+                                        fieldWithPath("infoDto.title").description("평가지표 - 제목"),
+                                        fieldWithPath("infoDto.deleted").description("평가지표 - 삭제 여부")
+
                                 ),
                                 responseFields(
                                         fieldWithPath("evaluation_key").description("생성된 평가지표 식별번호"),

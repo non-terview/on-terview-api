@@ -564,7 +564,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "2f47214f-12ef-45e2-b7ea-1f66665b63e1",
+    "token" : "535135b6-ff5a-4124-9ba2-3b4e1e628e48",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -591,7 +591,7 @@ Host: localhost:8080</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=aa95fdda-39cc-403b-9c55-c4a1c3f1581b</code></pre>
+_csrf=cfb85f75-4af7-436d-8cf2-8c2f97a054d3</code></pre>
 </div>
 </div>
 </div>
@@ -640,7 +640,7 @@ _csrf=aa95fdda-39cc-403b-9c55-c4a1c3f1581b</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=687f7ac2-a856-4364-8c74-daef780c9519</code></pre>
+_csrf=64e4e09c-4b82-4968-9611-221aa446a8ab</code></pre>
 </div>
 </div>
 </div>
@@ -719,7 +719,7 @@ _csrf=687f7ac2-a856-4364-8c74-daef780c9519</code></pre>
 <h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=428501b7-d73f-4373-94d6-700e1f1fcbc7 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=49209fef-3316-46d4-9548-16ee69b6c024 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -919,57 +919,77 @@ Host: localhost:8080</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">폼 데이터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.gradations</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">평가 지표 등록순번</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.title</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">평가 지표 등록순번</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 data</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">지표 상세내용</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표에 해당하는 지문 리스트</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">지표 상세내용 식별번호</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 식별 번호</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[].example</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.seq</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.company</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">지표 상세내용, 질문 내용</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 회사명</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[].score</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">지표 상세내용, 질문 점수</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[].type[]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">지표 상세내용 평가 카테고리</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[].type[].id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">지표 상세내용 카테고리 식별번호</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[].type[].name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리 명칭</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 게시판 권한 종류</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.details[].type[].gradations</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.category</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 게시판 종류</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.writer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 작성자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.boardDto.deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시판 정보 - 삭제 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.gradations</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">카테고리 순번</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 정렬순서</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>infoDto.deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">평가지표 - 삭제 여부</p></td>
 </tr>
 </tbody>
 </table>
@@ -978,141 +998,28 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_5">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=cc955358-125f-4250-b0a0-76330af2953a HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=29a6a71c-cb44-4fb2-bb5e-fc4bcafb3740 HTTP/1.1
 Content-Type: application/json;charset=utf-8
-Content-Length: 2694
+Content-Length: 509
 Host: localhost:8080
 
 {
   "infoDto" : {
-    "gradations" : 1,
-    "title" : "객관성 점수 평가",
-    "details" : [ {
-      "id" : 1,
-      "type" : [ {
-        "id" : 1,
-        "name" : "매우 좋음",
-        "gradations" : 1
-      }, {
-        "id" : 3,
-        "name" : "좋음",
-        "gradations" : 2
-      }, {
-        "id" : 10,
-        "name" : "보통",
-        "gradations" : 3
-      }, {
-        "id" : 4,
-        "name" : "나쁨",
-        "gradations" : 4
-      }, {
-        "id" : 5,
-        "name" : "매우 나쁨",
-        "gradations" : 5
-      } ],
-      "example" : "인성 점수",
-      "score" : 10
-    }, {
-      "id" : 12,
-      "type" : [ {
-        "id" : 1,
-        "name" : "매우 좋음",
-        "gradations" : 1
-      }, {
-        "id" : 3,
-        "name" : "좋음",
-        "gradations" : 2
-      }, {
-        "id" : 10,
-        "name" : "보통",
-        "gradations" : 3
-      }, {
-        "id" : 4,
-        "name" : "나쁨",
-        "gradations" : 4
-      }, {
-        "id" : 5,
-        "name" : "매우 나쁨",
-        "gradations" : 5
-      } ],
-      "example" : "적성 평가",
-      "score" : 10
-    }, {
-      "id" : 10,
-      "type" : [ {
-        "id" : 1,
-        "name" : "매우 좋음",
-        "gradations" : 1
-      }, {
-        "id" : 3,
-        "name" : "좋음",
-        "gradations" : 2
-      }, {
-        "id" : 10,
-        "name" : "보통",
-        "gradations" : 3
-      }, {
-        "id" : 4,
-        "name" : "나쁨",
-        "gradations" : 4
-      }, {
-        "id" : 5,
-        "name" : "매우 나쁨",
-        "gradations" : 5
-      } ],
-      "example" : "배경지식",
-      "score" : 10
-    }, {
-      "id" : 13,
-      "type" : [ {
-        "id" : 1,
-        "name" : "매우 좋음",
-        "gradations" : 1
-      }, {
-        "id" : 3,
-        "name" : "좋음",
-        "gradations" : 2
-      }, {
-        "id" : 10,
-        "name" : "보통",
-        "gradations" : 3
-      }, {
-        "id" : 4,
-        "name" : "나쁨",
-        "gradations" : 4
-      }, {
-        "id" : 5,
-        "name" : "매우 나쁨",
-        "gradations" : 5
-      } ],
-      "example" : "전문성",
-      "score" : 10
-    }, {
-      "id" : 91,
-      "type" : [ {
-        "id" : 1,
-        "name" : "매우 좋음",
-        "gradations" : 1
-      }, {
-        "id" : 3,
-        "name" : "좋음",
-        "gradations" : 2
-      }, {
-        "id" : 10,
-        "name" : "보통",
-        "gradations" : 3
-      }, {
-        "id" : 4,
-        "name" : "나쁨",
-        "gradations" : 4
-      }, {
-        "id" : 5,
-        "name" : "매우 나쁨",
-        "gradations" : 5
-      } ],
-      "example" : "학습 의지",
-      "score" : 10
-    } ]
+    "id" : 3,
+    "boardDto" : {
+      "seq" : 1,
+      "company" : "(주)바다기업",
+      "writer" : "면접관 A",
+      "title" : "마늘을 잘 먹는 직원을 구합니다.",
+      "content" : "~~~~ 이런 내용으로 면접 모집 공지하는 내용입니다.",
+      "category" : "면접 모집",
+      "type" : "회사 게시판",
+      "deleted" : false
+    },
+    "gradations" : 3,
+    "title" : "인사직원 채점 지표",
+    "details" : [ ],
+    "deleted" : false
   }
 }</code></pre>
 </div>
@@ -1189,7 +1096,7 @@ Host: localhost:8080
 <h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=5bda85f7-5c6b-4d19-a618-63f4fa664dc7 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=d54999c2-b1a8-498b-989b-bd8ae3374349 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>

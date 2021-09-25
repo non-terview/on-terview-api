@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import site.askephoenix.restapi.board.model.BoardInfo;
 import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 import site.askephoenix.restapi.evaluation.repository.EvaluationDetailRepository;
@@ -18,8 +17,7 @@ import site.askephoenix.restapi.evaluation.repository.EvaluationTypeListReposito
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -74,7 +72,7 @@ class EvaluationServiceImplTest {
                                 .id(1L)
                                 .gradations(123).build())
                 );
-        assertEquals(evaluationService.load(evaluation,board).get("test"), "success");
+        assertEquals(evaluationService.loadEvaluationInfo(evaluation, board).getId(), board);
     }
 
     @Test
@@ -88,7 +86,7 @@ class EvaluationServiceImplTest {
                                 .id(1L)
                                 .gradations(123).build())
                 );
-        assertEquals(evaluationService.evaluationCheck(board,evaluation), 4);
+        assertEquals(evaluationService.evaluationCheck(board, evaluation), 4);
     }
 
     @Test
@@ -100,7 +98,7 @@ class EvaluationServiceImplTest {
                 .thenReturn(
                         Optional.empty()
                 );
-        assertEquals(evaluationService.evaluationCheck(board,evaluation), 1);
+        assertEquals(evaluationService.evaluationCheck(board, evaluation), 1);
     }
 
 }

@@ -60,12 +60,12 @@ public class EvaluationInfo {
             LocalDate createDate, LocalDate updateDate, boolean isDeleted,
             BoardInfo boardInfo
     ) {
-        this.gradations = gradations;
         this.id = id;
+        this.boardInfo = boardInfo;
+        this.gradations = gradations;
         this.title = title;
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.isDeleted = isDeleted;
-        this.boardInfo = boardInfo;
     }
 }
