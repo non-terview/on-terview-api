@@ -13,4 +13,8 @@ public interface EvaluationService {
     HashMap<String, Object> load(int evaluation, long board ) throws NoSuchFieldException;
 
     HashMap<String, Object> save(int evaluation, long board, EvaluationInfoDto infoDto);
+
+    int evaluationCheck(long board, int evaluation);
+
+    HashMap<String, Object> loadTypes(long board, int evaluation) throws NoSuchFieldException;
 }

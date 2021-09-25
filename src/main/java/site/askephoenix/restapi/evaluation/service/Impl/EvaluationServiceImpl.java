@@ -33,6 +33,15 @@ public class EvaluationServiceImpl implements EvaluationService {
         return userInfo == null ? -1 : 1;
     }
 
+
+    @Override
+    public int evaluationCheck(long board, int evaluation) {
+        return evaluationRepository.findByBoardInfoAndGradations(
+                boardRepository.findBySeq(board), evaluation
+        ).stream().findAny().isPresent() ? 4 : 1;
+    }
+
+
     @Override
     public HashMap<String, Object> message(int validate) {
         return Maps.newHashMap(
@@ -44,6 +53,19 @@ public class EvaluationServiceImpl implements EvaluationService {
         final EvaluationInfo evaluationInfo = evaluationRepository.findByBoardInfoAndGradations(
                 boardRepository.findBySeq(board), evaluation).orElseThrow(NoSuchFieldException::new);
         return Maps.newHashMap(ImmutableMap.of("load", evaluationInfo, "test", "success"));
+    }
+
+    @Override
+    public HashMap<String, Object> loadTypes(long board, int evaluation) throws NoSuchFieldException {
+        final EvaluationInfo evaluationInfo = evaluationRepository.findByBoardInfoAndGradations(
+                boardRepository.findBySeq(board), evaluation).orElseThrow(NoSuchFieldException::new);
+        final EvaluationDetailInfo detailInfo = detailRepository.findByEvaluationInfoAndGradation(evaluationInfo, evaluation)
+                .orElseThrow(NoSuchFieldException::new);
+        final List<EvaluationTypeList> typeList =
+                typeListRepository.findAllByEvaluationDetailInfo(detailInfo).orElseThrow(NoSuchFieldException::new);
+        return Maps.newHashMap(ImmutableMap.of(
+                "load", typeList,
+                "test", "success"));
     }
 
     @Override
@@ -77,5 +99,6 @@ public class EvaluationServiceImpl implements EvaluationService {
 
         return Maps.newHashMap(ImmutableMap.of("code", "success", "evaluation_key", evaluationInfo.getId()));
     }
+
 
 }

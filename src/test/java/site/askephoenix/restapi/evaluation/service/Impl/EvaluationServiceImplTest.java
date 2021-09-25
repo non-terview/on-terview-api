@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import site.askephoenix.restapi.board.model.BoardInfo;
 import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 import site.askephoenix.restapi.evaluation.repository.EvaluationDetailRepository;
@@ -74,6 +75,32 @@ class EvaluationServiceImplTest {
                                 .gradations(123).build())
                 );
         assertEquals(evaluationService.load(evaluation,board).get("test"), "success");
+    }
+
+    @Test
+    @DisplayName("유효성 검사 : evaluation 이 이미 있을때 = -1")
+    void evaluationCheckSuccess() {
+        final int evaluation = 1;
+        final long board = 1L;
+        when(evaluationRepository.findByBoardInfoAndGradations(any(), anyInt()))
+                .thenReturn(
+                        Optional.of(EvaluationInfo.builder()
+                                .id(1L)
+                                .gradations(123).build())
+                );
+        assertEquals(evaluationService.evaluationCheck(board,evaluation), 4);
+    }
+
+    @Test
+    @DisplayName("유효성 검사 : evaluation 이 이미 없을때 = 1")
+    void evaluationCheckFail() {
+        final int evaluation = 1;
+        final long board = 1L;
+        when(evaluationRepository.findByBoardInfoAndGradations(any(), anyInt()))
+                .thenReturn(
+                        Optional.empty()
+                );
+        assertEquals(evaluationService.evaluationCheck(board,evaluation), 1);
     }
 
 }

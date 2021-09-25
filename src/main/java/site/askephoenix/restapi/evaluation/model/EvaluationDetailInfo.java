@@ -30,6 +30,9 @@ public class EvaluationDetailInfo {
     @Column(name = "score")
     private Integer score;
 
+    @Column(name = "gradation")
+    private Integer gradation;
+
     @Builder
     public EvaluationDetailInfo(
             EvaluationInfo evaluationInfo,

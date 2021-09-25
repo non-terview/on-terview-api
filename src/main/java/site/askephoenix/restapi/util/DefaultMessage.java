@@ -13,6 +13,7 @@ public class DefaultMessage {
                     .put(1, "success")
                     .put(2, "not validate")
                     .put(3, "error")
+                    .put(4, "value duple")   // 값 중복
                     .build()
     );
     public static String getMessage(Integer value) {
