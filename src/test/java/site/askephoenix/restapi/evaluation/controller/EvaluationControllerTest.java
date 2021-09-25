@@ -27,6 +27,7 @@ import site.askephoenix.restapi.evaluation.dto.EvaluationDetailInfoDto;
 import site.askephoenix.restapi.evaluation.dto.EvaluationInfoDto;
 import site.askephoenix.restapi.evaluation.dto.EvaluationTypeListDto;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
+import site.askephoenix.restapi.evaluation.model.EvaluationTypeList;
 import site.askephoenix.restapi.evaluation.service.EvaluationService;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.service.UserService;
@@ -34,6 +35,7 @@ import site.askephoenix.restapi.user.service.UserService;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
@@ -74,7 +76,7 @@ class EvaluationControllerTest {
     }
 
     @Test
-    @DisplayName("평가 지표 가져오기")
+    @DisplayName("평가 지표 가져오기 Success")
     void readEvaluationOfBoard() throws Exception {
         BoardInfo testBoard = BoardInfo.builder()
                 .seq(1L)
@@ -150,20 +152,20 @@ class EvaluationControllerTest {
     }
 
     @Test
-    @DisplayName("평가 지표 생성하기")
+    @DisplayName("평가 지표 생성하기 Success")
     void createEvaluation() throws Exception {
-        EvaluationTypeListDto type1 = new EvaluationTypeListDto("매우 좋음", 1);
-        EvaluationTypeListDto type2 = new EvaluationTypeListDto("좋음", 2);
-        EvaluationTypeListDto type3 = new EvaluationTypeListDto("보통", 3);
-        EvaluationTypeListDto type4 = new EvaluationTypeListDto("나쁨", 4);
-        EvaluationTypeListDto type5 = new EvaluationTypeListDto("매우 나쁨", 5);
+        EvaluationTypeListDto type1 = new EvaluationTypeListDto(1L,"매우 좋음", 1);
+        EvaluationTypeListDto type2 = new EvaluationTypeListDto(3L,"좋음", 2);
+        EvaluationTypeListDto type3 = new EvaluationTypeListDto(10L,"보통", 3);
+        EvaluationTypeListDto type4 = new EvaluationTypeListDto(4L,"나쁨", 4);
+        EvaluationTypeListDto type5 = new EvaluationTypeListDto(5L,"매우 나쁨", 5);
 
         List<EvaluationTypeListDto> types = Lists.newArrayList(ImmutableList.of(type1, type2, type3, type4, type5));
-        EvaluationDetailInfoDto detail1 = new EvaluationDetailInfoDto(types, "인성 점수", 10);
-        EvaluationDetailInfoDto detail2 = new EvaluationDetailInfoDto(types, "적성 평가", 10);
-        EvaluationDetailInfoDto detail3 = new EvaluationDetailInfoDto(types, "배경지식", 10);
-        EvaluationDetailInfoDto detail4 = new EvaluationDetailInfoDto(types, "전문성", 10);
-        EvaluationDetailInfoDto detail5 = new EvaluationDetailInfoDto(types, "학습 의지", 10);
+        EvaluationDetailInfoDto detail1 = new EvaluationDetailInfoDto(1L,types, "인성 점수", 10);
+        EvaluationDetailInfoDto detail2 = new EvaluationDetailInfoDto(12L,types, "적성 평가", 10);
+        EvaluationDetailInfoDto detail3 = new EvaluationDetailInfoDto(10L,types, "배경지식", 10);
+        EvaluationDetailInfoDto detail4 = new EvaluationDetailInfoDto(13L,types, "전문성", 10);
+        EvaluationDetailInfoDto detail5 = new EvaluationDetailInfoDto(91L,types, "학습 의지", 10);
         List<EvaluationDetailInfoDto> details = Lists.newArrayList(ImmutableList.of(detail1, detail2, detail3, detail4, detail5));
 
         EvaluationInfoDto infoDto = new EvaluationInfoDto(1, "객관성 점수 평가", details);
@@ -210,9 +212,11 @@ class EvaluationControllerTest {
                                         fieldWithPath("infoDto.gradations").description("평가 지표 등록순번"),
                                         fieldWithPath("infoDto.title").description("평가 지표 등록순번"),
                                         fieldWithPath("infoDto.details[]").description("지표 상세내용"),
+                                        fieldWithPath("infoDto.details[].id").description("지표 상세내용 식별번호"),
                                         fieldWithPath("infoDto.details[].example").description("지표 상세내용, 질문 내용"),
                                         fieldWithPath("infoDto.details[].score").description("지표 상세내용, 질문 점수"),
                                         fieldWithPath("infoDto.details[].type[]").description("지표 상세내용 평가 카테고리"),
+                                        fieldWithPath("infoDto.details[].type[].id").description("지표 상세내용 카테고리 식별번호"),
                                         fieldWithPath("infoDto.details[].type[].name").description("카테고리 명칭"),
                                         fieldWithPath("infoDto.details[].type[].gradations").description("카테고리 순번")
                                 ),
@@ -223,4 +227,85 @@ class EvaluationControllerTest {
                         )
                 );
     }
+
+    @Test
+    @DisplayName("평가 지표 지문의 타입 가져오기 Success")
+    void readEvaluationType() throws Exception {
+
+        EvaluationTypeList typeList1 = EvaluationTypeList.builder()
+                .id(3000L)
+                .name("매우 좋음")
+                .gradations(1)
+                .build();
+        EvaluationTypeList typeList2 = EvaluationTypeList.builder()
+                .id(3002L)
+                .name("좋음")
+                .gradations(2)
+                .build();
+        EvaluationTypeList typeList3 = EvaluationTypeList.builder()
+                .id(3006L)
+                .name("보통")
+                .gradations(3)
+                .build();
+        EvaluationTypeList typeList4 = EvaluationTypeList.builder()
+                .id(2001L)
+                .name("나쁨")
+                .gradations(4)
+                .build();
+        EvaluationTypeList typeList5 = EvaluationTypeList.builder()
+                .id(300L)
+                .name("매우 나쁨")
+                .gradations(5)
+                .build();
+        List<EvaluationTypeList> evaluationTypeLists =
+                Lists.newArrayList(ImmutableList.of(
+                        typeList1, typeList2,
+                        typeList3, typeList4,
+                        typeList5
+                ));
+        List<EvaluationTypeListDto> result = evaluationTypeLists.stream().map(EvaluationTypeListDto::new).collect(Collectors.toList());
+
+
+        given(evaluationService.validate(any(UserInfo.class))).willReturn(1);
+        given(evaluationService.evaluationCheck(anyLong(), anyInt())).willReturn(4);
+        given(evaluationService.message(1)).willReturn(Maps.newHashMap(ImmutableMap.of("result", "success")));
+        given(evaluationService.message(4)).willReturn(Maps.newHashMap(ImmutableMap.of("result", "value duple")));
+
+        given(evaluationService.loadTypes(anyLong(), anyInt())).willReturn(
+                Maps.newHashMap(ImmutableMap.of(
+                        "load",
+                        result,
+                        "test",
+                        "success")));
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.get("/api/boards/{board}/evaluations/{evaluation}/types", 1L, 1)
+                        .with(csrf()).with(user(UserInfo.builder()
+                                .auth("ROLE_USER")
+                                .email("tester")
+                                .build()
+                        ))
+                        .characterEncoding("utf-8")
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("evaluation-get-types",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("board").description("게시판 식별 번호"),
+                                parameterWithName("evaluation").description("평가 기준표 식별 번호")
+                        ),
+                        responseFields(
+                                fieldWithPath("load[]").description("평가기준표 지문 타입"),
+                                fieldWithPath("load[].id").description("평가기준표 지문 타입 식별번호"),
+                                fieldWithPath("load[].name").description("타입 이름"),
+                                fieldWithPath("load[].gradations").description("타입 순서"),
+                                fieldWithPath("test").description("성공 여부")
+                        )
+                ));
+    }
+
+
 }

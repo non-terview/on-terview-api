@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.dto.EvaluationDetailInfoDto;
 import site.askephoenix.restapi.evaluation.dto.EvaluationInfoDto;
+import site.askephoenix.restapi.evaluation.dto.EvaluationTypeListDto;
 import site.askephoenix.restapi.evaluation.model.EvaluationDetailInfo;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 import site.askephoenix.restapi.evaluation.model.EvaluationTypeList;
@@ -19,6 +20,7 @@ import site.askephoenix.restapi.util.DefaultMessage;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -63,8 +65,9 @@ public class EvaluationServiceImpl implements EvaluationService {
                 .orElseThrow(NoSuchFieldException::new);
         final List<EvaluationTypeList> typeList =
                 typeListRepository.findAllByEvaluationDetailInfo(detailInfo).orElseThrow(NoSuchFieldException::new);
+        final List<EvaluationTypeListDto> result = typeList.stream().map(EvaluationTypeListDto::new).collect(Collectors.toList());
         return Maps.newHashMap(ImmutableMap.of(
-                "load", typeList,
+                "load", result,
                 "test", "success"));
     }
 

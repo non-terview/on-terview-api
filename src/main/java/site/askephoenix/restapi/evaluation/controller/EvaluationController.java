@@ -25,7 +25,6 @@ public class EvaluationController {
             @PathVariable(name = "evaluation") int evaluation) {
         // validate 전처리 작업
         final HashMap<String, Object> message = service.message(service.validate(userInfo));
-
         // validate 검사
         if (!"success".equals(message.get("result"))) return message;
 

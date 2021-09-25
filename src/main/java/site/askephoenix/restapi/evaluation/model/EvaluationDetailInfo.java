@@ -35,13 +35,16 @@ public class EvaluationDetailInfo {
 
     @Builder
     public EvaluationDetailInfo(
+            Long id,
             EvaluationInfo evaluationInfo,
-            String type, String example, Integer score
+            String type, String example, Integer score, Integer gradation
     ) {
+        this.id = id;
         this.evaluationInfo = evaluationInfo;
         this.example = example;
         this.type = type;
         this.score = score;
+        this.gradation = gradation;
     }
 
 

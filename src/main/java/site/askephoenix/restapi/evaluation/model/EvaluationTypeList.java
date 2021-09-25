@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site.askephoenix.restapi.evaluation.dto.EvaluationTypeListDto;
 
 import javax.persistence.*;
 
@@ -29,9 +30,11 @@ public class EvaluationTypeList {
 
     @Builder
     public EvaluationTypeList(
+            Long id,
             EvaluationDetailInfo evaluationDetailInfo,
             String name, int gradations
     ) {
+        this.id = id;
         this.evaluationDetailInfo = evaluationDetailInfo;
         this.name = name;
         this.gradations = gradations;
