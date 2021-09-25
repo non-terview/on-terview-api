@@ -57,6 +57,7 @@ include::{snippets}/evaluation-post/response-fields.adoc[]
 include::{snippets}/evaluation-post/response-body.adoc[]
 
 === 3-3. 지문 타입 읽기 : GET
+==== 3-3-1. 성공
 include::{snippets}/evaluation-get-types/path-parameters.adoc[]
 ===== Request Example
 include::{snippets}/evaluation-get-types/http-request.adoc[]
