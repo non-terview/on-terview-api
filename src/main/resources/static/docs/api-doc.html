@@ -482,8 +482,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_3_3_지문_타입_읽기_get">3-3. 지문 타입 읽기 : GET</a>
-<ul class="sectlevel3">
-<li><a href="#_3_3_1_성공">3-3-1. 성공</a></li>
+<ul class="sectlevel4">
+<li><a href="#_request_example_6">Request Example</a></li>
+<li><a href="#_response_6">Response</a></li>
+<li><a href="#_response_example_6">Response Example</a></li>
 </ul>
 </li>
 </ul>
@@ -562,7 +564,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "f36b60a5-af1d-497e-8c0b-c3a22ae5c138",
+    "token" : "535135b6-ff5a-4124-9ba2-3b4e1e628e48",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -589,7 +591,7 @@ Host: localhost:8080</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=b3935a62-30ca-47b7-8fcf-e3c32cd38440</code></pre>
+_csrf=cfb85f75-4af7-436d-8cf2-8c2f97a054d3</code></pre>
 </div>
 </div>
 </div>
@@ -638,7 +640,7 @@ _csrf=b3935a62-30ca-47b7-8fcf-e3c32cd38440</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=fe534594-ddd0-4644-a952-b320731dd859</code></pre>
+_csrf=64e4e09c-4b82-4968-9611-221aa446a8ab</code></pre>
 </div>
 </div>
 </div>
@@ -717,7 +719,7 @@ _csrf=fe534594-ddd0-4644-a952-b320731dd859</code></pre>
 <h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=733b5ff0-6949-4a80-a879-09f790e5f50d HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=49209fef-3316-46d4-9548-16ee69b6c024 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -996,7 +998,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_5">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=07abfce3-b442-49a2-b9b5-65d4b003f174 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=29a6a71c-cb44-4fb2-bb5e-fc4bcafb3740 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 509
 Host: localhost:8080
@@ -1067,8 +1069,6 @@ Host: localhost:8080
 </div>
 <div class="sect2">
 <h3 id="_3_3_지문_타입_읽기_get">3-3. 지문 타입 읽기 : GET</h3>
-<div class="sect3">
-<h4 id="_3_3_1_성공">3-3-1. 성공</h4>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. /api/boards/{board}/evaluations/{evaluation}/types</caption>
 <colgroup>
@@ -1096,7 +1096,7 @@ Host: localhost:8080
 <h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=74e6f8fb-a005-4fd3-aa8d-046bdc0e1fbb HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=d54999c2-b1a8-498b-989b-bd8ae3374349 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1180,11 +1180,10 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
-</div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-09-25 18:21:19 +0900
+Last updated 2021-09-25 13:01:49 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
