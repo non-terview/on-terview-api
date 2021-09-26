@@ -47,11 +47,13 @@ public class StatusInfo {
 
     @Builder
     public StatusInfo(
-            Long id, UserInfo userInfo,
-            boolean isDeleted
+            Long id, UserInfo userInfo, BoardInfo boardInfo,
+            String state, boolean isDeleted
     ) {
         this.id = id;
         this.userInfo = userInfo;
+        this.boardInfo = boardInfo;
+        this.state = state;
         this.isDeleted = isDeleted;
     }
 

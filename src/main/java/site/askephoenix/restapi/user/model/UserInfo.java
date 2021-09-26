@@ -41,9 +41,13 @@ public class UserInfo implements UserDetails {
     private String type;
 
     @Builder
-    public UserInfo(String email, String password, String auth , String name) {
+    public UserInfo(
+            Long id, String email, String password,
+            String type, String auth , String name) {
+        this.id = id;
         this.email = email;
         this.password = password;
+        this.type = type;
         this.auth = auth;
         this.name = name;
     }
