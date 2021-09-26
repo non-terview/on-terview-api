@@ -1,9 +1,6 @@
 package site.askephoenix.restapi.user.model;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
+@Setter
 @Table(name = "user_info")
 public class UserInfo implements UserDetails {
     @Id
@@ -85,4 +83,5 @@ public class UserInfo implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

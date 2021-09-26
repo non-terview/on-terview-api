@@ -10,7 +10,7 @@ import site.askephoenix.restapi.user.dto.UserInfoDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.repository.UserRepository;
 
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -42,4 +42,24 @@ public class UserService implements UserDetailsService {
 
         return userInfo.getId();
     }
+
+
+    public Long update(UserInfoDto infoDto){
+        Optional<UserInfo> modifyUser = userRepository.findById(1L);
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        infoDto.setPassword(encoder.encode(infoDto.getPassword()));
+
+        modifyUser.ifPresent(selectUser ->{
+            selectUser.setName(infoDto.getName());
+            selectUser.setEmail(infoDto.getEmail());
+            selectUser.setPassword(infoDto.getPassword());
+
+            userRepository.save(selectUser);
+        });
+
+        return modifyUser.get().getId();
+    }
+
+
 }

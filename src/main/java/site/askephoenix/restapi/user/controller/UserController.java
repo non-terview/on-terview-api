@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import site.askephoenix.restapi.user.dto.UserInfoDto;
+import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.service.UserService;
 
 import java.util.HashMap;
@@ -31,12 +32,23 @@ public class UserController {
                 ));
     }
 
-    @PostMapping(value = "")
+    @PostMapping(value = "/signOn")
     public HashMap<String, Object> signup(UserInfoDto infoDto) {
         Long id = userService.save(infoDto);
 //            이미 이메일이 있는 경우
         if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("create_user_id", id));
     }
+
+    @PostMapping(value = "/modify")
+    public HashMap<String, Object> update(UserInfoDto infoDto){
+        Long id = userService.update(infoDto);
+
+        //이메일이 없는 경우
+        if (-1L != id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
+        return Maps.newHashMap(ImmutableMap.of("modify_user_id", id));
+    }
+
+
 
 }
