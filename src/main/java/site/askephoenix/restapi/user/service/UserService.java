@@ -61,7 +61,7 @@ public class UserService implements UserDetailsService {
                         .password(infoDto.getPassword())
                         .build()
         );
-        return infoDto.getId();
+        return userInfo.getId();
     }
 
 
