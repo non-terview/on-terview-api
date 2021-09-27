@@ -46,7 +46,7 @@ public class UserController {
         Long id = userService.update(userInfo,infoDto);
 
         //이메일이 없는 경우
-        if (-1L != id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
+        if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("modify_user_id", id));
     }
 
