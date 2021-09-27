@@ -18,4 +18,9 @@ public class PageController {
     public String signOnPage(){
         return "pages/sign-on";
     }
+
+    @GetMapping("modify")
+    public String userModifyPage(){
+        return "pages/modify";
+    }
 }
