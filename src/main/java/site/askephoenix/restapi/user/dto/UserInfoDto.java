@@ -1,11 +1,13 @@
 package site.askephoenix.restapi.user.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class UserInfoDto {
     private Long id;
     private String name;

@@ -6,11 +6,13 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import site.askephoenix.restapi.board.model.BoardInfo;
+import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.evaluation.service.Impl.EvaluationServiceImpl;
 import site.askephoenix.restapi.status.dto.StatusInfoDto;
 import site.askephoenix.restapi.status.model.StatusInfo;
@@ -37,14 +39,19 @@ class StatusServiceImplTest {
     @Mock
     StatusRepository repository;
 
+    @Mock
+    BoardRepository boardRepository;
+
     @BeforeEach
     void setUp() {
         this.service = new StatusServiceImpl(
-                repository
+                repository,
+                boardRepository
         );
     }
 
     @Test
+    @DisplayName("LoadStatus 성공 테스트")
     void loadStatus() {
         final UserInfo userInfo = UserInfo.builder()
                 .id(3L)
@@ -92,4 +99,6 @@ class StatusServiceImplTest {
 
         assertEquals(service.loadStatus(userInfo).get("test"),result.get("test"));
     }
+
+
 }

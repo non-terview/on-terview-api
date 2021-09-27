@@ -1,6 +1,7 @@
 package site.askephoenix.restapi.board.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import site.askephoenix.restapi.board.model.BoardInfo;
@@ -8,6 +9,7 @@ import site.askephoenix.restapi.board.model.BoardInfo;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class BoardDto {
 
     private Long seq;
