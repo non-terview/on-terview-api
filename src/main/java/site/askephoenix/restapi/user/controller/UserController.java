@@ -4,10 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.web.csrf.CsrfToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.user.dto.UserInfoDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.service.UserService;
@@ -32,7 +30,7 @@ public class UserController {
                 ));
     }
 
-    @PostMapping(value = "/signOn")
+    @PostMapping(value = "")
     public HashMap<String, Object> signup(UserInfoDto infoDto) {
         Long id = userService.save(infoDto);
 //            이미 이메일이 있는 경우
@@ -40,9 +38,12 @@ public class UserController {
         return Maps.newHashMap(ImmutableMap.of("create_user_id", id));
     }
 
-    @PostMapping(value = "/modify")
-    public HashMap<String, Object> update(UserInfoDto infoDto){
-        Long id = userService.update(infoDto);
+
+    @PutMapping(value = "")
+    public HashMap<String, Object> update(
+            @LoginUser UserInfo userInfo,
+            UserInfoDto infoDto){
+        Long id = userService.update(userInfo,infoDto);
 
         //이메일이 없는 경우
         if (-1L != id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
