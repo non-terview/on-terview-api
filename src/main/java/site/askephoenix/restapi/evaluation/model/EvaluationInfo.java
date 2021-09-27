@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import site.askephoenix.restapi.board.model.BoardInfo;
 
 import javax.persistence.*;
@@ -48,7 +49,7 @@ public class EvaluationInfo {
     private LocalDate createDate;
 
     @Column(name = "update_date")
-    @CreationTimestamp
+    @UpdateTimestamp
     private LocalDate updateDate;
 
     @Column(name = "is_deleted")
