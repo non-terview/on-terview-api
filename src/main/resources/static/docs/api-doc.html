@@ -467,12 +467,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_3_1_2_실패">3-1-2. 실패</a></li>
 </ul>
 </li>
-<li><a href="#_3_2_로그인">3-2. 로그인</a></li>
-<li><a href="#_3_3_회원정보_수정">3-3. 회원정보 수정</a>
-<ul class="sectlevel3">
-<li><a href="#_3_3_1_성공">3-3-1. 성공</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#_4_평가_기준표">4. 평가 기준표</a>
@@ -489,7 +483,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_3_3_지문_타입_읽기_get">3-3. 지문 타입 읽기 : GET</a>
 <ul class="sectlevel3">
-<li><a href="#_3_3_1_성공_2">3-3-1. 성공</a></li>
+<li><a href="#_3_3_1_성공">3-3-1. 성공</a></li>
 </ul>
 </li>
 </ul>
@@ -568,7 +562,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "98be1b7f-0385-4dc9-b31c-b2d8466b548a",
+    "token" : "10166851-1c32-4105-a1c5-dd0df8dec5ac",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -588,71 +582,14 @@ Host: localhost:8080</code></pre>
 <div class="sect3">
 <h4 id="_3_1_1_성공">3-1-1. 성공</h4>
 <div class="sect4">
-<h5 id="_request">Request</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 식별번호 (null)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 성명</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 비밀번호</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auth</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 권한</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 종류(USER)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 이메일</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
 <h5 id="_request_example_2">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /user?_csrf=8f6cfac0-594f-4841-a1ff-d00a8b6e8a0e HTTP/1.1
-Content-Type: application/json;charset=utf-8
-Content-Length: 145
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /user HTTP/1.1
 Host: localhost:8080
+Content-Type: application/x-www-form-urlencoded
 
-{
-  "id" : null,
-  "email" : "aske@test.success",
-  "password" : "success",
-  "name" : "TestSuccess",
-  "auth" : "USER_ROLE",
-  "type" : "USER"
-}</code></pre>
+_csrf=6c193709-a0c8-4634-8943-cd4c503fe7f0</code></pre>
 </div>
 </div>
 </div>
@@ -701,7 +638,7 @@ Host: localhost:8080
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=ab1e6c1e-0b4a-49e5-a32c-7908afff27f4</code></pre>
+_csrf=15ad8454-09b1-4517-81d6-f90abdf41c62</code></pre>
 </div>
 </div>
 </div>
@@ -735,119 +672,6 @@ _csrf=ab1e6c1e-0b4a-49e5-a32c-7908afff27f4</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "status" : "fail"
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_3_2_로그인">3-2. 로그인</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_3_3_회원정보_수정">3-3. 회원정보 수정</h3>
-<div class="sect3">
-<h4 id="_3_3_1_성공">3-3-1. 성공</h4>
-<div class="sect4">
-<h5 id="_request_2">Request</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 식별번호 (null)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">변경할 성명</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">변경할 비밀번호</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>auth</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 권한 (null)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 종류 (null)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">변경할 이메일</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_request_example_4">Request Example</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /user?_csrf=26391aeb-5039-42a6-82e1-7c6f610ca18f HTTP/1.1
-Content-Type: application/json;charset=utf-8
-Content-Length: 136
-Host: localhost:8080
-
-{
-  "id" : null,
-  "email" : "aske@test.success",
-  "password" : "success",
-  "name" : "TestSuccess",
-  "auth" : null,
-  "type" : null
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_response_4">Response</h5>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>modify_user_id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">변경된 계정 식별번호</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect4">
-<h5 id="_response_example_4">Response Example</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
-  "modify_user_id" : 100
 }</code></pre>
 </div>
 </div>
@@ -890,16 +714,16 @@ Host: localhost:8080
 </table>
 </div>
 <div class="sect4">
-<h5 id="_request_example_5">Request Example</h5>
+<h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=d5616b34-11a7-441d-b3cc-644a9e713210 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=2bede368-0bc7-4847-a3a2-a76a68c97c1e HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_5">Response</h5>
+<h5 id="_response_4">Response</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1013,7 +837,7 @@ Host: localhost:8080</code></pre>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_response_example_5">Response Example</h5>
+<h5 id="_response_example_4">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
@@ -1027,14 +851,14 @@ Host: localhost:8080</code></pre>
       "writer" : "테스트 유저",
       "title" : "테스트 타이틀입니다.",
       "content" : "내용",
-      "createDate" : [ 2021, 9, 28 ],
-      "updateDate" : [ 2021, 9, 28 ],
+      "createDate" : [ 2021, 9, 25 ],
+      "updateDate" : [ 2021, 9, 25 ],
       "deleted" : false
     },
     "gradations" : 1,
     "title" : "테스트 지표 1",
-    "createDate" : [ 2021, 9, 28 ],
-    "updateDate" : [ 2021, 9, 28 ],
+    "createDate" : [ 2021, 9, 25 ],
+    "updateDate" : [ 2021, 9, 25 ],
     "deleted" : false
   },
   "test" : "success"
@@ -1075,7 +899,7 @@ Host: localhost:8080</code></pre>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_request_3">Request</h5>
+<h5 id="_request">Request</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1169,10 +993,10 @@ Host: localhost:8080</code></pre>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_request_example_6">Request Example</h5>
+<h5 id="_request_example_5">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=292fed1a-ea61-481f-b560-f3237c52209c HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=6f7de989-ae2f-490d-96d5-a5d0a0c84a0d HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 509
 Host: localhost:8080
@@ -1200,7 +1024,7 @@ Host: localhost:8080
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_6">Response</h5>
+<h5 id="_response_5">Response</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1229,7 +1053,7 @@ Host: localhost:8080
 </table>
 </div>
 <div class="sect4">
-<h5 id="_response_example_6">Response Example</h5>
+<h5 id="_response_example_5">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
@@ -1244,7 +1068,7 @@ Host: localhost:8080
 <div class="sect2">
 <h3 id="_3_3_지문_타입_읽기_get">3-3. 지문 타입 읽기 : GET</h3>
 <div class="sect3">
-<h4 id="_3_3_1_성공_2">3-3-1. 성공</h4>
+<h4 id="_3_3_1_성공">3-3-1. 성공</h4>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 3. /api/boards/{board}/evaluations/{evaluation}/types</caption>
 <colgroup>
@@ -1269,16 +1093,16 @@ Host: localhost:8080
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="_request_example_7">Request Example</h5>
+<h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=0b952cee-66d4-4fc9-a20d-4bc537c9cf94 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=f40db7da-2a51-48d2-9a82-21f8ede88f8d HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_7">Response</h5>
+<h5 id="_response_6">Response</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1322,7 +1146,7 @@ Host: localhost:8080</code></pre>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_response_example_7">Response Example</h5>
+<h5 id="_response_example_6">Response Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
@@ -1360,7 +1184,7 @@ Host: localhost:8080</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-09-28 14:18:40 +0900
+Last updated 2021-09-25 19:35:30 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

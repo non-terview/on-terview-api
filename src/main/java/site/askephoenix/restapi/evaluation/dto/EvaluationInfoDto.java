@@ -1,6 +1,7 @@
 package site.askephoenix.restapi.evaluation.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.board.dto.BoardDto;
 import site.askephoenix.restapi.evaluation.model.EvaluationDetailInfo;
@@ -12,6 +13,7 @@ import java.util.List;
 // frontend api
 @Getter
 @Setter
+@NoArgsConstructor
 public class EvaluationInfoDto {
     private Long id;
     private BoardDto boardDto;
@@ -20,10 +22,6 @@ public class EvaluationInfoDto {
     private boolean isDeleted;
 
     private List<EvaluationDetailInfoDto> details;
-
-    public EvaluationInfoDto() {
-
-    }
 
     public EvaluationInfoDto(EvaluationInfo evaluationInfo, List<EvaluationDetailInfo> detailInfo) {
         this.gradations = evaluationInfo.getGradations();
