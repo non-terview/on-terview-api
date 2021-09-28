@@ -57,12 +57,24 @@ class UserControllerTest {
     @Test
     @DisplayName("회원가입 성공")
     void signup_success() throws Exception {
+
+        UserInfoDto dto = new UserInfoDto();
+        dto.setName("TestSuccess");
+        dto.setPassword("success");
+        dto.setEmail("aske@test.success");
+        dto.setAuth("USER_ROLE");
+        dto.setType("USER");
+
         final Long user_id = 300L;
 
         given(userService.save(any(UserInfoDto.class))).willReturn(user_id);
 
         ResultActions perform = this.mvc.perform(
-                RestDocumentationRequestBuilders.post("/user").with(csrf())
+                RestDocumentationRequestBuilders.post("/user")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(dto))
+                        .characterEncoding("utf-8")
         );
 
         perform.andExpect(status().isOk())
@@ -70,6 +82,14 @@ class UserControllerTest {
                 .andDo(document("user-post",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
+                        requestFields(
+                                fieldWithPath("id").description("사용자 식별번호 (null)"),
+                                fieldWithPath("name").description("가입자 성명"),
+                                fieldWithPath("password").description("가입자 비밀번호"),
+                                fieldWithPath("auth").description("가입자 권한"),
+                                fieldWithPath("type").description("가입자 종류(USER)"),
+                                fieldWithPath("email").description("가입자 이메일")
+                        ),
                         responseFields(
                                 fieldWithPath("create_user_id").type(JsonFieldType.NUMBER).description("사용자 번호")
                         )
