@@ -32,4 +32,6 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
     Page<BoardInfo> findAllByCompanyNameContainingOrderBySeq(String name, Pageable pageable);
 
 
+
+
 }
