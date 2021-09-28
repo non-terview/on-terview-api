@@ -17,6 +17,8 @@ include::{snippets}/user-get-token/response-body.adoc[]
 == 3. 사용자
 === 3-1. 회원가입 : POST
 ==== 3-1-1. 성공
+===== Request
+include::{snippets}/user-post/request-fields.adoc[]
 ===== Request Example
 include::{snippets}/user-post/http-request.adoc[]
 ===== Response
@@ -30,8 +32,20 @@ include::{snippets}/user-post-fail/http-request.adoc[]
 include::{snippets}/user-post-fail/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-post-fail/response-body.adoc[]
-=== 3-2. 사용자 state (기능 활성 부분)
-==== 3-2-1. 성공
+=== 3-2. 로그인
+=== 3-3. 회원정보 수정
+==== 3-3-1. 성공
+===== Request
+include::{snippets}/user-put/request-fields.adoc[]
+===== Request Example
+include::{snippets}/user-put/http-request.adoc[]
+===== Response
+include::{snippets}/user-put/response-fields.adoc[]
+===== Response Example
+include::{snippets}/user-put/response-body.adoc[]
+
+=== 3-3. 사용자 state (기능 활성 부분)
+==== 3-3-1. 성공
 ===== Request Example
 include::{snippets}/status-get/http-request.adoc[]
 ===== Response

@@ -1,5 +1,6 @@
 package site.askephoenix.restapi.user.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,10 +9,12 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -25,9 +28,11 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -56,12 +61,24 @@ class UserControllerTest {
     @Test
     @DisplayName("회원가입 성공")
     void signup_success() throws Exception {
+
+        UserInfoDto dto = new UserInfoDto();
+        dto.setName("TestSuccess");
+        dto.setPassword("success");
+        dto.setEmail("aske@test.success");
+        dto.setAuth("USER_ROLE");
+        dto.setType("USER");
+
         final Long user_id = 300L;
 
         given(userService.save(any(UserInfoDto.class))).willReturn(user_id);
 
         ResultActions perform = this.mvc.perform(
-                RestDocumentationRequestBuilders.post("/user").with(csrf())
+                RestDocumentationRequestBuilders.post("/user")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(dto))
+                        .characterEncoding("utf-8")
         );
 
         perform.andExpect(status().isOk())
@@ -69,10 +86,73 @@ class UserControllerTest {
                 .andDo(document("user-post",
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
+                        requestFields(
+                                fieldWithPath("id").description("사용자 식별번호 (null)"),
+                                fieldWithPath("name").description("가입자 성명"),
+                                fieldWithPath("password").description("가입자 비밀번호"),
+                                fieldWithPath("auth").description("가입자 권한"),
+                                fieldWithPath("type").description("가입자 종류(USER)"),
+                                fieldWithPath("email").description("가입자 이메일")
+                        ),
                         responseFields(
-                                                fieldWithPath("create_user_id").type(JsonFieldType.NUMBER).description("사용자 번호")
-                                        )
-                                ));
+                                fieldWithPath("create_user_id").type(JsonFieldType.NUMBER).description("사용자 번호")
+                        )
+                ));
+    }
+
+    @Test
+    @DisplayName("회원 정보수정 성공")
+    void updateSuccess() throws Exception {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        UserInfo userInfo = UserInfo.builder()
+                .id(100L)
+                .auth("USER_ROLE")
+                .type("USER")
+                .email("aske")
+                .name("TestUser")
+                .password(encoder.encode("aske"))
+                .build();
+
+        given(userService.update(any(UserInfo.class), any(UserInfoDto.class)))
+                .willReturn(100L)
+        ;
+
+        UserInfoDto dto = new UserInfoDto();
+        dto.setName("TestSuccess");
+        dto.setPassword("success");
+        dto.setEmail("aske@test.success");
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.put("/user")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(dto))
+                        .characterEncoding("utf-8")
+                        .with(user(userInfo))
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("user-put",
+                                preprocessRequest(prettyPrint()),
+                                preprocessResponse(prettyPrint())
+                                ,
+                                requestParameters(
+                                        parameterWithName("_csrf").description("인증 데이터")
+                                ),
+                                requestFields(
+                                        fieldWithPath("id").description("사용자 식별번호 (null)"),
+                                        fieldWithPath("name").description("변경할 성명"),
+                                        fieldWithPath("password").description("변경할 비밀번호"),
+                                        fieldWithPath("auth").description("사용자 권한 (null)"),
+                                        fieldWithPath("type").description("사용자 종류 (null)"),
+                                        fieldWithPath("email").description("변경할 이메일")
+                                ),
+                                responseFields(
+                                        fieldWithPath("modify_user_id").description("변경된 계정 식별번호")
+                                )
+                        )
+                );
     }
 
     @Test
@@ -89,8 +169,8 @@ class UserControllerTest {
         perform.andExpect(status().isOk())
                 .andDo(print())
                 .andDo(document("user-post-fail",
-                        preprocessRequest(prettyPrint()),
-                        preprocessResponse(prettyPrint()),
+                                preprocessRequest(prettyPrint()),
+                                preprocessResponse(prettyPrint()),
                                 responseFields(
                                         fieldWithPath("status").type(JsonFieldType.STRING).description("상태")
                                 )
