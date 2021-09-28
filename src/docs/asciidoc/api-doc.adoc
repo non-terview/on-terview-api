@@ -30,9 +30,18 @@ include::{snippets}/user-post-fail/http-request.adoc[]
 include::{snippets}/user-post-fail/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-post-fail/response-body.adoc[]
+=== 3-2. 사용자 state (기능 활성 부분)
+==== 3-2-1. 성공
+===== Request Example
+include::{snippets}/status-get/http-request.adoc[]
+===== Response
+include::{snippets}/status-get/response-fields.adoc[]
+===== Response Example
+include::{snippets}/status-get/response-body.adoc[]
+
 == 4. 평가 기준표
-=== 3-1. 평가기준표 읽기 : GET
-==== 3-1-1. 성공
+=== 4-1. 평가기준표 읽기 : GET
+==== 4-1-1. 성공
 
 ===== path parameter
 include::{snippets}/evaluation-get/path-parameters.adoc[]
@@ -43,8 +52,8 @@ include::{snippets}/evaluation-get/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/evaluation-get/response-body.adoc[]
 
-=== 3-2. 평가기준표 생성 : POST
-==== 3-2-1. 성공
+=== 4-2. 평가기준표 생성 : POST
+==== 4-2-1. 성공
 ===== path parameter
 include::{snippets}/evaluation-post/path-parameters.adoc[]
 ===== Request
@@ -56,8 +65,8 @@ include::{snippets}/evaluation-post/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/evaluation-post/response-body.adoc[]
 
-=== 3-3. 지문 타입 읽기 : GET
-==== 3-3-1. 성공
+=== 4-3. 지문 타입 읽기 : GET
+==== 4-3-1. 성공
 include::{snippets}/evaluation-get-types/path-parameters.adoc[]
 ===== Request Example
 include::{snippets}/evaluation-get-types/http-request.adoc[]

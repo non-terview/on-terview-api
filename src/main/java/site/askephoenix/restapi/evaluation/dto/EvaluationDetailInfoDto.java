@@ -1,6 +1,7 @@
 package site.askephoenix.restapi.evaluation.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.evaluation.model.EvaluationDetailInfo;
 import site.askephoenix.restapi.evaluation.model.EvaluationTypeList;
@@ -10,15 +11,12 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class EvaluationDetailInfoDto {
     private Long id;
     private List<EvaluationTypeListDto> type;
     private String example;
     private Integer score;
-
-    public EvaluationDetailInfoDto() {
-
-    }
 
     public EvaluationDetailInfoDto(EvaluationDetailInfo evaluationDetailInfo, List<EvaluationTypeList> evaluationTypeList) {
         this.id = evaluationDetailInfo.getId();

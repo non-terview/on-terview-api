@@ -23,7 +23,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import site.askephoenix.restapi.board.model.BoardInfo;
-import site.askephoenix.restapi.evaluation.dto.EvaluationDetailInfoDto;
 import site.askephoenix.restapi.evaluation.dto.EvaluationInfoDto;
 import site.askephoenix.restapi.evaluation.dto.EvaluationTypeListDto;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;

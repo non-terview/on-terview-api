@@ -1,18 +1,17 @@
 package site.askephoenix.restapi.evaluation.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.evaluation.model.EvaluationTypeList;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class EvaluationTypeListDto {
     private Long id;
     private String name;
     private int gradations;
-    public EvaluationTypeListDto(){
-
-    }
 
     public EvaluationTypeListDto(
             String name,
