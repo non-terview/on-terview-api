@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import site.askephoenix.restapi.board.model.BoardInfo;
 import site.askephoenix.restapi.board.repository.BoardRepository;
+import site.askephoenix.restapi.board.service.BoardService;
+
+import java.util.stream.IntStream;
 
 
 @ExtendWith(SpringExtension.class)
@@ -19,21 +22,33 @@ public class BoardInsertTest {
     @Autowired
     private BoardRepository repo;
 
-/*
-    @Test
+    @Autowired
+    private BoardService service;
+
+/*    @Test
     public void insertTest() {
 
         IntStream.range(0,20).forEach(i->{
-            CompanyBoardInfo companyBoardInfo = new CompanyBoardInfo();
-            companyBoardInfo.setCompanyName(i+"번째");
-            companyBoardInfo.setTitle(i+"번째 제목");
-            companyBoardInfo.setContent(i+"번째 내용");
-            companyBoardInfo.setType("자유");
-            companyBoardInfo.setWriter(i/10+"번째 사용자 ");
+            BoardInfo companyBoardInfo = BoardInfo.builder().companyName(i+"번째").title(i+"번째 제목").content(i+"번째 내용")
+                    .type("joy").writer(i/10+"번째 사용자").build();
             repo.save(companyBoardInfo);
         });
     }*/
 
+
+    @Test
+    public void pagingTypeName() {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<BoardInfo> page = service.searchCompanyTypeName(0,"3", "joy");
+        page.getContent().forEach(System.out::println);
+    }
+
+/*    @Test
+    public void pageTest(){
+        Page<BoardInfo> page = service.getBoardPage(0, "번째");
+        page.getContent().forEach(System.out::println);
+        System.out.println(page.getTotalElements());
+    }*/
 
 /*    @Test
     public void pageTest() {

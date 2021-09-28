@@ -25,10 +25,10 @@ public class BoardController {
         return Maps.newHashMap(ImmutableMap.of("UserInfo", userInfo));
     }
 
-    @GetMapping("/list/{pageNum}")
+   /* @GetMapping("/list/{pageNum}")
     public HashMap<String, Object> list(@PathVariable(value = "pageNum") int pageNum) {
         return boardService.getBoardPage(pageNum);
-    }
+    }*/
 
 
 }

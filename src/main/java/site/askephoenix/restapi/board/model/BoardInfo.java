@@ -14,6 +14,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Table(name = "board")
+@ToString
 public class BoardInfo {
 
     @Id

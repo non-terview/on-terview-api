@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@ToString(exclude = "PageList")
+@ToString(exclude = "pageList")
 public class PageMaker {
     final static int DEFAULT_PAGING_NUM = 10;
     private Page results ;

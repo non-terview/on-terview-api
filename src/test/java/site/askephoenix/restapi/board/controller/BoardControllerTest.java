@@ -32,18 +32,7 @@ class BoardControllerTest {
     @MockBean
     UserService userService;
 
-    @Test
-    @DisplayName("페이지 리스트 테스트")
-    @WithMockUser(username = "kim-test", authorities = "ROLE_USER")
-    void list() throws Exception {
-        // 서비스에서 보드 페이지를 가져오는 부분만 실행되는지 테스트합니다.
-        // 만약 아니라면 해당 컨트롤러는 다른 서비스 메소드 조건을 충족할 수 없어 실패합니다.
-        when(boardService.getBoardPage(anyInt())).thenReturn(
-                Maps.newHashMap(ImmutableMap.of("test","success"))
-        );
-        // 컨트롤러를 테스트합니다.
-        mvc.perform(get("/board/list/1").with(csrf()))
-                .andExpect(status().isOk())
-                .andExpect(content().json(new ObjectMapper().writeValueAsString(Maps.newHashMap(ImmutableMap.of("test", "success")))));
-    }
+
+
+
 }

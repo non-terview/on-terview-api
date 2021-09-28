@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import site.askephoenix.restapi.board.model.BoardInfo;
@@ -20,11 +21,27 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository repo;
 
     @Override
-    public HashMap<String,Object> getBoardPage( int pageNum ){
+    public Page<BoardInfo> getBoardPage(int pageNum, String companyName) {
+        Pageable pageable = PageRequest.of(pageNum, 20);
+        return repo.findAllByCompanyNameContainingOrderBySeq(companyName, pageable);
+    }
+
+    @Override
+    public Page<BoardInfo> searchCompanyTypeName(int pageNum, String companyName, String companyType) {
+        Pageable pageable = PageRequest.of(pageNum, 20);
+
+        return repo.companyTypeName(companyType, companyName ,pageable);
+    }
+
+
+
+
+  /*  @Override
+    public HashMap<String,Object> getBoardPage(int pageNum ,String companyName){
         PageVO vo = new PageVO();
         vo.setPage(pageNum);
         Pageable pageable = vo.makePageable(0, "seq");
-        Page<BoardInfo> result = repo.findAllByCompanyNameContainingOrderBySeq("번째", pageable);
+        Page<BoardInfo> result = repo.findAllByCompanyNameContainingOrderBySeq(companyName, pageable);
         return Maps.newHashMap(ImmutableMap.of("pageInfo", new PageMaker(result)));
-    }
+    }*/
 }
