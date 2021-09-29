@@ -11,6 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import site.askephoenix.restapi.board.model.BoardInfo;
 import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.board.service.BoardService;
+import site.askephoenix.restapi.page.dto.PageDto;
+import site.askephoenix.restapi.page.vo.PageVO;
 
 import java.util.stream.IntStream;
 
@@ -35,13 +37,27 @@ public class BoardInsertTest {
         });
     }*/
 
-
+/*
     @Test
     public void pagingTypeName() {
         Pageable pageable = PageRequest.of(0, 10);
         Page<BoardInfo> page = service.searchCompanyTypeName(0,"3", "joy");
         page.getContent().forEach(System.out::println);
+    }*/
+
+    @Test
+    public void pageTest() {
+        PageDto pageDto = new PageDto();
+        pageDto.setSort(PageDto.SORT_ASC);
+        pageDto.setRequestPage(0);
+        pageDto.setPageSize(30);
+        PageVO pageVo = new PageVO();
+        Pageable pageable = pageVo.makePageable(pageDto);
+        System.out.println("솔트:"+pageDto.getSort());
+        Page<BoardInfo> page = repo.findAllByCompanyNameContaining("", pageable);
+        page.getContent().forEach(System.out::println);
     }
+
 
 /*    @Test
     public void pageTest(){

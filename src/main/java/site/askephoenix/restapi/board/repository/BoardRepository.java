@@ -36,5 +36,6 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
     //회사 이름으로 검색 하기 위한 jpa 메소드
     Page<BoardInfo> findAllByCompanyNameContainingOrderBySeq(String name, Pageable pageable);
 
+    Page<BoardInfo> findAllByCompanyNameContaining(String name, Pageable pageable);
 
 }
