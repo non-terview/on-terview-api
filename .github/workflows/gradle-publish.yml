@@ -1,12 +1,11 @@
 # This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
 # For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
 
-name: Gradle Package
+name: Develop PR Check
 
 on:
   pull_request:
     branches:
-      - master
       - develop
 
 jobs:
@@ -54,35 +53,3 @@ jobs:
         SLACK_MESSAGE: PR Url - ${{ github.event.pull_request.url }} - 빌드 및 테스트 성공
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
         
-    - name: Make deploy key
-      if: success()
-      env:
-        GH_ACTION_DEPLOY: ${{ secrets.GH_ACTION_DEPLOY }}
-      run: |
-        mkdir -p ~/.ssh/
-        echo "$GH_ACTION_DEPLOY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        
-    - name: clone rest-json
-      if: success()
-      run: |
-        cd ~
-        git clone git@github.com:non-terview/rest-json.github.io.git rest_json
-        
-    - name: Copy static file to rest-json
-      if: success()
-      run: |
-        cd ~
-        cp -r /home/runner/work/on-terview-api/on-terview-api/src/main/resources/static/docs ~/rest_json/
-        
-    - name: Push rest-json
-      if: success()
-      run: |
-        cd ~/rest_json
-        git config --global user.email "aistarteverything@gmail.com"
-        git config --global user.name "askePhoenix"
-        git add .
-        git commit -m "`(git -C ~/rest_json log --format=%B -n 1)`"
-        git push origin master
-
