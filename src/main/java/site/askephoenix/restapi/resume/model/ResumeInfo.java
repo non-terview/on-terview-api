@@ -1,6 +1,7 @@
 package site.askephoenix.restapi.resume.model;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -53,6 +54,10 @@ public class ResumeInfo{
     @Column(name="portfolio")
     private String portfolio;
 
+    //희망 업종
+    @Column(name="job")
+    private String job;
+
     //이력서 생성 날짜
     @Column(name = "create_date")
     @CreationTimestamp
@@ -66,6 +71,31 @@ public class ResumeInfo{
     //이력서 삭제 상태
     @Column(name = "is_deleted")
     private boolean isDeleted;
+
+    @Builder
+    public ResumeInfo(
+            Long id,
+            UserInfo userInfo,
+            String title ,String introduction ,String final_edu,String edu_status,
+            String career, String certificate,String portfolio,String job,
+            LocalDate createDate,LocalDate updateDate,
+            boolean isDeleted
+    ){
+        this.id = id;
+        this.userInfo = userInfo;
+        this.title = title;
+        this.introduction = introduction;
+        this.final_edu = final_edu;
+        this.edu_status = edu_status;
+        this.career = career;
+        this.certificate = certificate;
+        this.portfolio = portfolio;
+        this.job = job;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.isDeleted = isDeleted;
+    }
+
 
 
 
