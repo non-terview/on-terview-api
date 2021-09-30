@@ -1,0 +1,45 @@
+name: develop Push Check
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: checkout
+        if: ${{ contains(github.event.head_commit.message, '[docs]') }}
+        uses: actions/checkout@v2
+
+      - name: ssh setting
+        if: ${{ contains(github.event.head_commit.message, '[docs]') }}
+        env:
+          GH_ACTION_DEPLOY: ${{ secrets.GH_ACTION_DEPLOY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$GH_ACTION_DEPLOY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Run a one-line script
+        if: ${{ contains(github.event.head_commit.message, '[docs]') }}
+        run: |
+          cd ~
+          git clone git@github.com:non-terview/rest-json.github.io.git rest_json
+          cd ~
+          cp -r ${{ github.workspace }}/src/main/resources/static/docs ~/rest_json/
+
+      - name: Push rest-json
+        if: ${{ contains(github.event.head_commit.message, '[docs]') }}
+        run: |
+          cd ~/rest_json
+          git config --global user.email "aistarteverything@gmail.com"
+          git config --global user.name "askePhoenix"
+          git add .
+          git commit -m "`(git -C ~/rest_json log --format=%B -n 1)`"
+          git push origin master

@@ -1,0 +1,60 @@
+name: develop Push Check
+
+on:
+  push:
+    branches: [ releases ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 16
+        uses: actions/setup-java@v2
+        with:
+          java-version: '16'
+          distribution: 'adopt'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: ssh setting
+        env:
+          GH_ACTION_DEPLOY: ${{ secrets.GH_ACTION_DEPLOY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$GH_ACTION_DEPLOY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: run bootJar
+        run: |
+          cd ${{ github.workspace }}
+          ./gradlew bootJar
+
+      - name: load DockerFile
+        run: |
+          cd ${{ github.workspace }}/build/libs/
+          git clone git@github.com:non-terview/docker-registry.git docker
+
+      - name: build dockerfile
+        run: |
+          cd ${{ github.workspace }}/build/libs/docker
+          cp ${{ github.workspace }}/build/libs/onterview-api.jar ${{ github.workspace }}/build/libs/docker
+
+      - name: Build and push latest
+        env:
+          GABIA_URL: ${{ secrets.GABIA_URL }}
+        run: |
+          cd ${{ github.workspace }}/build/libs/docker
+          docker build -t $GABIA_URL:5000/onterview_test:${GITHUB_SHA} .
+          docker tag $GABIA_URL:5000/onterview_test:${GITHUB_SHA} $GABIA_URL:5000/onterview_test:latest
+          docker push http://$GABIA_URL:5000/onterview_test:latest
