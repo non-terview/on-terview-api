@@ -41,11 +41,11 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql:42.2.23.jre7'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:2.5.4'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
     testImplementation 'org.springframework.security:spring-security-test:5.5.1'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE'
 
-    asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.5.RELEASE'
 }
 
 jacoco {
@@ -98,5 +98,28 @@ bootWar {
     copy {
         from "${asciidoctor.outputDir}"
         into 'src/main/resources/static/docs'
+    }
+}
+
+bootJar{
+    archiveFileName = "onterview-api.jar"
+    layered{
+        enabled = true
+
+        application {
+            intoLayer("spring-boot-loader") {
+                include "org/springframework/boot/loader/**"
+            }
+            intoLayer("application")
+        }
+
+        dependencies {
+            intoLayer("snapshot-dependencies") {
+                include "*:*:*SNAPSHOT"
+            }
+            intoLayer("dependencies")
+        }
+
+        layerOrder = ["dependencies", "spring-boot-loader", "snapshot-dependencies", "application"]
     }
 }
