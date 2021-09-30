@@ -52,15 +52,17 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v2
+        env:
+          GABIA_URL: ${{ secrets.GABIA_URL }}
         with:
           context: ${{ github.workspace }}/build/libs/docker
           push: true
           tags: $GABIA_URL:5000/onterview-api:${GITHUB_SHA}
 
       - name: Build and push latest
-        env:
-          GABIA_URL: ${{ secrets.GABIA_URL }}π
         uses: docker/build-push-action@v2
+        env:
+          GABIA_URL: ${{ secrets.GABIA_URL }}
         with:
           context: ${{ github.workspace }}/build/libs/docker
           push: true
