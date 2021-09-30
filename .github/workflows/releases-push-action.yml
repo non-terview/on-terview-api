@@ -56,5 +56,5 @@ jobs:
         run: |
           cd ${{ github.workspace }}/build/libs/docker
           docker build -t $GABIA_URL:5000/onterview_test:${GITHUB_SHA} .
-          docker $GABIA_URL:5000/onterview_test:${GITHUB_SHA} $GABIA_URL:5000/onterview_test:latest
+          docker tag $GABIA_URL:5000/onterview_test:${GITHUB_SHA} $GABIA_URL:5000/onterview_test:latest
           docker push $GABIA_URL:5000/onterview_test:latest
