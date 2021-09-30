@@ -27,8 +27,8 @@ public class ResumeController {
     }
 
     @PostMapping(value = "")
-    public HashMap<String, Object> creatResume(ResumeInfoDto resumeInfoDto){
-        Long id = resumeService.save(resumeInfoDto);
+    public HashMap<String, Object> creatResume(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo){
+        Long id = resumeService.save(resumeInfoDto,userInfo);
 
         if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("create_resume_id", id));

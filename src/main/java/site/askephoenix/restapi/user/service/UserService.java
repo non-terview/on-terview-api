@@ -43,7 +43,6 @@ public class UserService implements UserDetailsService {
         return userInfo.getId();
     }
 
-
     public Long update(UserInfo userInfo, UserInfoDto infoDto){
         UserInfo modifyUser = userRepository.findById(userInfo.getId()).orElseGet(
                 ()-> UserInfo.builder().build()
