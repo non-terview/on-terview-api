@@ -21,11 +21,11 @@ import java.util.Set;
 @Table(name = "user_info")
 public class UserInfo implements UserDetails {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "email")
@@ -37,17 +37,27 @@ public class UserInfo implements UserDetails {
     @Column(name = "auth")
     private String auth;
 
+    @Column(name = "type")
+    private String type;
+
     @Builder
-    public UserInfo(String email, String password, String auth) {
+    public UserInfo(
+            String email, String password,
+            String auth, String name,
+            Long id, String type
+    ) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.auth = auth;
+        this.name = name;
+        this.type = type;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();
-        Arrays.stream(auth.split(",")).forEach( role -> roles.add(new SimpleGrantedAuthority(role)));
+        Arrays.stream(auth.split(",")).forEach(role -> roles.add(new SimpleGrantedAuthority(role)));
 
         return roles;
     }
