@@ -1,20 +1,9 @@
 package site.askephoenix.restapi.resume.service;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+
 import site.askephoenix.restapi.resume.dto.ResumeInfoDto;
-import site.askephoenix.restapi.resume.repository.ResumeRepository;
 
+public interface ResumeService {
 
-@RequiredArgsConstructor
-@Service
-public class ResumeService {
-
-    private final ResumeRepository resumeRepository;
-
-
-    public static Long save(ResumeInfoDto resumeInfoDto) {
-        if(resumeRepository.findByUserInfo(resumeInfoDto.getUserInfo()))
-        return null;
-    }
+    Long save(ResumeInfoDto resumeInfoDto);
 }

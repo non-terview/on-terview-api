@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.resume.model.ResumeInfo;
+import site.askephoenix.restapi.user.dto.UserInfoDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ResumeInfoDto {
     private Long id;
-    private UserInfo userInfo;
+    private UserInfoDto userInfoDto;
     private String title;
     private String introduction;
     private String final_edu;
@@ -28,7 +29,7 @@ public class ResumeInfoDto {
 
     public ResumeInfoDto(ResumeInfo resumeInfo){
         this.id = resumeInfo.getId();
-        this.userInfo = resumeInfo.getUserInfo();
+        this.userInfoDto = new UserInfoDto(resumeInfo.getUserInfo());
         this.title = resumeInfo.getTitle();
         this.introduction = resumeInfo.getIntroduction();
         this.final_edu = resumeInfo.getFinal_edu();
