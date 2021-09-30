@@ -6,7 +6,7 @@ name: Develop PR Check
 on:
   pull_request:
     branches:
-      - develop
+      - releases
 
 jobs:
   build:
@@ -37,8 +37,8 @@ jobs:
           SLACK_COLOR: "#FF0000"
           SLACK_USERNAME: 'Github Action'
           SLACK_ICON: https://avatars.githubusercontent.com/u/9919?s=48&v=4
-          SLACK_TITLE: 빌드 테스트 실패 - ${{ github.event.pull_request.title }}
-          SLACK_MESSAGE: 빌드 테스트 실패 - ${{ github.event.pull_request.url }}
+          SLACK_TITLE: 릴리즈 테스트 실패 - ${{ github.event.pull_request.title }}
+          SLACK_MESSAGE: 릴리즈 테스트 실패 - ${{ github.event.pull_request.url }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Slack Notify Success
@@ -49,7 +49,7 @@ jobs:
           SLACK_COLOR: "#7EB33D"
           SLACK_USERNAME: 'Github Action'
           SLACK_ICON: https://avatars.githubusercontent.com/u/9919?s=48&v=4
-          SLACK_TITLE: 빌드 테스트 성공 - ${{ github.event.pull_request.title }}
-          SLACK_MESSAGE: 빌드 테스트 성공 - ${{ github.event.pull_request.url }}
+          SLACK_TITLE: 릴리즈 테스트 성공 - ${{ github.event.pull_request.title }}
+          SLACK_MESSAGE: 릴리즈 테스트 성공 - ${{ github.event.pull_request.url }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        
+
