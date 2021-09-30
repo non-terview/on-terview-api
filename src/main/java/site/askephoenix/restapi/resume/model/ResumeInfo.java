@@ -11,19 +11,21 @@ import site.askephoenix.restapi.user.model.UserInfo;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+
 @Entity
 @Getter
-@Table(name = "resume_info")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "resume")
 public class ResumeInfo{
+
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     //유저 테이블과 조인
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_info")
     private UserInfo userInfo;
 
     //이력서 제목
@@ -71,6 +73,7 @@ public class ResumeInfo{
     //이력서 삭제 상태
     @Column(name = "is_deleted")
     private boolean isDeleted;
+
 
     @Builder
     public ResumeInfo(
