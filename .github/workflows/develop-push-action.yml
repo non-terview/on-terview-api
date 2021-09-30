@@ -18,6 +18,8 @@ jobs:
 
       - name: ssh setting
         if: ${{ contains(github.event.head_commit.message, '[docs]') }}
+        env:
+          GH_ACTION_DEPLOY: ${{ secrets.GH_ACTION_DEPLOY }}
         run: |
           mkdir -p ~/.ssh/
           echo "$GH_ACTION_DEPLOY" > ~/.ssh/id_rsa
