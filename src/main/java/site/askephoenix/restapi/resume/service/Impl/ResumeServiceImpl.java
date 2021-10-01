@@ -19,7 +19,7 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public Long save(ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo) {
-        if(resumeRepository.findByUserInfo(resumeInfoDto.getUserInfoDto(),userInfo).
+        if(resumeRepository.findByUserInfo(userInfo).
                 stream().findAny().isPresent()){
             return -1L;
         }
