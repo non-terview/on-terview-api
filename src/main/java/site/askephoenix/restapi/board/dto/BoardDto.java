@@ -1,5 +1,6 @@
 package site.askephoenix.restapi.board.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,4 +31,6 @@ public class BoardDto {
         this.type = boardInfo.getType();
         this.isDeleted = boardInfo.isDeleted();
     }
+
+
 }

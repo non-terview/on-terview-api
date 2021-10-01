@@ -4,26 +4,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import site.askephoenix.restapi.board.model.BoardInfo;
 
 
 public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
-
-    //보드 타입으로 검색하는 쿼리입니다
-    @Query(value = "select board from  BoardInfo board where board.type like %?1% order by board.seq desc ")
-    Page<BoardInfo> searchByType(String type, Pageable pageable);
-
-    //보드 제목(title)로 검색하는 쿼리입니다
-    @Query(value = "select board from  BoardInfo  board where board.title like %?1% order by  board.seq desc ")
-    Page<BoardInfo> searchByTitle(String title, Pageable pageable);
-
-    //보드 내용으로 검색하는 쿼리입니다
-    @Query(value = "select board from  BoardInfo  board where board.content like %?1% order by  board.seq desc ")
-    Page<BoardInfo> searchByContent(String content, Pageable pageable);
-
-    //타입과 회사이름으로 검색하는 쿼리입니다
-    @Query(value = "select board from  BoardInfo board where board.type like %?1% and board.companyName like %?2% order by board.seq desc ")
-    Page<BoardInfo> companyTypeName(String companyType, String companyName ,Pageable pageable);
 
 
     BoardInfo findBySeq(Long Seq);
@@ -37,5 +22,30 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
     Page<BoardInfo> findAllByCompanyNameContainingOrderBySeq(String name, Pageable pageable);
 
     Page<BoardInfo> findAllByCompanyNameContaining(String name, Pageable pageable);
+
+    // 쿼리문을 사용한것들은 search키워드를 사용하겠습니다
+
+    //보드 타입으로 검색하는 쿼리입니다
+    @Query(value = "select board from  BoardInfo board where board.type like %?1% order by board.seq desc ")
+    Page<BoardInfo> searchByType(String type, Pageable pageable);
+
+
+    //타이틀로 검색하는 쿼리
+    @Query(value = "select board from  BoardInfo board where board.title like %?1% and board.isDeleted = false")
+    Page<BoardInfo> searchByTitle(String keyword, Pageable pageable);
+
+    //내용으로 검색하는 쿼리
+    @Query(value = "select board from  BoardInfo board where board.content like %?1% and board.isDeleted = false")
+    Page<BoardInfo> searchByContent(String keyword, Pageable pageable);
+
+    //회사 이름으로 검색하는 쿼리
+    @Query(value = "select board from  BoardInfo board where board.companyName like %?1% and board.isDeleted = false ")
+    Page<BoardInfo> searchByCompanyName(String keyword, Pageable pageable);
+
+    //제목과 내용으로 검색하는 쿼리입니다
+    @Query(value = "select board from  BoardInfo board where board.title like %?1% or board.content like %?1% " +
+            "and board.isDeleted = false ")
+    Page<BoardInfo> searchByTitleContent(String keyword, Pageable pageable);
+
 
 }

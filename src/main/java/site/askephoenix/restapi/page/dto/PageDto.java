@@ -11,6 +11,8 @@ public class PageDto {
     public final static int SORT_DESC = 0;
     public final static int SORT_ASC = 1;
 
+    private String searchType;
+
     //요청하는 페이지
     private int requestPage;
     //한페이당 볼 갯수

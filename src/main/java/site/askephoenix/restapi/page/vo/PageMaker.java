@@ -63,9 +63,6 @@ public class PageMaker {
         //위에서 페이지 전체를 받았음 ex)1~10까지의 페이지를 받은후 startPage 는 다음페이지까지 받음 이유는 아래
         //다음 페이지는 위에서 받은 스타트인덱스 +1 보다 총 페이지가 크다면 위에 정의한 스타트 페이지를 리턴 아닐경우 마지막이므로 null 을 리턴
         this.nextPage = startPage.getPageNumber() +1 <totalPageNum? startPage:null;
-
-
-
     }
 
 }

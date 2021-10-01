@@ -20,12 +20,12 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/test")
+ /*   @GetMapping("/test")
     public HashMap<String, Object> testLogin(@LoginUser UserInfo userInfo) {
         return Maps.newHashMap(ImmutableMap.of("UserInfo", userInfo));
-    }
-
-   /* @GetMapping("/list/{pageNum}")
+    }*/
+/*
+    @GetMapping("/list/{pageNum}")
     public HashMap<String, Object> list(@PathVariable(value = "pageNum") int pageNum) {
         return boardService.getBoardPage(pageNum);
     }*/

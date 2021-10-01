@@ -21,6 +21,29 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository repo;
 
     @Override
+    public Page<BoardInfo> searchByTitle(String keyword, Pageable pageable) {
+        return repo.searchByTitle(keyword, pageable);
+    }
+
+    @Override
+    public Page<BoardInfo> searchByContent(String keyword, Pageable pageable) {
+        return repo.searchByContent(keyword, pageable);
+    }
+
+    @Override
+    public Page<BoardInfo> searchByCompanyName(String keyword, Pageable pageable) {
+        return repo.searchByCompanyName(keyword, pageable);
+    }
+
+    @Override
+    public Page<BoardInfo> searchByTitleContent(String keyword, Pageable pageable) {
+        return repo.searchByTitleContent(keyword, pageable);
+    }
+
+
+
+
+  /*  @Override
     public Page<BoardInfo> getBoardPage(int pageNum, String companyName) {
         Pageable pageable = PageRequest.of(pageNum, 20);
         return repo.findAllByCompanyNameContainingOrderBySeq(companyName, pageable);
@@ -32,7 +55,7 @@ public class BoardServiceImpl implements BoardService {
 
         return repo.companyTypeName(companyType, companyName ,pageable);
     }
-
+*/
 
 
 

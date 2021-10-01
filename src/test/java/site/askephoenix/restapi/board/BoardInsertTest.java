@@ -27,15 +27,41 @@ public class BoardInsertTest {
     @Autowired
     private BoardService service;
 
-/*    @Test
+
+
+    @Test
+    public void pagingTypeName() {
+        Pageable pageable = PageRequest.of(0, 20);
+        Page<BoardInfo> page = service.searchByTitle("제목",pageable);
+        page.getContent().forEach(System.out::println);
+    }
+/*
+    @Test
+    public void pageTest() {
+        PageDto pageDto = new PageDto();
+        pageDto.setSort(PageDto.SORT_ASC);
+        pageDto.setRequestPage(0);
+        pageDto.setPageSize(20);
+        PageVO pageVo = new PageVO();
+        Pageable pageable = pageVo.makePageable(pageDto);
+        Page<BoardInfo> page = repo.findAllByCompanyNameContaining("", pageable);
+        page.getContent().forEach(System.out::println);
+    }*/
+
+/*
+    @Test
     public void insertTest() {
 
         IntStream.range(0,20).forEach(i->{
-            BoardInfo companyBoardInfo = BoardInfo.builder().companyName(i+"번째").title(i+"번째 제목").content(i+"번째 내용")
-                    .type("joy").writer(i/10+"번째 사용자").build();
+            BoardInfo companyBoardInfo = BoardInfo.builder().companyName(i+"컴퍼니 이름 ").title(i+"제목").content(i+"내용1234")
+                    .type("joy").writer(i/10+"번째 사용자").isDeleted(true).build();
             repo.save(companyBoardInfo);
         });
-    }*/
+    }
+
+*/
+
+
 
 /*
     @Test
@@ -45,18 +71,17 @@ public class BoardInsertTest {
         page.getContent().forEach(System.out::println);
     }*/
 
-    @Test
-    public void pageTest() {
+/*    @Test
+    public void pageTest2() {
         PageDto pageDto = new PageDto();
         pageDto.setSort(PageDto.SORT_ASC);
         pageDto.setRequestPage(0);
-        pageDto.setPageSize(30);
+        pageDto.setPageSize(20);
         PageVO pageVo = new PageVO();
         Pageable pageable = pageVo.makePageable(pageDto);
-        System.out.println("솔트:"+pageDto.getSort());
-        Page<BoardInfo> page = repo.findAllByCompanyNameContaining("", pageable);
+        Page<BoardInfo> page = repo.findByType("1","1", pageable);
         page.getContent().forEach(System.out::println);
-    }
+    }*/
 
 
 /*    @Test
@@ -102,7 +127,7 @@ public class BoardInsertTest {
     }
 */
 
-    @Test
+  /*  @Test
     public void searByCompanyName() {
         Pageable pageable = PageRequest.of(0, 20);
         // like 로 사용하려면 % %<<이것을 넣어줘야만 포함됨
@@ -116,7 +141,7 @@ public class BoardInsertTest {
         Page<BoardInfo> results = repo.findAllByCompanyNameContainingOrderBySeq("16", pageable);
         results.get().forEach(System.out::println);
     }
-
+*/
 /*
     @Test
     public void somethingTest() {
