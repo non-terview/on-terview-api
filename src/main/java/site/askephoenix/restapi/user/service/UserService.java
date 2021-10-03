@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.user.dto.UserInfoDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.repository.UserRepository;
@@ -41,7 +42,6 @@ public class UserService implements UserDetailsService {
 
         return userInfo.getId();
     }
-
 
     public Long update(UserInfo userInfo, UserInfoDto infoDto){
         UserInfo modifyUser = userRepository.findById(userInfo.getId()).orElseGet(
