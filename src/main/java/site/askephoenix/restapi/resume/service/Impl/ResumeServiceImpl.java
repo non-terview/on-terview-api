@@ -40,6 +40,7 @@ public class ResumeServiceImpl implements ResumeService {
                         .isDeleted(false)
                         .build()
         );
+
         return resumeInfo.getId();
     }
 }
