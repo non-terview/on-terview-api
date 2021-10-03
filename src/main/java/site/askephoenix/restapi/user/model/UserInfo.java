@@ -20,7 +20,6 @@ import java.util.Set;
 @Getter
 @Table(name = "user_info")
 public class UserInfo implements UserDetails {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
