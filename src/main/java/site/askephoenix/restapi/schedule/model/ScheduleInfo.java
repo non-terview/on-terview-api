@@ -22,11 +22,12 @@ public class ScheduleInfo {
     private Long id;
 
     @Builder
-    public ScheduleInfo(UserInfo userInfo, String title, String memo, String category) {
+    public ScheduleInfo(UserInfo userInfo, String title, String memo, String category , String content) {
         this.userInfo = userInfo;
         this.title = title;
         this.memo = memo;
         this.category = category;
+        this.content = content;
     }
 
     @ManyToOne
@@ -41,12 +42,17 @@ public class ScheduleInfo {
     @Column(name = "memo")
     private String memo;
 
+    //회사 카테고리 (요식 , 개발 , 등등)
     @Column(name = "category")
     private String category;
 
+    //회사일경우에는 메모 대신 content 가 들어감
+    @Column(name = "content")
+    private String content;
 
     @Column(name = "is_deleted")
     private boolean isDeleted;
+
 
     @Column(name = "start_date")
     private LocalDate startDate;

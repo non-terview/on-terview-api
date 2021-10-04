@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class ScheduleDto {
+public class PersonalScheduleDto {
 
     private UserInfo userInfo;
     private Long id;

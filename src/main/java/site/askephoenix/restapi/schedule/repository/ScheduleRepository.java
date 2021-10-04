@@ -11,7 +11,7 @@ public interface ScheduleRepository extends CrudRepository<ScheduleInfo, UserInf
 
 
     //아이디로 유저의 스케쥴 검색
-    @Query(value = "select s from ScheduleInfo s where s.userInfo= ?1 and s.isDeleted = false and s.id order by desc")
+    @Query(value = "select s from ScheduleInfo s where s.userInfo= ?1 and s.isDeleted = false ")
     Page<ScheduleInfo> searchByUser(UserInfo userInfo, Pageable pageable);
 
 

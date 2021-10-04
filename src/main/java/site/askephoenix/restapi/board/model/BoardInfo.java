@@ -30,6 +30,7 @@ public class BoardInfo {
     private String type;
 
     //자게 , 회사게 어떤 카테고리인지
+    //타입이 회사게일경우에는 뽑는 스타일(개발자인지 , 뭔지 등)
     @Column(name = "category")
     private String category;
 

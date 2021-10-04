@@ -27,6 +27,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Table(name = "evaluation")
+
 public class EvaluationInfo {
     @Id
     @Column(name = "id")
