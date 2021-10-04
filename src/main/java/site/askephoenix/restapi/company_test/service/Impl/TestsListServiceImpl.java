@@ -15,14 +15,19 @@ import java.util.stream.Collectors;
 public class TestsListServiceImpl implements TestsListService {
     private final TestsListInfoRepository repository;
 
+    @Override
+    public List<TestsListDto> loadTestsListDto(){
+        return AllTestsListInfo().stream().map(TestsListDto::new).collect(Collectors.toList());
+    }
+
     // 모든 TestsList를 가져옵니다.
     private List<TestsListInfo> AllTestsListInfo(){
         return repository.findAll();
     }
 
-    @Override
-    public List<TestsListDto> loadTestsListDto(){
-        return AllTestsListInfo().stream().map(TestsListDto::new).collect(Collectors.toList());
+    // 특정
+    private List<TestsListInfo> AllTestsByThat(Long test_id){
+        return null;
     }
 
 
