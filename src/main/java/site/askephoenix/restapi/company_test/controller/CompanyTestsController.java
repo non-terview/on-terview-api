@@ -19,7 +19,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class CompanyTestsController {
 
-    // 모의시험 등록 관련 서비스
+    // 모의시험 등록 정보 관련 서비스
     private final CompanyTestsService service;
     // 모의시험 문항 관련 서비스
     private final TestsListService listService;
@@ -28,7 +28,7 @@ public class CompanyTestsController {
 
 
     // 모의 시험 관련 데이터 가져오기
-    // 모든 모의 시험
+    // 등록된 모든 모의 시험 정보 가져오기
     @GetMapping("")
     public HashMap<String, Object> getAllTests(){
         return service.readAllTests();
@@ -55,6 +55,14 @@ public class CompanyTestsController {
     public HashMap<String, Object> getTargetTests(
             @PathVariable(name = "test") Long test
     ) {
+        return null;
+    }
+
+    // 모의시험 문항 가져오기
+    @GetMapping("/{test}/list")
+    public HashMap<String, Object> getTestList(
+            @LoginUser UserInfo userInfo,
+            @PathVariable(name = "test") String test){
         return null;
     }
     
