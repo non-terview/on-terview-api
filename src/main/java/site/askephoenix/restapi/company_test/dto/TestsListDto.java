@@ -13,9 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 public class TestsListDto {
     private Long id;
+    // 제목
     private String title;
     // 문항 리스트
     private String contents;
+    // 정답
     private String answer;
 
     private LocalDate createDate;
