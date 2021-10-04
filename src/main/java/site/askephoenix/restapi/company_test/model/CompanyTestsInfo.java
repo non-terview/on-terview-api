@@ -12,6 +12,10 @@ import site.askephoenix.restapi.user.model.UserInfo;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/*
+* 모의 시험 작성 리스트
+* : 작성자, 작성일시, 수정일시
+ */
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

@@ -1,9 +1,11 @@
 package site.askephoenix.restapi.company_test.service;
 
-import site.askephoenix.restapi.company_test.dto.CompanyTestsDto;
+import site.askephoenix.restapi.user.model.UserInfo;
 
-import java.util.List;
+import java.util.HashMap;
 
 public interface CompanyTestsService {
-    List<CompanyTestsDto> readAllTests();
+    HashMap<String, Object> readAllTests();
+
+    HashMap<String, Object> readUserTests(UserInfo userInfo);
 }
