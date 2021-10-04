@@ -15,6 +15,7 @@ public class ScheduleDto {
     private UserInfo userInfo;
     private Long id;
     private String title;
+    private String memo;
     private Date startDate;
     private Date endDate;
 
