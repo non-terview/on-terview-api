@@ -13,6 +13,7 @@ import site.askephoenix.restapi.user.dto.UserInfoDto;
 public class ResultDto {
     private Long id;
     private CompanyTestsDto companyTestsDto;
+    // 테스트를 응시한 유저
     private UserInfoDto tester;
     private int sort_num;
     // 제목
