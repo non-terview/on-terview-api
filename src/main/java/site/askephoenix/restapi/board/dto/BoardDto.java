@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import site.askephoenix.restapi.board.model.BoardInfo;
+import site.askephoenix.restapi.category.dto.CategoryDto;
+import site.askephoenix.restapi.category.model.CategoryInfo;
 
 @Getter
 @Setter
@@ -16,7 +18,7 @@ public class BoardDto {
     private String writer;
     private String title;
     private String content;
-    private String category;
+    private CategoryDto category;
     private String type;
     private boolean isDeleted;
 
@@ -27,7 +29,7 @@ public class BoardDto {
         this.writer = boardInfo.getWriter();
         this.title = boardInfo.getTitle();
         this.content = boardInfo.getContent();
-        this.category = boardInfo.getCategory();
+        this.category = new CategoryDto(boardInfo.getCategory());
         this.type = boardInfo.getType();
         this.isDeleted = boardInfo.isDeleted();
     }

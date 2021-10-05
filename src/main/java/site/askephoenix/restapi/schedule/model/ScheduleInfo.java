@@ -3,6 +3,7 @@ package site.askephoenix.restapi.schedule.model;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import site.askephoenix.restapi.category.model.CategoryInfo;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import javax.persistence.*;
@@ -21,13 +22,16 @@ public class ScheduleInfo {
     @Column(name = "id")
     private Long id;
 
-    @Builder
-    public ScheduleInfo(UserInfo userInfo, String title, String memo, String category , String content) {
+    public ScheduleInfo(Long id, UserInfo userInfo, String title, String memo, CategoryInfo category, String content, boolean isDeleted, LocalDate startDate, LocalDate endDate) {
+        this.id = id;
         this.userInfo = userInfo;
         this.title = title;
         this.memo = memo;
         this.category = category;
         this.content = content;
+        this.isDeleted = isDeleted;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     @ManyToOne
@@ -43,8 +47,10 @@ public class ScheduleInfo {
     private String memo;
 
     //회사 카테고리 (요식 , 개발 , 등등)
-    @Column(name = "category")
-    private String category;
+    //타입과 카테고리 이름은 카테고리안에 들어이씁니다
+    @JoinColumn(name = "category")
+    @ManyToOne
+    private CategoryInfo category;
 
     //회사일경우에는 메모 대신 content 가 들어감
     @Column(name = "content")

@@ -3,7 +3,7 @@ package site.askephoenix.restapi.board.model;
 import lombok.*;
 import org.checkerframework.checker.units.qual.C;
 import org.hibernate.annotations.CreationTimestamp;
-
+import site.askephoenix.restapi.category.model.CategoryInfo;
 
 
 import javax.persistence.*;
@@ -31,8 +31,9 @@ public class BoardInfo {
 
     //자게 , 회사게 어떤 카테고리인지
     //타입이 회사게일경우에는 뽑는 스타일(개발자인지 , 뭔지 등)
-    @Column(name = "category")
-    private String category;
+    @JoinColumn(name = "category")
+    @ManyToOne
+    private CategoryInfo category;
 
     @Column(name = "writer")
     private String writer;
@@ -58,7 +59,7 @@ public class BoardInfo {
     @Builder
     public BoardInfo(
             Long seq, String companyName, String type,
-            String category, String writer, String title,
+            CategoryInfo category, String writer, String title,
             String content, boolean isDeleted, LocalDate createDate,
             LocalDate updateDate
     ){
