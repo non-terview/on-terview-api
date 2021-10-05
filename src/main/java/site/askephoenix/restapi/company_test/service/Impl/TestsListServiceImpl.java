@@ -22,10 +22,6 @@ public class TestsListServiceImpl implements TestsListService {
     private final TestsListInfoRepository repository;
     private final CompanyTestsRepository testsRepository;
 
-    @Override
-    public List<TestsListDto> loadTestsListDto() {
-        return AllTestsListInfo().stream().map(TestsListDto::new).collect(Collectors.toList());
-    }
     // 모의시험 문항 가져오기
     @Override
     public HashMap<String, Object> readTestsList(Long companyTestsId) {
@@ -51,7 +47,7 @@ public class TestsListServiceImpl implements TestsListService {
         return testsRepository.findById(id).orElseGet(() -> CompanyTestsInfo.builder().build());
     }
 
-    // 특정
+    // 등록된 모의 시험의 문항 전부 가져오기
     private List<TestsListInfo> AllTestsByThat(CompanyTestsInfo info) {
         return repository.findAllByTests(info);
     }

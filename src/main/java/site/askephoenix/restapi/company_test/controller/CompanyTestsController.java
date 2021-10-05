@@ -50,14 +50,6 @@ public class CompanyTestsController {
         return resultService.readResultByTester(userInfo);
     }
 
-    // 특정 모의시험
-    @GetMapping("/{test}")
-    public HashMap<String, Object> getTargetTests(
-            @PathVariable(name = "test") Long test
-    ) {
-        return null;
-    }
-
     // 모의시험 문항 가져오기
     @GetMapping("/{test}/list")
     public HashMap<String, Object> getTestList(
