@@ -62,8 +62,8 @@ public class CompanyTestsController {
     @GetMapping("/{test}/list")
     public HashMap<String, Object> getTestList(
             @LoginUser UserInfo userInfo,
-            @PathVariable(name = "test") String test){
-        return null;
+            @PathVariable(name = "test") Long test){
+        return listService.readTestsList(test);
     }
     
 }
