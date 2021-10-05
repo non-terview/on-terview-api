@@ -28,34 +28,33 @@ public class CompanyTestsController {
 
 
     // 모의 시험 관련 데이터 가져오기
-    // 등록된 모든 모의 시험 정보 가져오기
+    // 등록된 모든 모의 시험 정보
     @GetMapping("")
-    public HashMap<String, Object> getAllTests(){
+    public HashMap<String, Object> getAllTests() {
         return service.readAllTests();
     }
 
-    // 특정 회사
-    @GetMapping("/companys/{company}")
+    // 로그인 사용자가 작성한 모의시험 리스트
+    @GetMapping("/user")
     public HashMap<String, Object> getCompanyTests(
-            @LoginUser UserInfo userInfo,
-            @PathVariable(name = "company") Long company
-    ){
+            @LoginUser UserInfo userInfo
+    ) {
         return service.readUserTests(userInfo);
     }
+
     // 로그인 사용자가 응시한 모의시험 결과
-    @GetMapping("/user")
+    @GetMapping("/results/user")
     public HashMap<String, Object> getDoTests(
             @LoginUser UserInfo userInfo
-    ){
+    ) {
         return resultService.readResultByTester(userInfo);
     }
 
-    // 모의시험 문항 가져오기
+    // 모의시험 문항
     @GetMapping("/{test}/list")
     public HashMap<String, Object> getTestList(
-            @LoginUser UserInfo userInfo,
-            @PathVariable(name = "test") Long test){
+            @PathVariable(name = "test") Long test) {
         return listService.readTestsList(test);
     }
-    
+
 }

@@ -45,7 +45,7 @@ public class CompanyTestsResultInfo {
     @Builder
     public CompanyTestsResultInfo(
         Long id, CompanyTestsInfo tests, UserInfo tester, int sort_num,
-        String title, String answer
+        String title, String answer, LocalDate createDate, LocalDate updateDate
     ){
         this.id = id;
         this.tests = tests;
@@ -53,6 +53,8 @@ public class CompanyTestsResultInfo {
         this.sort_num = sort_num;
         this.title = title;
         this.answer = answer;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 }
 

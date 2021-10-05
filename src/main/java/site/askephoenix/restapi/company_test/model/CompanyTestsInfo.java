@@ -37,9 +37,11 @@ public class CompanyTestsInfo {
 
     @Builder
     public CompanyTestsInfo(
-            Long id, UserInfo writer
+            Long id, UserInfo writer, LocalDate createDate, LocalDate updateDate
     ) {
         this.id = id;
         this.writer = writer;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 }

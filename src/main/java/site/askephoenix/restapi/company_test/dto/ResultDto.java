@@ -1,6 +1,5 @@
 package site.askephoenix.restapi.company_test.dto;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +11,7 @@ import site.askephoenix.restapi.user.dto.UserInfoDto;
 @NoArgsConstructor
 public class ResultDto {
     private Long id;
+    // 테스트 문항
     private CompanyTestsDto companyTestsDto;
     // 테스트를 응시한 유저
     private UserInfoDto tester;

@@ -6,7 +6,6 @@ import lombok.Setter;
 import site.askephoenix.restapi.company_test.model.TestsListInfo;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter

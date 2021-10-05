@@ -20,7 +20,6 @@ public class CompanyTestsDto {
     // 응시 문항 & 답지
     private List<TestsListDto> testsListDto;
 
-
     private LocalDate createDate;
     private LocalDate updateDate;
 

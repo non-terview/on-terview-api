@@ -23,15 +23,19 @@ public class TestsListInfo {
     @Column(name = "id")
     private Long id;
 
+    // 문항의 제목
     @Column(name = "title")
     private String title;
 
+    // 문항 내용
     @Column(name = "contents")
     private String contents;
 
+    // 문항 정답
     @Column(name = "answer")
     private String answer;
 
+    // 문항 등록 정보
     @JoinColumn(name = "tests")
     @ManyToOne
     private CompanyTestsInfo tests;
@@ -45,12 +49,16 @@ public class TestsListInfo {
     @Builder
     public TestsListInfo(
             Long id, String title,
-            String contents, String answer
+            String contents, String answer, CompanyTestsInfo tests,
+            LocalDate createDate, LocalDate updateDate
     ) {
         this.id = id;
         this.title = title;
         this.contents = contents;
         this.answer = answer;
+        this.tests = tests;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
 
