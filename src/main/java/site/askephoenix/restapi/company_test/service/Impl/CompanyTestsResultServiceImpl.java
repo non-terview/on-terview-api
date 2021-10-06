@@ -5,10 +5,14 @@ import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import site.askephoenix.restapi.company_test.dto.ResultDto;
+import site.askephoenix.restapi.company_test.model.CompanyTestsInfo;
 import site.askephoenix.restapi.company_test.model.CompanyTestsResultInfo;
+import site.askephoenix.restapi.company_test.repository.CompanyTestsRepository;
 import site.askephoenix.restapi.company_test.repository.CompanyTestsResultRepository;
 import site.askephoenix.restapi.company_test.service.CompanyTestsResultService;
+import site.askephoenix.restapi.user.dto.UserInfoDto;
 import site.askephoenix.restapi.user.model.UserInfo;
+import site.askephoenix.restapi.user.repository.UserRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +22,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CompanyTestsResultServiceImpl implements CompanyTestsResultService {
     private CompanyTestsResultRepository repository;
+    private CompanyTestsRepository testsRepository;
+    private UserRepository userRepository;
 
     @Override
     public HashMap<String, Object> readResultByTester(UserInfo tester){
@@ -25,6 +31,23 @@ public class CompanyTestsResultServiceImpl implements CompanyTestsResultService 
                 "read", allResultByTester(tester),
                 "test", "success"
         ));
+    }
+
+    // 응시한 결과를 저장합니다.
+    @Override
+    public Long save(Long test, ResultDto dto, UserInfo userInfo) {
+        if (userInfo == null) return -1L;
+        CompanyTestsResultInfo resultInfo = repository.save(
+                CompanyTestsResultInfo.builder()
+                        .tests( testsRepository.getById( test ) )
+                        .tester( userRepository.getById( dto.getTester().getId() ) )
+                        .sort_num( dto.getSort_num() )
+                        .title( dto.getTitle() )
+                        .answer(dto.getAnswer())
+                        .build()
+        );
+
+        return resultInfo.getId();
     }
 
     // 모든 결과물 가져오기

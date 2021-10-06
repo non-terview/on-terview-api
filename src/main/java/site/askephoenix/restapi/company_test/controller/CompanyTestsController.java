@@ -1,15 +1,14 @@
 package site.askephoenix.restapi.company_test.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
+import site.askephoenix.restapi.company_test.dto.ResultDto;
 import site.askephoenix.restapi.company_test.service.CompanyTestsResultService;
 import site.askephoenix.restapi.company_test.service.CompanyTestsService;
 import site.askephoenix.restapi.company_test.service.TestsListService;
 import site.askephoenix.restapi.user.model.UserInfo;
+import site.askephoenix.restapi.util.SuccessDto;
 
 import java.util.HashMap;
 
@@ -56,5 +55,16 @@ public class CompanyTestsController {
             @PathVariable(name = "test") Long test) {
         return listService.readTestsList(test);
     }
+
+    // 모의시험 응시하기
+    @PostMapping("/{test}/results/user")
+    public SuccessDto postResultTests(
+            @PathVariable(name = "test") Long test,
+            @LoginUser UserInfo userInfo,
+            ResultDto dto
+    ) {
+        return new SuccessDto( resultService.save(test, dto, userInfo) );
+    }
+
 
 }
