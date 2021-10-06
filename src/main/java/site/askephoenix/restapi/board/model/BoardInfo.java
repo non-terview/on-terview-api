@@ -25,9 +25,6 @@ public class BoardInfo {
     @Column(name = "company_name")
     private String companyName;
 
-    //자게인지 회사게인지
-    @Column(name = "type")
-    private String type;
 
     //자게 , 회사게 어떤 카테고리인지
     //타입이 회사게일경우에는 뽑는 스타일(개발자인지 , 뭔지 등)
@@ -58,9 +55,10 @@ public class BoardInfo {
 
     @Builder
     public BoardInfo(
-            Long seq, String companyName, String type,
+            Long seq, String companyName,
             CategoryInfo category, String writer, String title,
             String content, boolean isDeleted, LocalDate createDate,
+
             LocalDate updateDate
     ){
         this.seq = seq;
@@ -70,7 +68,6 @@ public class BoardInfo {
         this.companyName = companyName;
         this.writer = writer;
         this.isDeleted = isDeleted;
-        this.type = type;
         this.title = title;
         this.createDate = createDate;
     }

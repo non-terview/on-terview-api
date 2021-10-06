@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import site.askephoenix.restapi.board.model.BoardInfo;
+import site.askephoenix.restapi.category.model.CategoryInfo;
 
 
 public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
@@ -23,11 +24,11 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
 
     Page<BoardInfo> findAllByCompanyNameContaining(String name, Pageable pageable);
 
-    // 쿼리문을 사용한것들은 search키워드를 사용하겠습니다
+    // 쿼리문을 사용한것들은 search 키워드를 사용하겠습니다
 
     //보드 타입으로 검색하는 쿼리입니다
-    @Query(value = "select board from  BoardInfo board where board.type like %?1% order by board.seq desc ")
-    Page<BoardInfo> searchByType(String type, Pageable pageable);
+    @Query(value = "select board from BoardInfo board where board.category = ?1 ")
+    Page<BoardInfo> searchByType(CategoryInfo categoryId, Pageable pageable);
 
 
     //타이틀로 검색하는 쿼리

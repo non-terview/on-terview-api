@@ -9,27 +9,22 @@ import site.askephoenix.restapi.category.dto.BoardCategoryDto;
 @Getter
 @Setter
 @ToString
-public class BoardDto {
+public class FreeBoardDto {
 
     private Long seq;
-    private String company;
     private String writer;
     private String title;
     private String content;
     private BoardCategoryDto category;
-    private String type;
     private boolean isDeleted;
 
-
-    public BoardDto(BoardInfo boardInfo) {
+    public FreeBoardDto(BoardInfo boardInfo) {
         this.seq = boardInfo.getSeq();
-        this.company = boardInfo.getCompanyName();
         this.writer = boardInfo.getWriter();
         this.title = boardInfo.getTitle();
         this.content = boardInfo.getContent();
         this.category = new BoardCategoryDto(boardInfo.getCategory());
         this.isDeleted = boardInfo.isDeleted();
     }
-
 
 }
