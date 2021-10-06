@@ -42,7 +42,7 @@ class BoardControllerTest {
                 Maps.newHashMap(ImmutableMap.of("test","success"))
         );
         // 컨트롤러를 테스트합니다.
-        mvc.perform(get("/board/list/1").with(csrf()))
+        mvc.perform(get("/api/board/list/1").with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json(new ObjectMapper().writeValueAsString(Maps.newHashMap(ImmutableMap.of("test", "success")))));
     }
