@@ -2,7 +2,7 @@ package site.askephoenix.restapi.evaluation.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import site.askephoenix.restapi.board.dto.BoardDto;
+import site.askephoenix.restapi.board.dto.CompanyBoardDto;
 import site.askephoenix.restapi.evaluation.model.EvaluationDetailInfo;
 import site.askephoenix.restapi.evaluation.model.EvaluationInfo;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 public class EvaluationInfoDto {
     private Long id;
-    private BoardDto boardDto;
+    private CompanyBoardDto boardDto;
     private int gradations;
     private String title;
     private boolean isDeleted;
@@ -41,7 +41,7 @@ public class EvaluationInfoDto {
 
     public EvaluationInfoDto(EvaluationInfo evaluationInfo) {
         this.id = evaluationInfo.getId();
-        this.boardDto = new BoardDto(evaluationInfo.getBoardInfo());
+        this.boardDto = new CompanyBoardDto(evaluationInfo.getBoardInfo());
         this.gradations = evaluationInfo.getGradations();
         this.title = evaluationInfo.getTitle();
         this.isDeleted = evaluationInfo.isDeleted();
