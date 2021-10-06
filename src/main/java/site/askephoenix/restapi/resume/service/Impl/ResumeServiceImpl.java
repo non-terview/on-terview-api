@@ -43,4 +43,31 @@ public class ResumeServiceImpl implements ResumeService {
 
         return resumeInfo.getId();
     }
+
+    @Override
+    public Long update(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo) {
+
+        if(resumeRepository.findByResumeId(resumeInfoDto,userInfo).
+                stream().findAny().isPresent()){
+            return -1L;
+        }
+        resumeRepository.save(
+                ResumeInfo.builder()
+                        .id(resumeInfoDto.getId())
+                        .userInfo(userInfo)
+                        .title(resumeInfoDto.getTitle())
+                        .introduction(resumeInfoDto.getIntroduction())
+                        .final_edu(resumeInfoDto.getFinal_edu())
+                        .edu_status(resumeInfoDto.getEdu_status())
+                        .career(resumeInfoDto.getCareer())
+                        .certificate(resumeInfoDto.getCertificate())
+                        .portfolio(resumeInfoDto.getPortfolio())
+                        .job(resumeInfoDto.getJob())
+                        .createDate(resumeInfoDto.getCreateDate())
+                        .updateDate(resumeInfoDto.getUpdateDate())
+                        .isDeleted(false)
+                        .build()
+        );
+        return null;
+        }
 }

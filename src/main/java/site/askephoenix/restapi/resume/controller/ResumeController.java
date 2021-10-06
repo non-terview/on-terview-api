@@ -3,10 +3,7 @@ package site.askephoenix.restapi.resume.controller;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.resume.dto.ResumeInfoDto;
 import site.askephoenix.restapi.resume.service.Impl.ResumeServiceImpl;
@@ -32,6 +29,16 @@ public class ResumeController {
 
         if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("create_resume_id", id));
+    }
+
+    @PutMapping(value = "")
+    public HashMap<String, Object> modifyResume(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo){
+
+        Long id = resumeService.update(resumeInfoDto,userInfo);
+
+
+        if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
+        return Maps.newHashMap(ImmutableMap.of("modify_resume_id", id));
     }
 
 }
