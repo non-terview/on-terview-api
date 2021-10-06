@@ -14,7 +14,7 @@ import site.askephoenix.restapi.user.model.UserInfo;
 import java.util.HashMap;
 
 @RestController
-@RequestMapping("/board")
+@RequestMapping("/api/board")
 @RequiredArgsConstructor
 public class BoardController {
 
