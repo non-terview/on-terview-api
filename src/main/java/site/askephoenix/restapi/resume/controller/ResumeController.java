@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/resume")
+@RequestMapping(value = "/api/resume")
 public class ResumeController {
     private final ResumeService resumeService;
 

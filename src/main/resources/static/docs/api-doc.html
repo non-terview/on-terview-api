@@ -468,12 +468,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_3_2_로그인">3-2. 로그인</a></li>
-<li><a href="#_3_3_회원정보_수정">3-3. 회원정보 수정</a>
+<li><a href="#_3_3_회원정보_수정_put">3-3. 회원정보 수정 : PUT</a>
 <ul class="sectlevel3">
 <li><a href="#_3_3_1_성공">3-3-1. 성공</a></li>
 </ul>
 </li>
-<li><a href="#_3_3_사용자_state_기능_활성_부분">3-3. 사용자 state (기능 활성 부분)</a>
+<li><a href="#_3_3_사용자_state_기능_활성_부분_get">3-3. 사용자 state (기능 활성 부분) : GET</a>
 <ul class="sectlevel3">
 <li><a href="#_3_3_1_성공_2">3-3-1. 성공</a></li>
 </ul>
@@ -523,7 +523,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h5 id="_request_example">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /user/token HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user/token HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -573,7 +573,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "da20b245-5867-43c9-b5d2-a1c401b89514",
+    "token" : "afc8e140-0ea9-4f80-ac50-06b8b016cab3",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -645,7 +645,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_2">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /user?_csrf=486eef69-4499-42f1-b024-dda841ce9c65 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user?_csrf=efd15891-5e26-4322-8455-641ab4e85b2a HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 145
 Host: localhost:8080
@@ -702,11 +702,11 @@ Host: localhost:8080
 <h5 id="_request_example_3">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /user HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user HTTP/1.1
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=554cba70-5cd5-44c3-a281-87ebd5bab034</code></pre>
+_csrf=01d651b9-395e-46f8-848e-69d084646e3a</code></pre>
 </div>
 </div>
 </div>
@@ -751,7 +751,7 @@ _csrf=554cba70-5cd5-44c3-a281-87ebd5bab034</code></pre>
 
 </div>
 <div class="sect2">
-<h3 id="_3_3_회원정보_수정">3-3. 회원정보 수정</h3>
+<h3 id="_3_3_회원정보_수정_put">3-3. 회원정보 수정 : PUT</h3>
 <div class="sect3">
 <h4 id="_3_3_1_성공">3-3-1. 성공</h4>
 <div class="sect4">
@@ -807,7 +807,7 @@ _csrf=554cba70-5cd5-44c3-a281-87ebd5bab034</code></pre>
 <h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /user?_csrf=9b352dc7-40a4-4801-bf30-353cbfc9ded6 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user?_csrf=45f4b976-5a8e-452a-8159-06b9184c8862 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 136
 Host: localhost:8080
@@ -860,14 +860,14 @@ Host: localhost:8080
 </div>
 </div>
 <div class="sect2">
-<h3 id="_3_3_사용자_state_기능_활성_부분">3-3. 사용자 state (기능 활성 부분)</h3>
+<h3 id="_3_3_사용자_state_기능_활성_부분_get">3-3. 사용자 state (기능 활성 부분) : GET</h3>
 <div class="sect3">
 <h4 id="_3_3_1_성공_2">3-3-1. 성공</h4>
 <div class="sect4">
 <h5 id="_request_example_5">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=4750a8f9-64de-4d2b-a486-406fd9b37a45 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=7fe79ca6-86ba-4085-b71b-8ab618a6030b HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -996,7 +996,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=6245c8eb-bdc0-4ce6-aca5-4a2ace911c99 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=ffb5e578-0bff-46cd-9633-c62ef1eae827 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1130,14 +1130,14 @@ Host: localhost:8080</code></pre>
       "writer" : "테스트 유저",
       "title" : "테스트 타이틀입니다.",
       "content" : "내용",
-      "createDate" : [ 2021, 9, 30 ],
-      "updateDate" : [ 2021, 9, 30 ],
+      "createDate" : [ 2021, 10, 6 ],
+      "updateDate" : [ 2021, 10, 6 ],
       "deleted" : false
     },
     "gradations" : 1,
     "title" : "테스트 지표 1",
-    "createDate" : [ 2021, 9, 30 ],
-    "updateDate" : [ 2021, 9, 30 ],
+    "createDate" : [ 2021, 10, 6 ],
+    "updateDate" : [ 2021, 10, 6 ],
     "deleted" : false
   },
   "test" : "success"
@@ -1275,7 +1275,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_7">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=96decb02-7a50-4cd6-832f-d2c2e0e56daa HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=dfdbb58e-f9f5-43dc-9590-d8faf890ce0a HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 509
 Host: localhost:8080
@@ -1375,7 +1375,7 @@ Host: localhost:8080
 <h5 id="_request_example_8">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=833ea8ca-0e2a-425e-902d-be8c1ac2c423 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=dc1af8f1-1f8c-48b6-a937-15f693e54b86 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1463,7 +1463,7 @@ Host: localhost:8080</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-09-30 12:21:53 +0900
+Last updated 2021-10-06 20:56:35 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

@@ -74,7 +74,7 @@ class UserControllerTest {
         given(userService.save(any(UserInfoDto.class))).willReturn(user_id);
 
         ResultActions perform = this.mvc.perform(
-                RestDocumentationRequestBuilders.post("/user")
+                RestDocumentationRequestBuilders.post("/api/user")
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(dto))
@@ -124,7 +124,7 @@ class UserControllerTest {
         dto.setEmail("aske@test.success");
 
         ResultActions perform = this.mvc.perform(
-                RestDocumentationRequestBuilders.put("/user")
+                RestDocumentationRequestBuilders.put("/api/user")
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(dto))
@@ -163,7 +163,7 @@ class UserControllerTest {
         given(userService.save(any(UserInfoDto.class))).willReturn(user_id);
 
         ResultActions perform = this.mvc.perform(
-                RestDocumentationRequestBuilders.post("/user").with(csrf())
+                RestDocumentationRequestBuilders.post("/api/user").with(csrf())
         );
 
         perform.andExpect(status().isOk())
@@ -182,7 +182,7 @@ class UserControllerTest {
     @DisplayName("토큰 가져오기")
     void getToken() throws Exception {
         ResultActions perform = this.mvc.perform(
-                RestDocumentationRequestBuilders.get("/user/token")
+                RestDocumentationRequestBuilders.get("/api/user/token")
         );
 
         perform.andExpect(status().isOk())

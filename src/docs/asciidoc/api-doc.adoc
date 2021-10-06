@@ -33,7 +33,7 @@ include::{snippets}/user-post-fail/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-post-fail/response-body.adoc[]
 === 3-2. 로그인
-=== 3-3. 회원정보 수정
+=== 3-3. 회원정보 수정 : PUT
 ==== 3-3-1. 성공
 ===== Request
 include::{snippets}/user-put/request-fields.adoc[]
@@ -44,7 +44,7 @@ include::{snippets}/user-put/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/user-put/response-body.adoc[]
 
-=== 3-3. 사용자 state (기능 활성 부분)
+=== 3-3. 사용자 state (기능 활성 부분) : GET
 ==== 3-3-1. 성공
 ===== Request Example
 include::{snippets}/status-get/http-request.adoc[]
