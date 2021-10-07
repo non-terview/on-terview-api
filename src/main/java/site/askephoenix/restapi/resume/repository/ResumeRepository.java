@@ -12,10 +12,10 @@ import java.util.Optional;
 
 public interface ResumeRepository extends JpaRepository<ResumeInfo,Long> {
     @NonNull
-    Optional<ResumeInfo> findByUserInfo(@LoginUser UserInfo userInfo);
+    Optional<ResumeInfo> findByUserInfo(UserInfo userInfo);
 
 
     @NonNull
-    Optional<ResumeInfo> findByResume(Long resumeId, @LoginUser UserInfo userInfo);
+    Optional<ResumeInfo> findById(@NonNull Long resumeId);
 
 }

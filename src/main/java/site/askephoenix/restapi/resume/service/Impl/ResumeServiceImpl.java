@@ -8,7 +8,6 @@ import site.askephoenix.restapi.resume.model.ResumeInfo;
 import site.askephoenix.restapi.resume.repository.ResumeRepository;
 import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
-import site.askephoenix.restapi.user.repository.UserRepository;
 
 
 @RequiredArgsConstructor
@@ -19,8 +18,8 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Override
     public Long save(ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo) {
-        if(resumeRepository.findByUserInfo(userInfo).
-                stream().findAny().isPresent()){
+        if (resumeRepository.findByUserInfo(userInfo).
+                stream().findAny().isPresent()) {
             return -1L;
         }
         final ResumeInfo resumeInfo = resumeRepository.save(
@@ -45,12 +44,15 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Long update(ResumeInfo resumeInfo,ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo) {
+    public Long update(ResumeInfo resumeInfo, ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo) {
 
-        ResumeInfo modifyResume = resumeRepository.findByResume(resumeInfoDto.getId(), userInfo).orElseGet(
+        ResumeInfo modifyResume = resumeRepository.findById(resumeInfoDto.getId()).orElseGet(
                 () -> ResumeInfo.builder().build()
         );
-        resumeRepository.save(
+        if (userInfo.getId().equals(modifyResume.getUserInfo().getId()))
+            return -1L;
+
+        return resumeRepository.save(
                 ResumeInfo.builder()
                         .id(modifyResume.getId())
                         .userInfo(userInfo)
@@ -66,7 +68,6 @@ public class ResumeServiceImpl implements ResumeService {
                         .updateDate(resumeInfoDto.getUpdateDate())
                         .isDeleted(false)
                         .build()
-        );
-        return null;
-        }
+        ).getId();
+    }
 }
