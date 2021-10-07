@@ -45,15 +45,14 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Long update(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo) {
+    public Long update(ResumeInfo resumeInfo,ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo) {
 
-        if(resumeRepository.findByResumeId(resumeInfoDto,userInfo).
-                stream().findAny().isPresent()){
-            return -1L;
-        }
+        ResumeInfo modifyResume = resumeRepository.findByResume(resumeInfoDto.getId(), userInfo).orElseGet(
+                () -> ResumeInfo.builder().build()
+        );
         resumeRepository.save(
                 ResumeInfo.builder()
-                        .id(resumeInfoDto.getId())
+                        .id(modifyResume.getId())
                         .userInfo(userInfo)
                         .title(resumeInfoDto.getTitle())
                         .introduction(resumeInfoDto.getIntroduction())
@@ -63,7 +62,7 @@ public class ResumeServiceImpl implements ResumeService {
                         .certificate(resumeInfoDto.getCertificate())
                         .portfolio(resumeInfoDto.getPortfolio())
                         .job(resumeInfoDto.getJob())
-                        .createDate(resumeInfoDto.getCreateDate())
+                        .createDate(modifyResume.getCreateDate())
                         .updateDate(resumeInfoDto.getUpdateDate())
                         .isDeleted(false)
                         .build()
