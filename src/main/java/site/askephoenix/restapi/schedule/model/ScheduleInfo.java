@@ -22,8 +22,8 @@ public class ScheduleInfo {
     @Column(name = "id")
     private Long id;
 
-    public ScheduleInfo(Long id, UserInfo userInfo, String title, String memo, CategoryInfo category, String content, boolean isDeleted, LocalDate startDate, LocalDate endDate) {
-        this.id = id;
+    @Builder
+    public ScheduleInfo( UserInfo userInfo, String title, String memo, CategoryInfo category, String content, boolean isDeleted, LocalDate startDate, LocalDate endDate) {
         this.userInfo = userInfo;
         this.title = title;
         this.memo = memo;

@@ -10,4 +10,5 @@ public class UserInfoDto {
     private String password;
     private String name;
     private String auth;
+
 }

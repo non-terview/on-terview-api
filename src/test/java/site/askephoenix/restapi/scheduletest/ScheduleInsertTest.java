@@ -26,12 +26,7 @@ public class ScheduleInsertTest {
     private UserRepository userRepository;
 
 
-/*    @Test
-    public void pagingTypeName() {
-        Pageable pageable = PageRequest.of(0, 20);
-        Page<BoardInfo> page = service.searchByTitle("제목",pageable);
-        page.getContent().forEach(System.out::println);
-    }*/
+
 /*
     @Test
     public void pageTest() {
@@ -45,31 +40,34 @@ public class ScheduleInsertTest {
         page.getContent().forEach(System.out::println);
     }*/
 
-  /*  @Test
-    public void insetUser() {
-        IntStream.range(0,3).forEach(i->{
-            UserInfo userInfo = UserInfo.builder().name(i+"번째사용자").email(i+"@naver.com").password("1234"+i).build();
-            userRepository.save(userInfo);
-        });
+    @Test
+    public void scheduleSearchTest() {
+        Pageable pageable = PageRequest.of(0, 10);
+        UserInfo userInfo = userRepository.findAllById(1L);
+        Page<ScheduleInfo> page = repository.searchByUser(userInfo, pageable);
+        page.getContent().forEach(System.out::println);
     }
-*/
+
+
+//생성을 위한테스트
 /*    @Test
     public void insertTest() {
+        IntStream.range(0,22).forEach(i->{
+            repository.save(ScheduleInfo.builder().userInfo(userRepository.getById(3L)).memo(i+"번째 메모").build());
+            repository.save(ScheduleInfo.builder().userInfo(userRepository.getById(4L)).memo(i+"번째 메모").build());
+            repository.save(ScheduleInfo.builder().userInfo(userRepository.getById(5L)).memo(i+"번째 메모").build());
 
-        IntStream.range(0,20).forEach(i->{
-            ScheduleInfo info = ScheduleInfo.builder().title("회사"+1).userInfo(userRepository.getById((i/2)+1L)).build();
-            repository.save(info);
         });
     }*/
 
-
+/*
     @Test
     public void findTest() {
         Pageable pageable = PageRequest.of(0, 10);
         UserInfo userInfo = userRepository.getById(1L);
         Page<ScheduleInfo> page = repository.searchByUser(userInfo, pageable);
         page.getContent().forEach(System.out::println);
-    }
+    }*/
 
 
 /*

@@ -17,7 +17,6 @@ public class CompanyBoardDto {
     private String title;
     private String content;
     private BoardCategoryDto category;
-    private String type;
     private boolean isDeleted;
 
 
