@@ -25,12 +25,10 @@ public class TestsListServiceImpl implements TestsListService {
 
     // 모의시험 문항 가져오기
     @Override
-    public HashMap<String, Object> readTestsList(Long companyTestsId) {
-        return Maps.newHashMap(ImmutableMap.of(
-                "read", infoListToDtoList(
+    public List<TestsListDto> readTestsList(Long companyTestsId) {
+        return infoListToDtoList(
                         Objects.requireNonNull(
-                                AllTestsByThat(companyTestsInfoFindById(companyTestsId))))
-                , "test", "success"));
+                                AllTestsByThat(companyTestsInfoFindById(companyTestsId))));
     }
 
     @Override

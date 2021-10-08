@@ -4,10 +4,11 @@ import site.askephoenix.restapi.company_test.dto.ResultDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface CompanyTestsResultService {
 
-    HashMap<String, Object> readResultByTester(UserInfo tester);
+    List<ResultDto> readResultByTester(UserInfo tester);
 
     Long save(Long test, ResultDto dto, UserInfo userInfo);
 

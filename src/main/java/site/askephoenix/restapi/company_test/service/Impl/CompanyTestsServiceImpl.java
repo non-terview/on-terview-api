@@ -22,10 +22,8 @@ public class CompanyTestsServiceImpl implements CompanyTestsService {
 
     // 모든 테스트를 가져옴
     @Override
-    public HashMap<String, Object> readAllTests() {
-        return Maps.newHashMap(ImmutableMap.of(
-                "read", infoListToDtoList(allCompanyTestsInfo()), "test", "success"
-        ));
+    public List<CompanyTestsDto> readAllTests() {
+        return infoListToDtoList(allCompanyTestsInfo());
     }
     // 특정 사용자의 테스트를 가져옴
     @Override

@@ -26,11 +26,8 @@ public class CompanyTestsResultServiceImpl implements CompanyTestsResultService 
     private UserRepository userRepository;
 
     @Override
-    public HashMap<String, Object> readResultByTester(UserInfo tester){
-        return Maps.newHashMap(ImmutableMap.of(
-                "read", allResultByTester(tester),
-                "test", "success"
-        ));
+    public List<ResultDto> readResultByTester(UserInfo tester){
+        return infoListToDtoList(allResultByTester(tester));
     }
 
     // 응시한 결과를 저장합니다.

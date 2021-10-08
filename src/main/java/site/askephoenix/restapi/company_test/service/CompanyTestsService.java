@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface CompanyTestsService {
-    HashMap<String, Object> readAllTests();
+    List<CompanyTestsDto> readAllTests();
 
     List<CompanyTestsDto> readUserTests(UserInfo userInfo);
 
