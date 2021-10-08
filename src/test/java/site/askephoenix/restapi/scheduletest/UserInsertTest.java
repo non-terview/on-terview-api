@@ -36,7 +36,8 @@ public class UserInsertTest {
         });
     }*/
 
-    @Test
+
+  /*  @Test
     public void pageTest() {
 
         Pageable pageable = PageRequest.of(0, 10);
@@ -46,7 +47,7 @@ public class UserInsertTest {
             System.out.println(userInfo.getEmail() + userInfo.getName());
         });
     }
-
+*/
   /*  @Test
     public void getUserIdTest() {
         UserDetails details = service.loadUserByUsername("1번쨰유저이메일");

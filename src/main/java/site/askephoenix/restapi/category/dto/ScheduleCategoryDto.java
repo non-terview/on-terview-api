@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import site.askephoenix.restapi.category.model.CategoryInfo;
+import site.askephoenix.restapi.schedule.model.ScheduleInfo;
 
 @Getter
 @Setter
@@ -16,10 +17,13 @@ public class ScheduleCategoryDto {
     private String category_name;
     private boolean is_deleted;
 
+
+
     public ScheduleCategoryDto(CategoryInfo category) {
         this.id = category.getId();
         this.category_name = category.getCategoryName();
         this.is_deleted = category.isDeleted();
+        ScheduleInfo scheduleInfo;
     }
 
 }

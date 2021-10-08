@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import site.askephoenix.restapi.schedule.model.ScheduleInfo;
 import site.askephoenix.restapi.schedule.repository.ScheduleRepository;
@@ -40,26 +41,45 @@ public class ScheduleInsertTest {
         page.getContent().forEach(System.out::println);
     }*/
 
-    @Test
+  /*  @Test
     public void scheduleSearchTest() {
         Pageable pageable = PageRequest.of(0, 10);
         UserInfo userInfo = userRepository.findAllById(1L);
         Page<ScheduleInfo> page = repository.searchByUser(userInfo, pageable);
         page.getContent().forEach(System.out::println);
     }
+*/
+
+    @Test
+    public void searchTitleTest() {
+        //Pageable 에서 솔팅(정렬)을 하기위해서는 properties 가 1개이상 필요함 (정렬의 기준이 되어줄것 이코드 일
+        //경우에는 id를(seq)를 기준으로 정렬하였음)
+        Pageable pageable = PageRequest.of(0, 10 , Sort.Direction.DESC , "id");
+        UserInfo userInfo = userRepository.searchById(5L);
+        Page<ScheduleInfo> page = repository.searchScheduleByTitleContent(userInfo, "title", pageable);
+        page.getContent().forEach(scheduleInfo -> {
+            System.out.print("User ID:"+scheduleInfo.getUserInfo().getId()+"         |");
+            System.out.println(scheduleInfo.toString());
+        });
+    }
+
+    /*@Test
+    public void scheduleTest() {
+        UserInfo userInfo = userRepository.getById(1L);
+
+    }*/
 
 
-//생성을 위한테스트
+//생성을 위한테스트 코드
 /*    @Test
     public void insertTest() {
         IntStream.range(0,22).forEach(i->{
-            repository.save(ScheduleInfo.builder().userInfo(userRepository.getById(3L)).memo(i+"번째 메모").build());
-            repository.save(ScheduleInfo.builder().userInfo(userRepository.getById(4L)).memo(i+"번째 메모").build());
-            repository.save(ScheduleInfo.builder().userInfo(userRepository.getById(5L)).memo(i+"번째 메모").build());
+            repository.save(ScheduleInfo.builder().content(i+"번째 내용임").title(i+"번째 스케쥴의 title").userInfo(userRepository.getById(3L)).memo(i+"번째 메모").build());
+            repository.save(ScheduleInfo.builder().content(i+"번째 내용임").title(i+"번째 스케쥴의 title").userInfo(userRepository.getById(4L)).memo(i+"번째 메모").build());
+            repository.save(ScheduleInfo.builder().content(i+"번째 내용임").title(i+"번째 스케쥴의 title").userInfo(userRepository.getById(5L)).memo(i+"번째 메모").build());
 
         });
     }*/
-
 /*
     @Test
     public void findTest() {
