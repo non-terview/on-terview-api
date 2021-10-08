@@ -10,6 +10,7 @@ import site.askephoenix.restapi.company_test.model.TestsListInfo;
 import site.askephoenix.restapi.company_test.repository.CompanyTestsRepository;
 import site.askephoenix.restapi.company_test.repository.TestsListInfoRepository;
 import site.askephoenix.restapi.company_test.service.TestsListService;
+import site.askephoenix.restapi.user.model.UserInfo;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,42 @@ public class TestsListServiceImpl implements TestsListService {
                         Objects.requireNonNull(
                                 AllTestsByThat(companyTestsInfoFindById(companyTestsId))))
                 , "test", "success"));
+    }
+
+    @Override
+    public Long save(TestsListDto dto, UserInfo userInfo) {
+        if (userInfo.getId().equals(-1L)) return -1L;
+        return repository.save(
+                        TestsListInfo.builder()
+                                .title(dto.getTitle())
+                                .contents(dto.getContents())
+                                .answer(dto.getAnswer())
+                                .tests(
+                                        testsRepository.getById(dto.getTests_id())
+                                )
+                                .build()
+                )
+                .getId();
+    }
+
+    @Override
+    public Long update(TestsListDto dto, UserInfo userInfo) {
+        final TestsListInfo test = repository.findByTests(
+                testsRepository.getById(
+                        dto.getTests_id())
+        );
+        if (userInfo.getId().equals(-1L)) return -1L;
+        return repository.save(TestsListInfo.builder()
+                        .id(test.getId())
+                        .title(dto.getTitle() == null ? test.getTitle() : dto.getTitle())
+                        .contents(dto.getContents() == null ? test.getContents() : dto.getContents())
+                        .answer(dto.getAnswer() == null ? test.getAnswer() : dto.getAnswer())
+                        .tests(test.getTests())
+                        .createDate(test.getCreateDate())
+                        .updateDate(test.getUpdateDate())
+                        .build()
+                )
+                .getId();
     }
 
     // 모든 TestsList 를 가져옵니다.

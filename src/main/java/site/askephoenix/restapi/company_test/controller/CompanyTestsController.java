@@ -3,7 +3,9 @@ package site.askephoenix.restapi.company_test.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
+import site.askephoenix.restapi.company_test.dto.CompanyTestsDto;
 import site.askephoenix.restapi.company_test.dto.ResultDto;
+import site.askephoenix.restapi.company_test.dto.TestsListDto;
 import site.askephoenix.restapi.company_test.service.CompanyTestsResultService;
 import site.askephoenix.restapi.company_test.service.CompanyTestsService;
 import site.askephoenix.restapi.company_test.service.TestsListService;
@@ -17,6 +19,25 @@ import java.util.HashMap;
 @RequestMapping("/api/tests")
 @RequiredArgsConstructor
 public class CompanyTestsController {
+
+    /*
+     * Get: 가져오기
+     * - 등록된 모든 모의 시험 정보 가져오기
+     * - 로그인 사용자가 작성한 모의시험 리스트 가져오기
+     * - 로그인 사용자가 응시한 모의시험 결과 가져오기 (개인)
+     * - 모의시험 문항 가져오기
+     *
+     * Post: 생성하기
+     * - 모의시험 응시하기 (개인)
+     * - 모의시험 등록하기 (회사)
+     * - 모의시험 항목 추가하기 (회사)
+     *
+     * Put: 수정하기
+     * - 모의시험 항목 수정하기 (회사)
+     * - 모의시험 문제 정답 수정하기 (개인)
+     *
+     * */
+
 
     // 모의시험 등록 정보 관련 서비스
     private final CompanyTestsService service;
@@ -49,22 +70,65 @@ public class CompanyTestsController {
         return resultService.readResultByTester(userInfo);
     }
 
-    // 모의시험 문항
+    // 모의시험 문항 가져오기
     @GetMapping("/{test}/list")
     public HashMap<String, Object> getTestList(
             @PathVariable(name = "test") Long test) {
         return listService.readTestsList(test);
     }
 
+
+
     // 모의시험 응시하기
-    @PostMapping("/{test}/results/user")
+    @PostMapping("/{test}/results")
     public SuccessDto postResultTests(
             @PathVariable(name = "test") Long test,
             @LoginUser UserInfo userInfo,
             ResultDto dto
     ) {
-        return new SuccessDto( resultService.save(test, dto, userInfo) );
+        return new SuccessDto(resultService.save(test, dto, userInfo));
     }
+
+    // 모의시험 등록하기 (회사)
+    @PostMapping("")
+    public SuccessDto postCompanyTests(
+            CompanyTestsDto dto,
+            @LoginUser UserInfo userInfo
+    ) {
+        return new SuccessDto(service.save(dto, userInfo));
+    }
+
+    // 모의시험 항목 추가하기 (회사)
+    @PostMapping("/{test}/list")
+    public SuccessDto postTestList(
+            @LoginUser UserInfo userInfo,
+            TestsListDto dto,
+            @PathVariable Long test) {
+        dto.setTests_id(test);
+        return new SuccessDto(listService.save(dto, userInfo));
+    }
+
+    // 모의시험 항목 수정하기 (회사)
+    @PutMapping("/{test}/list")
+    public SuccessDto putTestList(
+            @LoginUser UserInfo userInfo,
+            TestsListDto dto,
+            @PathVariable Long test) {
+        dto.setTests_id(test);
+        return new SuccessDto(listService.update(dto, userInfo));
+    }
+
+
+    // 모의시험 문제 정답 수정하기 (개인)
+    @PutMapping("/{test}/results")
+    public SuccessDto putResultTests(
+            @PathVariable(name = "test") Long test,
+            @LoginUser UserInfo userInfo,
+            ResultDto dto
+    ) {
+        return new SuccessDto(resultService.update(test, dto, userInfo));
+    }
+
 
 
 }

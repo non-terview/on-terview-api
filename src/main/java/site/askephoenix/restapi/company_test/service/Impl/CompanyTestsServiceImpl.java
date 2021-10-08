@@ -35,6 +35,17 @@ public class CompanyTestsServiceImpl implements CompanyTestsService {
                 "read", infoListToDtoList(allTestsByWriter(userInfo)), "test", "success"
         ));
     }
+
+    // 특정 사용자의 모의 시험을 등록합니다.
+    @Override
+    public Long save(CompanyTestsDto dto, UserInfo userInfo) {
+        if (userInfo.getId().equals(-1L)) return -1L;
+        return repository.save(CompanyTestsInfo.builder()
+                .writer(userInfo)
+                .build()).getId();
+    }
+
+
     // repository 에서 모든 row 를 가져옴.
     private List<CompanyTestsInfo> allCompanyTestsInfo() {
         return repository.findAll();
@@ -44,8 +55,6 @@ public class CompanyTestsServiceImpl implements CompanyTestsService {
     private List<CompanyTestsInfo> allTestsByWriter(UserInfo userInfo){
         return repository.findAllByWriter(userInfo);
     }
-
-    // repository 에서
 
     // CompanyTestsInfo 를 CompanyTestsDto 로 변환시킵니다.
     private List<CompanyTestsDto> infoListToDtoList(List<CompanyTestsInfo> list ) {

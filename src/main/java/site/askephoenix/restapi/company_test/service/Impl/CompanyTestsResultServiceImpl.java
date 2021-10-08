@@ -50,6 +50,30 @@ public class CompanyTestsResultServiceImpl implements CompanyTestsResultService 
         return resultInfo.getId();
     }
 
+    @Override
+    public Long update(Long test, ResultDto dto, UserInfo userInfo) {
+        final CompanyTestsResultInfo info = repository.findByTests(
+                testsRepository.getById(
+                        test
+                )
+        );
+        if (userInfo == null) return -1L;
+        CompanyTestsResultInfo resultInfo = repository.save(
+                CompanyTestsResultInfo.builder()
+                        .id( info.getId() )
+                        .tests( info.getTests() )
+                        .tester( info.getTester() )
+                        .sort_num( info.getSort_num() )
+                        .title( info.getTitle() )
+                        .answer(dto.getAnswer() == null ? info.getAnswer() : dto.getAnswer() )
+                        .createDate( info.getCreateDate() )
+                        .updateDate( info.getUpdateDate() )
+                        .build()
+        );
+
+        return resultInfo.getId();
+    }
+
     // 모든 결과물 가져오기
     private List<CompanyTestsResultInfo> allResult(){
         return repository.findAll();

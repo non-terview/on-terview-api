@@ -19,6 +19,8 @@ public class TestsListDto {
     // 정답
     private String answer;
 
+    private Long tests_id;
+
     private LocalDate createDate;
     private LocalDate updateDate;
 

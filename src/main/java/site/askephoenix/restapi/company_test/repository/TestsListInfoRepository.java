@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface TestsListInfoRepository extends JpaRepository<TestsListInfo, Long> {
     List<TestsListInfo> findAllByTests(CompanyTestsInfo info);
+
+    TestsListInfo findByTests(CompanyTestsInfo info);
+
 }
