@@ -36,7 +36,7 @@ public class ResumeServiceImpl implements ResumeService {
                         .job(resumeInfoDto.getJob())
                         .createDate(resumeInfoDto.getCreateDate())
                         .updateDate(resumeInfoDto.getUpdateDate())
-                        .isDeleted(false)
+                        .isDeleted(resumeInfoDto.isDeleted())
                         .build()
         );
 
@@ -44,13 +44,14 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Long update(ResumeInfo resumeInfo, ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo) {
+    public Long update(ResumeInfo resumeInfo, ResumeInfoDto resumeInfoDto,  UserInfo userInfo) {
 
         ResumeInfo modifyResume = resumeRepository.findById(resumeInfoDto.getId()).orElseGet(
                 () -> ResumeInfo.builder().build()
         );
         if (userInfo.getId().equals(modifyResume.getUserInfo().getId()))
             return -1L;
+
 
         return resumeRepository.save(
                 ResumeInfo.builder()
@@ -66,7 +67,7 @@ public class ResumeServiceImpl implements ResumeService {
                         .job(resumeInfoDto.getJob())
                         .createDate(modifyResume.getCreateDate())
                         .updateDate(resumeInfoDto.getUpdateDate())
-                        .isDeleted(false)
+                        .isDeleted(modifyResume.isDeleted())
                         .build()
         ).getId();
     }

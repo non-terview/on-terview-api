@@ -33,7 +33,6 @@ public class ResumeController {
 
     @PutMapping(value = "")
     public HashMap<String, Object> modifyResume(ResumeInfo resumeInfo, ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo){
-
         Long id = resumeService.update(resumeInfo,resumeInfoDto,userInfo);
 
 
