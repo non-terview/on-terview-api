@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import site.askephoenix.restapi.board.model.BoardInfo;
 import site.askephoenix.restapi.category.model.CategoryInfo;
+import site.askephoenix.restapi.user.model.UserInfo;
 
 
 public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
@@ -48,5 +49,11 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
             "and board.isDeleted = false ")
     Page<BoardInfo> searchByTitleContent(String keyword, Pageable pageable);
 
+    //지금은 아니지만 BoardInfo 에 writer 가 String 이 아닌 UserInfo로 변경될경우에는 UserInfo 값을 통해서
+    //자신이 쓴(글)을 조회할수있게 해주는 기능 입니다 . 나중에는 type(categoryInfo)정보도 필요하면 말해주세요
+    /*
+    @Query(value = "select board from BoardInfo board where board.userInfo = ?1 and board.isDeleted = false ")
+    Page<BoardInfo> searchSelfBoardPage(UserInfo userInfo, Pageable pageable);
+    */
 
 }
