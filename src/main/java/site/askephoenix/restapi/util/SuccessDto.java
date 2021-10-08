@@ -8,8 +8,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class SuccessDto {
-    private List<Object> loads;
+public class SuccessDto<T> {
+    private List<T> loads;
     private Object load;
     private Long key;
     private String result;
@@ -21,7 +21,7 @@ public class SuccessDto {
     }
 
     // dto 여러개를 받음 (List)
-    public SuccessDto(List<Object> loads) {
+    public SuccessDto(List<T> loads) {
         this.loads = loads;
         this.result = loads.size() == 0 ? "fail" : "success";
     }
@@ -31,4 +31,5 @@ public class SuccessDto {
         this.key = key;
         this.result = key.equals(-1L) ? "fail" : "success";
     }
+
 }

@@ -13,6 +13,7 @@ import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.util.SuccessDto;
 
 import java.util.HashMap;
+import java.util.List;
 
 // 모의 시험 컨트롤러
 @RestController
@@ -60,10 +61,10 @@ public class CompanyTestsController {
 
     // 로그인 사용자가 작성한 모의시험 리스트
     @GetMapping("/user")
-    public HashMap<String, Object> getCompanyTests(
+    public SuccessDto<CompanyTestsDto> getCompanyTests(
             @LoginUser UserInfo userInfo
     ) {
-        return service.readUserTests(userInfo);
+        return new SuccessDto<>(service.readUserTests(userInfo));
     }
 
     // 로그인 사용자가 응시한 모의시험 결과
@@ -84,72 +85,72 @@ public class CompanyTestsController {
 
     // 모의시험 응시하기
     @PostMapping("/{test}/results")
-    public SuccessDto postResultTests(
+    public SuccessDto<Long> postResultTests(
             @PathVariable(name = "test") Long test,
             @LoginUser UserInfo userInfo,
             ResultDto dto
     ) {
-        return new SuccessDto(resultService.save(test, dto, userInfo));
+        return new SuccessDto<>(resultService.save(test, dto, userInfo));
     }
 
     // 모의시험 등록하기 (회사)
     @PostMapping("")
-    public SuccessDto postCompanyTests(
+    public SuccessDto<Long> postCompanyTests(
             CompanyTestsDto dto,
             @LoginUser UserInfo userInfo
     ) {
-        return new SuccessDto(service.save(dto, userInfo));
+        return new SuccessDto<>(service.save(dto, userInfo));
     }
 
     // 모의시험 항목 추가하기 (회사)
     @PostMapping("/{test}/list")
-    public SuccessDto postTestList(
+    public SuccessDto<Long> postTestList(
             @LoginUser UserInfo userInfo,
             TestsListDto dto,
             @PathVariable Long test) {
         dto.setTests_id(test);
-        return new SuccessDto(listService.save(dto, userInfo));
+        return new SuccessDto<>(listService.save(dto, userInfo));
     }
 
     // 모의시험 항목 수정하기 (회사)
     @PutMapping("/{test}/list")
-    public SuccessDto putTestList(
+    public SuccessDto<Long> putTestList(
             @LoginUser UserInfo userInfo,
             TestsListDto dto,
             @PathVariable Long test) {
         dto.setTests_id(test);
-        return new SuccessDto(listService.update(dto, userInfo));
+        return new SuccessDto<>(listService.update(dto, userInfo));
     }
 
     // 모의시험 문제 정답 수정하기 (개인)
     @PutMapping("/{test}/results")
-    public SuccessDto putResultTests(
+    public SuccessDto<Long> putResultTests(
             @PathVariable(name = "test") Long test,
             @LoginUser UserInfo userInfo,
             ResultDto dto
     ) {
-        return new SuccessDto(resultService.update(test, dto, userInfo));
+        return new SuccessDto<>(resultService.update(test, dto, userInfo));
     }
 
 
     // 모의시험 항목 삭제 (회사)
     @DeleteMapping("/{test}/list")
-    public SuccessDto deleteTestList(
+    public SuccessDto<Long> deleteTestList(
             @LoginUser UserInfo userInfo,
             TestsListDto dto,
             @PathVariable Long test) {
         dto.setTests_id(test);
-        return new SuccessDto(listService.delete(dto, userInfo));
+        return new SuccessDto<>(listService.delete(dto, userInfo));
     }
 
     // 모의시험 문제 정답 삭제 (개인)
     @DeleteMapping("/{test}/results")
-    public SuccessDto deleteResultTests(
+    public SuccessDto<Long> deleteResultTests(
             @PathVariable(name = "test") Long test,
             @LoginUser UserInfo userInfo,
             ResultDto dto
     ) {
-        return new SuccessDto(resultService.delete(test, dto, userInfo));
+        return new SuccessDto<>(resultService.delete(test, dto, userInfo));
     }
 
 }
