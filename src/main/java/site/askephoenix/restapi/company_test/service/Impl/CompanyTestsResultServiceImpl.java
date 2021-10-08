@@ -44,6 +44,7 @@ public class CompanyTestsResultServiceImpl implements CompanyTestsResultService 
                         .sort_num( dto.getSort_num() )
                         .title( dto.getTitle() )
                         .answer(dto.getAnswer())
+                        .isDeleted(false)
                         .build()
         );
 
@@ -52,13 +53,9 @@ public class CompanyTestsResultServiceImpl implements CompanyTestsResultService 
 
     @Override
     public Long update(Long test, ResultDto dto, UserInfo userInfo) {
-        final CompanyTestsResultInfo info = repository.findByTests(
-                testsRepository.getById(
-                        test
-                )
-        );
+        final CompanyTestsResultInfo info = getTestResult(test);
         if (userInfo == null) return -1L;
-        CompanyTestsResultInfo resultInfo = repository.save(
+        return repository.save(
                 CompanyTestsResultInfo.builder()
                         .id( info.getId() )
                         .tests( info.getTests() )
@@ -68,10 +65,36 @@ public class CompanyTestsResultServiceImpl implements CompanyTestsResultService 
                         .answer(dto.getAnswer() == null ? info.getAnswer() : dto.getAnswer() )
                         .createDate( info.getCreateDate() )
                         .updateDate( info.getUpdateDate() )
+                        .isDeleted(false)
                         .build()
-        );
+        ).getId();
+    }
 
-        return resultInfo.getId();
+    @Override
+    public Long delete(Long test, ResultDto dto, UserInfo userInfo) {
+        final CompanyTestsResultInfo info = getTestResult(test);
+        if (userInfo == null) return -1L;
+        return repository.save(
+                CompanyTestsResultInfo.builder()
+                        .id( info.getId() )
+                        .tests( info.getTests() )
+                        .tester( info.getTester() )
+                        .sort_num( info.getSort_num() )
+                        .title( info.getTitle() )
+                        .answer(info.getAnswer())
+                        .createDate( info.getCreateDate() )
+                        .updateDate( info.getUpdateDate() )
+                        .isDeleted(true)
+                        .build()
+        ).getId();
+    }
+
+    private CompanyTestsResultInfo getTestResult(Long test) {
+        return repository.findByTests(
+                testsRepository.getById(
+                        test
+                )
+        );
     }
 
     // 모든 결과물 가져오기

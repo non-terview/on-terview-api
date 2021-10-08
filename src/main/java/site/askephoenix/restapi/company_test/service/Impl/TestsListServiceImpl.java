@@ -44,6 +44,7 @@ public class TestsListServiceImpl implements TestsListService {
                                 .tests(
                                         testsRepository.getById(dto.getTests_id())
                                 )
+                                .isDeleted(false)
                                 .build()
                 )
                 .getId();
@@ -51,10 +52,8 @@ public class TestsListServiceImpl implements TestsListService {
 
     @Override
     public Long update(TestsListDto dto, UserInfo userInfo) {
-        final TestsListInfo test = repository.findByTests(
-                testsRepository.getById(
-                        dto.getTests_id())
-        );
+        final TestsListInfo test = getTest(dto.getTests_id());
+
         if (userInfo.getId().equals(-1L)) return -1L;
         return repository.save(TestsListInfo.builder()
                         .id(test.getId())
@@ -64,14 +63,36 @@ public class TestsListServiceImpl implements TestsListService {
                         .tests(test.getTests())
                         .createDate(test.getCreateDate())
                         .updateDate(test.getUpdateDate())
+                        .isDeleted(false)
                         .build()
                 )
                 .getId();
     }
 
-    // 모든 TestsList 를 가져옵니다.
-    private List<TestsListInfo> AllTestsListInfo() {
-        return repository.findAll();
+
+    @Override
+    public Long delete(TestsListDto dto, UserInfo userInfo) {
+        final TestsListInfo test = getTest(dto.getTests_id());
+
+        if (userInfo.getId().equals(-1L)) return -1L;
+        return repository.save(TestsListInfo.builder()
+                        .id(test.getId())
+                        .title(test.getTitle())
+                        .contents(test.getContents())
+                        .answer(test.getAnswer())
+                        .tests(test.getTests())
+                        .createDate(test.getCreateDate())
+                        .updateDate(test.getUpdateDate())
+                        .isDeleted(true)
+                        .build()
+                )
+                .getId();
+    }
+
+    private TestsListInfo getTest(long id){
+        return repository.findByTests(
+                testsRepository.getById(id)
+        );
     }
 
     // TestsListInfo 를 TestsListDto 로 변환시킵니다.

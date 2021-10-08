@@ -42,6 +42,7 @@ public class CompanyTestsServiceImpl implements CompanyTestsService {
         if (userInfo.getId().equals(-1L)) return -1L;
         return repository.save(CompanyTestsInfo.builder()
                 .writer(userInfo)
+                .isDeleted(false)
                 .build()).getId();
     }
 

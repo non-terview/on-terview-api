@@ -36,6 +36,10 @@ public class CompanyTestsController {
      * - 모의시험 항목 수정하기 (회사)
      * - 모의시험 문제 정답 수정하기 (개인)
      *
+     * Delete: 삭제하기 (isDeleted -> true)
+     * - 모의시험 항목 삭제 (회사)
+     * - 모의시험 문제 정답 삭제 (개인)
+     *
      * */
 
 
@@ -78,7 +82,6 @@ public class CompanyTestsController {
     }
 
 
-
     // 모의시험 응시하기
     @PostMapping("/{test}/results")
     public SuccessDto postResultTests(
@@ -118,7 +121,6 @@ public class CompanyTestsController {
         return new SuccessDto(listService.update(dto, userInfo));
     }
 
-
     // 모의시험 문제 정답 수정하기 (개인)
     @PutMapping("/{test}/results")
     public SuccessDto putResultTests(
@@ -130,5 +132,24 @@ public class CompanyTestsController {
     }
 
 
+    // 모의시험 항목 삭제 (회사)
+    @DeleteMapping("/{test}/list")
+    public SuccessDto deleteTestList(
+            @LoginUser UserInfo userInfo,
+            TestsListDto dto,
+            @PathVariable Long test) {
+        dto.setTests_id(test);
+        return new SuccessDto(listService.delete(dto, userInfo));
+    }
+
+    // 모의시험 문제 정답 삭제 (개인)
+    @DeleteMapping("/{test}/results")
+    public SuccessDto deleteResultTests(
+            @PathVariable(name = "test") Long test,
+            @LoginUser UserInfo userInfo,
+            ResultDto dto
+    ) {
+        return new SuccessDto(resultService.delete(test, dto, userInfo));
+    }
 
 }

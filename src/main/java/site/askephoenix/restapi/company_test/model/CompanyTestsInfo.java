@@ -35,13 +35,18 @@ public class CompanyTestsInfo {
     @UpdateTimestamp
     private LocalDate updateDate;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
     @Builder
     public CompanyTestsInfo(
-            Long id, UserInfo writer, LocalDate createDate, LocalDate updateDate
+            Long id, UserInfo writer, LocalDate createDate, LocalDate updateDate,
+            boolean isDeleted
     ) {
         this.id = id;
         this.writer = writer;
         this.createDate = createDate;
         this.updateDate = updateDate;
+        this.isDeleted = isDeleted;
     }
 }

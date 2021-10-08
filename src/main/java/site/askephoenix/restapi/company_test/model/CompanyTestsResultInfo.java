@@ -42,10 +42,14 @@ public class CompanyTestsResultInfo {
     @UpdateTimestamp
     private LocalDate updateDate;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
     @Builder
     public CompanyTestsResultInfo(
         Long id, CompanyTestsInfo tests, UserInfo tester, int sort_num,
-        String title, String answer, LocalDate createDate, LocalDate updateDate
+        String title, String answer, LocalDate createDate, LocalDate updateDate,
+        boolean isDeleted
     ){
         this.id = id;
         this.tests = tests;
@@ -55,6 +59,7 @@ public class CompanyTestsResultInfo {
         this.answer = answer;
         this.createDate = createDate;
         this.updateDate = updateDate;
+        this.isDeleted = isDeleted;
     }
 }
 
