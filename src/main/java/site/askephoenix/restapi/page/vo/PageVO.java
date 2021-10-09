@@ -46,7 +46,8 @@ public class PageVO {
         setPage(pageDto.getRequestPage());
         setSize(pageDto.getPageSize());
         Sort.Direction dir = pageDto.getSort() == 0 ? Sort.Direction.DESC : Sort.Direction.ASC;
-        return PageRequest.of(this.page - 1, this.size, dir ,"seq");
+        //여기있는 마지막값 properties는 파라미터로 받을예정입니다 .
+        return PageRequest.of(this.page - 1, this.size, dir ,pageDto.getProperties());
     }
 
     public Pageable makePageable(int direction, String... props) {

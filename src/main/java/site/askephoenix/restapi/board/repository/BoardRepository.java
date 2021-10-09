@@ -28,9 +28,8 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
     // 쿼리문을 사용한것들은 search 키워드를 사용하겠습니다
 
     //보드 타입으로 검색하는 쿼리입니다
-    @Query(value = "select board from BoardInfo board where board.category = ?1 ")
+    @Query(value = "select board from BoardInfo board where board.category = ?1 and board.isDeleted = false ")
     Page<BoardInfo> searchByType(CategoryInfo categoryId, Pageable pageable);
-
 
     //타이틀로 검색하는 쿼리
     @Query(value = "select board from  BoardInfo board where board.title like %?1% and board.isDeleted = false")
@@ -45,8 +44,7 @@ public interface BoardRepository extends CrudRepository<BoardInfo, Long> {
     Page<BoardInfo> searchByCompanyName(String keyword, Pageable pageable);
 
     //제목과 내용으로 검색하는 쿼리입니다
-    @Query(value = "select board from  BoardInfo board where board.title like %?1% or board.content like %?1% " +
-            "and board.isDeleted = false ")
+    @Query(value ="select b from BoardInfo b where (b.title like %?1% or b.content like %?1%) and b.isDeleted =false ")
     Page<BoardInfo> searchByTitleContent(String keyword, Pageable pageable);
 
     //지금은 아니지만 BoardInfo 에 writer 가 String 이 아닌 UserInfo로 변경될경우에는 UserInfo 값을 통해서

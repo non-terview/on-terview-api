@@ -20,5 +20,7 @@ public class PageDto {
     //혹시 모를 유저
     private UserInfoDto userInfoDto;
     private int sort = 0 ;
+    //정렬의 기준이 되어줄 프로퍼티입니다 .
+    private String[] properties;
 
 }
