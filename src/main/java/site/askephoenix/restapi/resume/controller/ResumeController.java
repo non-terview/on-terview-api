@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.resume.dto.ResumeInfoDto;
-import site.askephoenix.restapi.resume.model.ResumeInfo;
 import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
@@ -23,6 +22,8 @@ public class ResumeController {
         return Maps.newHashMap(ImmutableMap.of("UserInfo", userInfo));
     }
 
+
+
     @PostMapping(value = "")
     public HashMap<String, Object> creatResume(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo){
         Long id = resumeService.save(resumeInfoDto,userInfo);
@@ -32,9 +33,10 @@ public class ResumeController {
     }
 
     @PutMapping(value = "")
-    public HashMap<String, Object> modifyResume(ResumeInfo resumeInfo, ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo){
-        Long id = resumeService.update(resumeInfo,resumeInfoDto,userInfo);
-
+    public HashMap<String, Object> modifyResume(
+            ResumeInfoDto resumeInfoDto,
+            @LoginUser UserInfo userInfo){
+        Long id = resumeService.update(resumeInfoDto,userInfo);
 
         if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("modify_resume_id", id));

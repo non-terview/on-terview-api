@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import javax.persistence.*;
@@ -78,7 +79,7 @@ public class ResumeInfo{
     @Builder
     public ResumeInfo(
             Long id,
-            UserInfo userInfo,
+            @LoginUser UserInfo userInfo,
             String title ,String introduction ,String final_edu,String edu_status,
             String career, String certificate,String portfolio,String job,
             LocalDate createDate,LocalDate updateDate,

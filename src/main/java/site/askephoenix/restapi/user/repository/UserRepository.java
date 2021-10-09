@@ -14,6 +14,4 @@ public interface UserRepository extends JpaRepository<UserInfo, Long> {
     @NonNull
     Optional<UserInfo> findById(Long id);
 
-    @Query(value = "select u from UserInfo u where u.id = ?1")
-    UserInfo searchById(Long id);
 }

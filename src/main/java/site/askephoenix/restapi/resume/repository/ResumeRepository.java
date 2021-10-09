@@ -11,9 +11,9 @@ import site.askephoenix.restapi.user.model.UserInfo;
 import java.util.Optional;
 
 public interface ResumeRepository extends JpaRepository<ResumeInfo,Long> {
+
     @NonNull
     Optional<ResumeInfo> findByUserInfo(UserInfo userInfo);
-
 
     @NonNull
     Optional<ResumeInfo> findById(@NonNull Long resumeId);

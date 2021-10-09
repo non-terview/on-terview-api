@@ -17,14 +17,13 @@ public class ResumeServiceImpl implements ResumeService {
     private final ResumeRepository resumeRepository;
 
     @Override
-    public Long save(ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo) {
+    public Long save(ResumeInfoDto resumeInfoDto,UserInfo userInfo) {
         if (resumeRepository.findByUserInfo(userInfo).
                 stream().findAny().isPresent()) {
             return -1L;
         }
         final ResumeInfo resumeInfo = resumeRepository.save(
                 ResumeInfo.builder()
-                        .id(resumeInfoDto.getId())
                         .userInfo(userInfo)
                         .title(resumeInfoDto.getTitle())
                         .introduction(resumeInfoDto.getIntroduction())
@@ -34,8 +33,6 @@ public class ResumeServiceImpl implements ResumeService {
                         .certificate(resumeInfoDto.getCertificate())
                         .portfolio(resumeInfoDto.getPortfolio())
                         .job(resumeInfoDto.getJob())
-                        .createDate(resumeInfoDto.getCreateDate())
-                        .updateDate(resumeInfoDto.getUpdateDate())
                         .isDeleted(resumeInfoDto.isDeleted())
                         .build()
         );
@@ -44,14 +41,13 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Long update(ResumeInfo resumeInfo, ResumeInfoDto resumeInfoDto,  UserInfo userInfo) {
-
-        ResumeInfo modifyResume = resumeRepository.findById(resumeInfoDto.getId()).orElseGet(
-                () -> ResumeInfo.builder().build()
-        );
-        if (userInfo.getId().equals(modifyResume.getUserInfo().getId()))
+    public Long update(ResumeInfoDto resumeInfoDto,UserInfo userInfo) {
+        if (userInfo==null||userInfo.getId().equals(-1L))
             return -1L;
 
+        ResumeInfo modifyResume = resumeRepository.findByUserInfo(userInfo).orElseGet(
+                () -> ResumeInfo.builder().build()
+        );
 
         return resumeRepository.save(
                 ResumeInfo.builder()

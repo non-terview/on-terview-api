@@ -10,5 +10,5 @@ public interface ResumeService {
 
     Long save(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo);
 
-    Long update(ResumeInfo resumeInfo, ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo);
+    Long update(ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo);
 }
