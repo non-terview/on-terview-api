@@ -165,6 +165,19 @@ include::{snippets}/company_test-post-tests-results/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-post-tests-results/response-body.adoc[]
 
+=== 5-8. 모의시험 항목 수정하기 (회사) : PUT
+==== 5-8-1. 성공
+===== path parameter
+include::{snippets}/company_test-put-tests-lists/path-parameters.adoc[]
+===== Request
+include::{snippets}/company_test-put-tests-lists/request-fields.adoc[]
+===== Request Example
+include::{snippets}/company_test-put-tests-lists/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-put-tests-lists/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-put-tests-lists/response-body.adoc[]
+
 
 
 

@@ -419,7 +419,7 @@ class CompanyTestsControllerTest {
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(
-                                parameterWithName("test").description("게시판 식별 번호")
+                                parameterWithName("test").description("모의시험 식별 번호")
                         ),
                         requestParameters(
                                 parameterWithName("_csrf").description("인증 데이터")
@@ -485,7 +485,7 @@ class CompanyTestsControllerTest {
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(
-                                parameterWithName("test").description("게시판 식별 번호")
+                                parameterWithName("test").description("모의시험 식별번호")
                         ),
                         requestParameters(
                                 parameterWithName("_csrf").description("인증 데이터")
@@ -508,7 +508,50 @@ class CompanyTestsControllerTest {
 
     @Test
     @DisplayName(value = "모의시험 항목 수정하기 (회사)")
-    void putTestList() {
+    void putTestList() throws Exception {
+        TestsListDto listDto = new TestsListDto(TestsListInfo.builder()
+                .id(1234L)
+                .title("수학 기초 넌센스 2 (수정)")
+                .contents("모든 사람의 머리카락 수를 곱하면 몇일까요?")
+                .answer("0")
+                .build()
+        );
+
+        given(listService.update(any(TestsListDto.class), any(UserInfo.class))).willReturn(5L);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.put(
+                                "/api/tests/lists/{list}", 1234L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(listDto))
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(userInfo))
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-put-tests-lists",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("list").description("항목 식별 번호")
+                        ),
+                        requestParameters(
+                                parameterWithName("_csrf").description("인증 데이터")
+                        ),
+                        requestFields(
+                                fieldWithPath("title").description("수정할 문항 제목"),
+                                fieldWithPath("contents").description("수정할 문항 질문"),
+                                fieldWithPath("answer").description("수정할 문항 정답"),
+                                fieldWithPath("id").description("(빈값)"),
+                                fieldWithPath("tests_id").description("(빈값)"),
+                                fieldWithPath("createDate").description("(빈값)"),
+                                fieldWithPath("updateDate").description("(빈값)")
+                        ),
+                        responseFields(
+                                fieldWithPath("id").description("모의시험 항목 식별번호"),
+                                fieldWithPath("state").description("성공 여부")
+                        )
+                ));
     }
 
     @Test
