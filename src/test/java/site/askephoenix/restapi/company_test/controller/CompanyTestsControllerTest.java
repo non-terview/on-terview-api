@@ -83,8 +83,77 @@ class CompanyTestsControllerTest {
 
     @Test
     @DisplayName(value = "등록된 모든 모의 시험 정보 가져오기")
-    void getAllTests() {
+    void getAllTests() throws Exception {
+        UserInfo userInfo2 = UserInfo.builder()
+                .id(123L).auth("ROLE_USER").email("tester")
+                .password(new BCryptPasswordEncoder().encode("1234test"))
+                .type("").name("정온유").build();
+        UserInfo userInfo3 = UserInfo.builder()
+                .id(456L).auth("ROLE_USER").email("tester")
+                .password(new BCryptPasswordEncoder().encode("1234test"))
+                .type("").name("박정현").build();
+        CompanyTestsDto dto1 = new CompanyTestsDto(
+                CompanyTestsInfo.builder()
+                        .id(1L)
+                        .writer(userInfo)
+                        .createDate(LocalDateTime.now())
+                        .updateDate(LocalDateTime.now())
+                        .build()
+        );
+        CompanyTestsDto dto2 = new CompanyTestsDto(
+                CompanyTestsInfo.builder()
+                        .id(123L).writer(userInfo2).createDate(LocalDateTime.now())
+                        .updateDate(LocalDateTime.now())
+                        .build()
+        );
+        CompanyTestsDto dto3 = new CompanyTestsDto(
+                CompanyTestsInfo.builder()
+                        .id(234L).writer(userInfo3).createDate(LocalDateTime.now())
+                        .updateDate(LocalDateTime.now())
+                        .build()
+        );
+        List<CompanyTestsDto> dtoList = List.of(dto1, dto2, dto3);
 
+        given(service.readAllTests()).willReturn(dtoList);
+
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.get(
+                                "/api/tests")
+                        .with(csrf()).with(user(userInfo))
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-get",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                        ),
+                        responseFields(
+                                fieldWithPath("[]").description("모의시험 배열"),
+                                fieldWithPath("[].id").description("모의시험 식별번호"),
+                                fieldWithPath("[].writer").description("모의시험 작성자"),
+                                fieldWithPath("[].writer.id").description("작성자 식별번호"),
+                                fieldWithPath("[].writer.name").description("작성자 성명"),
+                                fieldWithPath("[].testsListDto").description("테스트 항목배열 (빈값)"),
+                                fieldWithPath("[].createDate[]").description("작성 년/월/일 시/분/초 총값"),
+                                fieldWithPath("[].createDate[0]").description("년"),
+                                fieldWithPath("[].createDate[1]").description("월"),
+                                fieldWithPath("[].createDate[2]").description("일"),
+                                fieldWithPath("[].createDate[3]").description("시"),
+                                fieldWithPath("[].createDate[4]").description("분"),
+                                fieldWithPath("[].createDate[5]").description("초"),
+                                fieldWithPath("[].createDate[6]").description("시간 총 값"),
+                                fieldWithPath("[].updateDate[]").description("작성 년/월/일 시/분/초 총값"),
+                                fieldWithPath("[].updateDate[0]").description("년"),
+                                fieldWithPath("[].updateDate[1]").description("월"),
+                                fieldWithPath("[].updateDate[2]").description("일"),
+                                fieldWithPath("[].updateDate[3]").description("시"),
+                                fieldWithPath("[].updateDate[4]").description("분"),
+                                fieldWithPath("[].updateDate[5]").description("초"),
+                                fieldWithPath("[].updateDate[6]").description("시간 총 값")
+                        )
+                ));
     }
 
     @Test

@@ -92,6 +92,12 @@ include::{snippets}/evaluation-get-types/response-body.adoc[]
 == 5. 모의시험
 === 5-1. 모의시험 문항 가져오기 (모두)
 ==== 5-1-1. 성공
+===== Request Example
+include::{snippets}/company_test-get/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-get/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-get/response-body.adoc[]
 
 
 === 5-2. 로그인 사용자가 작성한 모의시험 리스트 가져오기 (회사)
@@ -102,3 +108,6 @@ include::{snippets}/company_test-get-user/http-request.adoc[]
 include::{snippets}/company_test-get-user/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-get-user/response-body.adoc[]
+
+
+
