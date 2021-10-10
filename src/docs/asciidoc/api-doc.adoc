@@ -199,6 +199,15 @@ include::{snippets}/company_test-delete-tests-lists/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-delete-tests-lists/response-body.adoc[]
 
+=== 5-11. 모의시험 문제 정답 삭제 (개인) : DELETE
+==== 5-11-1. 성공
+===== Request Example
+include::{snippets}/company_test-delete-tests-results/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-delete-tests-results/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-delete-tests-results/response-body.adoc[]
+
 
 
 

@@ -614,7 +614,7 @@ class CompanyTestsControllerTest {
                         preprocessRequest(prettyPrint()),
                         preprocessResponse(prettyPrint()),
                         pathParameters(
-                                parameterWithName("list").description("응시결과 문제 식별번호")
+                                parameterWithName("list").description("선택한 항목 식별번호")
                         ),
                         requestParameters(
                                 parameterWithName("_csrf").description("인증 데이터")
@@ -628,6 +628,31 @@ class CompanyTestsControllerTest {
 
     @Test
     @DisplayName(value = "모의시험 문제 정답 삭제 (개인)")
-    void deleteResultTests() {
+    void deleteResultTests() throws Exception {
+        given(resultService.delete(anyLong(), any(UserInfo.class))).willReturn(1L);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.delete(
+                                "/api/tests/results/{result}", 1L)
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(userInfo))
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-delete-tests-results",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("result").description("선택한 응시결과")
+                        ),
+                        requestParameters(
+                                parameterWithName("_csrf").description("인증 데이터")
+                        ),
+                        responseFields(
+                                fieldWithPath("id").description("삭제된 응시결과"),
+                                fieldWithPath("state").description("성공 여부")
+                        )
+                ));
     }
 }
