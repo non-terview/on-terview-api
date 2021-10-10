@@ -8,7 +8,6 @@ import site.askephoenix.restapi.resume.model.ResumeInfo;
 import site.askephoenix.restapi.resume.repository.ResumeRepository;
 import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
-import site.askephoenix.restapi.user.repository.UserRepository;
 
 
 @RequiredArgsConstructor
@@ -18,14 +17,13 @@ public class ResumeServiceImpl implements ResumeService {
     private final ResumeRepository resumeRepository;
 
     @Override
-    public Long save(ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo) {
-        if(resumeRepository.findByUserInfo(userInfo).
-                stream().findAny().isPresent()){
+    public Long save(ResumeInfoDto resumeInfoDto,UserInfo userInfo) {
+        if (resumeRepository.findByUserInfo(userInfo).
+                stream().findAny().isPresent()) {
             return -1L;
         }
         final ResumeInfo resumeInfo = resumeRepository.save(
                 ResumeInfo.builder()
-                        .id(resumeInfoDto.getId())
                         .userInfo(userInfo)
                         .title(resumeInfoDto.getTitle())
                         .introduction(resumeInfoDto.getIntroduction())
@@ -35,12 +33,38 @@ public class ResumeServiceImpl implements ResumeService {
                         .certificate(resumeInfoDto.getCertificate())
                         .portfolio(resumeInfoDto.getPortfolio())
                         .job(resumeInfoDto.getJob())
-                        .createDate(resumeInfoDto.getCreateDate())
-                        .updateDate(resumeInfoDto.getUpdateDate())
-                        .isDeleted(false)
+                        .isDeleted(resumeInfoDto.isDeleted())
                         .build()
         );
 
         return resumeInfo.getId();
+    }
+
+    @Override
+    public Long update(ResumeInfoDto resumeInfoDto,UserInfo userInfo) {
+        if (userInfo==null||userInfo.getId().equals(-1L))
+            return -1L;
+
+        ResumeInfo modifyResume = resumeRepository.findByUserInfo(userInfo).orElseGet(
+                () -> ResumeInfo.builder().build()
+        );
+
+        return resumeRepository.save(
+                ResumeInfo.builder()
+                        .id(modifyResume.getId())
+                        .userInfo(userInfo)
+                        .title(resumeInfoDto.getTitle())
+                        .introduction(resumeInfoDto.getIntroduction())
+                        .final_edu(resumeInfoDto.getFinal_edu())
+                        .edu_status(resumeInfoDto.getEdu_status())
+                        .career(resumeInfoDto.getCareer())
+                        .certificate(resumeInfoDto.getCertificate())
+                        .portfolio(resumeInfoDto.getPortfolio())
+                        .job(resumeInfoDto.getJob())
+                        .createDate(modifyResume.getCreateDate())
+                        .updateDate(resumeInfoDto.getUpdateDate())
+                        .isDeleted(modifyResume.isDeleted())
+                        .build()
+        ).getId();
     }
 }

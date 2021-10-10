@@ -1,4 +1,4 @@
-name: develop Push Check
+name: master Push Check
 
 on:
   push:

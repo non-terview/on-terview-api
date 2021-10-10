@@ -24,18 +24,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**",
                         "/img", "/favicon.ico", "/resources/**", "/error", "/docs/**").permitAll()
-                .antMatchers("/api/user", "/login", "/api/user/token", "/sign-on").permitAll()
+                .antMatchers("/api/user", "/api/login", "/api/user/token", "/api/sign-on").permitAll()
                 .antMatchers("/").hasRole("USER")
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/api/user/token")
                 .loginProcessingUrl("/api/login")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login")
+                .logoutUrl("/api/logout")
+                .logoutSuccessUrl("/api/user/token")
                 .invalidateHttpSession(true);
     }
 
