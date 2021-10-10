@@ -152,6 +152,19 @@ include::{snippets}/company_test-post-tests-lists/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-post-tests-lists/response-body.adoc[]
 
+=== 5-7. 모의시험 응시하기 (개인) : POST
+==== 5-7-1. 성공
+===== path parameter
+include::{snippets}/company_test-post-tests-results/path-parameters.adoc[]
+===== Request
+include::{snippets}/company_test-post-tests-results/request-fields.adoc[]
+===== Request Example
+include::{snippets}/company_test-post-tests-results/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-post-tests-results/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-post-tests-results/response-body.adoc[]
+
 
 
 

@@ -1,6 +1,8 @@
 package site.askephoenix.restapi.company_test.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +35,7 @@ import site.askephoenix.restapi.user.service.UserService;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -439,8 +442,68 @@ class CompanyTestsControllerTest {
 
     @Test
     @DisplayName(value = "모의시험 응시하기 (개인)")
-    void postResultTests() {
+    void postResultTests() throws Exception {
+        ResultDto listDto1 = new ResultDto(CompanyTestsResultInfo.builder()
+                .id(1L)
+                .sort_num(1)
+                .title("수학 기초 1")
+                .answer("5050")
+                .build()
+        );
+        ResultDto listDto2 = new ResultDto(CompanyTestsResultInfo.builder()
+                .id(2L)
+                .sort_num(2)
+                .title("수학 기초 2")
+                .answer("1313")
+                .build()
+        );
+        ResultDto listDto3 = new ResultDto(CompanyTestsResultInfo.builder()
+                .id(5L)
+                .sort_num(3)
+                .title("수학 기초 3")
+                .answer("501")
+                .build()
+        );
+        List<ResultDto> resultDtoList = List.of(listDto1, listDto2, listDto3);
 
+        List<Long> longs = List.of(1L, 2L, 5L);
+
+        given(resultService.save(anyLong(),any(), any(UserInfo.class))).willReturn(longs);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.post(
+                                "/api/tests/{test}/results", 1L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(resultDtoList))
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(userInfo))
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-post-tests-results",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("test").description("게시판 식별 번호")
+                        ),
+                        requestParameters(
+                                parameterWithName("_csrf").description("인증 데이터")
+                        ),
+                        requestFields(
+                                fieldWithPath("[]").description("개인 모의시험 결과 리스트"),
+                                fieldWithPath("[]id").description("결과 번호"),
+                                fieldWithPath("[]sort_num").description("순번"),
+                                fieldWithPath("[]title").description("당시 제목"),
+                                fieldWithPath("[]answer").description("결과 입력값"),
+                                fieldWithPath("[]testsListDto").description("(빈값)"),
+                                fieldWithPath("[]tester").description("(빈값)")
+                        ),
+                        responseFields(
+                                fieldWithPath("id_list[]").description("저장된 결과 식별번호 배열"),
+                                fieldWithPath("state").description("성공 여부: data")
+                        )
+                ));
     }
 
     @Test
