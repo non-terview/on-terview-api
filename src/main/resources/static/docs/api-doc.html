@@ -516,6 +516,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_5_3_1_성공">5-3-1. 성공</a></li>
 </ul>
 </li>
+<li><a href="#_5_4_모의시험_문항_가져오기_모두">5-4. 모의시험 문항 가져오기 (모두)</a>
+<ul class="sectlevel3">
+<li><a href="#_5_4_1_성공">5-4-1. 성공</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -592,7 +597,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "71ca2d01-2df5-43fa-a4d4-050fbb5b4769",
+    "token" : "aedeb2f0-e309-48a3-9577-a3b749e7d5ce",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -664,7 +669,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_2">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user?_csrf=12730b0e-15e0-4a83-99ce-5e9ad1eefa6c HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user?_csrf=ee9fc056-3b78-48d5-a89b-9619ce4742f1 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 145
 Host: localhost:8080
@@ -725,7 +730,7 @@ Host: localhost:8080
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=8602f75b-685a-4f99-94ac-298928db0b41</code></pre>
+_csrf=2e40038d-0b7d-4088-8419-f9de10d27d9a</code></pre>
 </div>
 </div>
 </div>
@@ -826,7 +831,7 @@ _csrf=8602f75b-685a-4f99-94ac-298928db0b41</code></pre>
 <h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user?_csrf=fb5f17f8-2f29-4fe8-827d-169d12e82c6f HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user?_csrf=387a8bfd-606d-40fc-9a4c-38504af5afdb HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 136
 Host: localhost:8080
@@ -886,7 +891,7 @@ Host: localhost:8080
 <h5 id="_request_example_5">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=3ae54e9d-914c-4f9a-89e8-2e3c2b0e2869 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=d37bc476-8f06-4581-90d9-9244604f282c HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1015,7 +1020,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=5dcfe4c8-4b9c-4350-b1e0-cd87981513a9 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=9f02dea6-a006-42ce-81a0-72314f4b219b HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1294,7 +1299,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_7">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=cec856ee-6422-4e38-b448-4fa428209f3d HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=802f9069-0742-40e1-8a56-80087bf695ac HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 509
 Host: localhost:8080
@@ -1394,7 +1399,7 @@ Host: localhost:8080
 <h5 id="_request_example_8">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=2462476d-3ef3-48bc-bbb3-7904a53b9aa3 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=9346c31b-c061-4537-b790-5dce24e54688 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1489,7 +1494,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_9">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests?_csrf=10a2ba4c-fda4-4ccd-a0b0-281b75684808 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests?_csrf=6477fbde-db5e-48d7-8a0c-6413302fed81 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1583,7 +1588,7 @@ Host: localhost:8080</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">작성 년/월/일 시/분/초 총값</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정한 년/월/일 시/분/초 총값</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[0]</code></p></td>
@@ -1634,8 +1639,8 @@ Host: localhost:8080</code></pre>
     "name" : "김주윤"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 10, 23, 7, 25, 655191000 ],
-  "updateDate" : [ 2021, 10, 10, 23, 7, 25, 655212000 ]
+  "createDate" : [ 2021, 10, 10, 23, 26, 44, 318732000 ],
+  "updateDate" : [ 2021, 10, 10, 23, 26, 44, 318774000 ]
 }, {
   "id" : 123,
   "writer" : {
@@ -1643,8 +1648,8 @@ Host: localhost:8080</code></pre>
     "name" : "정온유"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 10, 23, 7, 25, 655224000 ],
-  "updateDate" : [ 2021, 10, 10, 23, 7, 25, 655229000 ]
+  "createDate" : [ 2021, 10, 10, 23, 26, 44, 318794000 ],
+  "updateDate" : [ 2021, 10, 10, 23, 26, 44, 318802000 ]
 }, {
   "id" : 234,
   "writer" : {
@@ -1652,8 +1657,8 @@ Host: localhost:8080</code></pre>
     "name" : "박정현"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 10, 23, 7, 25, 655236000 ],
-  "updateDate" : [ 2021, 10, 10, 23, 7, 25, 655241000 ]
+  "createDate" : [ 2021, 10, 10, 23, 26, 44, 318812000 ],
+  "updateDate" : [ 2021, 10, 10, 23, 26, 44, 318819000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -1668,7 +1673,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_10">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/user?_csrf=d38a2ae0-196c-4660-8152-2f61916f1798 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/user?_csrf=1262297e-6100-46bf-8438-18434669981c HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1762,7 +1767,7 @@ Host: localhost:8080</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">작성 년/월/일 시/분/초 총값</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정한 년/월/일 시/분/초 총값</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[0]</code></p></td>
@@ -1813,8 +1818,8 @@ Host: localhost:8080</code></pre>
     "name" : "김주윤"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 10, 23, 7, 24, 462963000 ],
-  "updateDate" : [ 2021, 10, 10, 23, 7, 24, 462985000 ]
+  "createDate" : [ 2021, 10, 10, 23, 26, 42, 919905000 ],
+  "updateDate" : [ 2021, 10, 10, 23, 26, 42, 919928000 ]
 }, {
   "id" : 2,
   "writer" : {
@@ -1822,8 +1827,8 @@ Host: localhost:8080</code></pre>
     "name" : "김주윤"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 10, 23, 7, 24, 463054000 ],
-  "updateDate" : [ 2021, 10, 10, 23, 7, 24, 463064000 ]
+  "createDate" : [ 2021, 10, 10, 23, 26, 42, 919993000 ],
+  "updateDate" : [ 2021, 10, 10, 23, 26, 42, 920003000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -1838,7 +1843,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_11">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/results/user?_csrf=572d3109-d0ae-41b6-8725-bc6484c29b67 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/results/user?_csrf=1f6974de-121c-487a-bb7f-d2f0ae2a9b22 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1921,13 +1926,203 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_5_4_모의시험_문항_가져오기_모두">5-4. 모의시험 문항 가져오기 (모두)</h3>
+<div class="sect3">
+<h4 id="_5_4_1_성공">5-4-1. 성공</h4>
+<div class="sect4">
+<h5 id="_path_parameter_3">path parameter</h5>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. /api/tests/{test}/list</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>test</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">등록된 모의시험의 식별번호</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_request_example_12">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/1/list?_csrf=d7e46def-54da-46df-9ae0-d2309a6852c0 HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_12">Response</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">모의시험 문항(혹은 문제) 배열</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">문항 식별번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">문항 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].contents</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">문항 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].answer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">문항 정답</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].tests_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">테스트 식별 번호 (빈값)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성 년/월/일 시/분/초 총값</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[0]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">년</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[1]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">월</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[2]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[3]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">분</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[5]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">초</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].createDate[6]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">시간 총 값</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정한 년/월/일 시/분/초 총값</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[0]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">년</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[1]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">월</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[2]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[3]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">분</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[5]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">초</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[].updateDate[6]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">시간 총 값</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_response_example_12">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">[ {
+  "id" : 1,
+  "title" : "수학 기초 1",
+  "contents" : "1부터 100까지 모든 수를 더하면 몇인가요?",
+  "answer" : "5050",
+  "tests_id" : null,
+  "createDate" : [ 2021, 10, 10, 23, 26, 45, 178627000 ],
+  "updateDate" : [ 2021, 10, 10, 23, 26, 45, 178650000 ]
+}, {
+  "id" : 99999,
+  "title" : "수학 기초 2",
+  "contents" : "1부터 101까지 모든 수를 더하면 몇인가요?",
+  "answer" : "5151",
+  "tests_id" : null,
+  "createDate" : [ 2021, 10, 10, 23, 26, 45, 179116000 ],
+  "updateDate" : [ 2021, 10, 10, 23, 26, 45, 179135000 ]
+} ]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-10-10 23:07:03 +0900
+Last updated 2021-10-10 23:25:47 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

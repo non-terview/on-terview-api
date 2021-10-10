@@ -33,12 +33,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -153,7 +155,7 @@ class CompanyTestsControllerTest {
                                 fieldWithPath("[].createDate[4]").description("분"),
                                 fieldWithPath("[].createDate[5]").description("초"),
                                 fieldWithPath("[].createDate[6]").description("시간 총 값"),
-                                fieldWithPath("[].updateDate[]").description("작성 년/월/일 시/분/초 총값"),
+                                fieldWithPath("[].updateDate[]").description("수정한 년/월/일 시/분/초 총값"),
                                 fieldWithPath("[].updateDate[0]").description("년"),
                                 fieldWithPath("[].updateDate[1]").description("월"),
                                 fieldWithPath("[].updateDate[2]").description("일"),
@@ -216,7 +218,7 @@ class CompanyTestsControllerTest {
                                 fieldWithPath("[].createDate[4]").description("분"),
                                 fieldWithPath("[].createDate[5]").description("초"),
                                 fieldWithPath("[].createDate[6]").description("시간 총 값"),
-                                fieldWithPath("[].updateDate[]").description("작성 년/월/일 시/분/초 총값"),
+                                fieldWithPath("[].updateDate[]").description("수정한 년/월/일 시/분/초 총값"),
                                 fieldWithPath("[].updateDate[0]").description("년"),
                                 fieldWithPath("[].updateDate[1]").description("월"),
                                 fieldWithPath("[].updateDate[2]").description("일"),
@@ -292,7 +294,75 @@ class CompanyTestsControllerTest {
 
     @Test
     @DisplayName(value = "모의시험 문항 가져오기")
-    void getTestList() {
+    void getTestList() throws Exception {
+        CompanyTestsInfo testsInfo = CompanyTestsInfo.builder()
+                .id(8L)
+                .build();
+        TestsListDto dto1 = new TestsListDto(
+                TestsListInfo.builder()
+                        .id(1L)
+                        .title("수학 기초 1")
+                        .contents("1부터 100까지 모든 수를 더하면 몇인가요?")
+                        .answer("5050")
+                        .tests(testsInfo)
+                        .createDate(LocalDateTime.now())
+                        .updateDate(LocalDateTime.now())
+                        .build()
+        );
+        TestsListDto dto2 = new TestsListDto(
+                TestsListInfo.builder()
+                        .id(99999L)
+                        .title("수학 기초 2")
+                        .contents("1부터 101까지 모든 수를 더하면 몇인가요?")
+                        .answer("5151")
+                        .tests(testsInfo)
+                        .createDate(LocalDateTime.now())
+                        .updateDate(LocalDateTime.now())
+                        .build()
+        );
+        List<TestsListDto> dtoList = List.of(dto1, dto2);
+
+        given(listService.readTestsList(anyLong())).willReturn(dtoList);
+
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.get(
+                                "/api/tests/{test}/list",1L)
+                        .with(csrf()).with(user(userInfo))
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-get-test-list",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("test").description("등록된 모의시험의 식별번호")
+                        ),
+                        responseFields(
+                                fieldWithPath("[]").description("모의시험 문항(혹은 문제) 배열"),
+                                fieldWithPath("[].id").description("문항 식별번호"),
+                                fieldWithPath("[].title").description("문항 제목"),
+                                fieldWithPath("[].contents").description("문항 내용"),
+                                fieldWithPath("[].answer").description("문항 정답"),
+                                fieldWithPath("[].tests_id").description("테스트 식별 번호 (빈값)"),
+                                fieldWithPath("[].createDate[]").description("작성 년/월/일 시/분/초 총값"),
+                                fieldWithPath("[].createDate[0]").description("년"),
+                                fieldWithPath("[].createDate[1]").description("월"),
+                                fieldWithPath("[].createDate[2]").description("일"),
+                                fieldWithPath("[].createDate[3]").description("시"),
+                                fieldWithPath("[].createDate[4]").description("분"),
+                                fieldWithPath("[].createDate[5]").description("초"),
+                                fieldWithPath("[].createDate[6]").description("시간 총 값"),
+                                fieldWithPath("[].updateDate[]").description("수정한 년/월/일 시/분/초 총값"),
+                                fieldWithPath("[].updateDate[0]").description("년"),
+                                fieldWithPath("[].updateDate[1]").description("월"),
+                                fieldWithPath("[].updateDate[2]").description("일"),
+                                fieldWithPath("[].updateDate[3]").description("시"),
+                                fieldWithPath("[].updateDate[4]").description("분"),
+                                fieldWithPath("[].updateDate[5]").description("초"),
+                                fieldWithPath("[].updateDate[6]").description("시간 총 값")
+                        )
+                ));
     }
 
     @Test
