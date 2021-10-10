@@ -109,5 +109,14 @@ include::{snippets}/company_test-get-user/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-get-user/response-body.adoc[]
 
+=== 5-3. 로그인 사용자가 응시한 모의시험 결과 가져오기 (개인)
+==== 5-3-1. 성공
+===== Request Example
+include::{snippets}/company_test-get-results-user/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-get-results-user/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-get-results-user/response-body.adoc[]
+
 
 

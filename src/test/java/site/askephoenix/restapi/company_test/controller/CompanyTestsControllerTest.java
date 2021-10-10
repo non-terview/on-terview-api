@@ -17,7 +17,11 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import site.askephoenix.restapi.company_test.dto.CompanyTestsDto;
+import site.askephoenix.restapi.company_test.dto.ResultDto;
+import site.askephoenix.restapi.company_test.dto.TestsListDto;
 import site.askephoenix.restapi.company_test.model.CompanyTestsInfo;
+import site.askephoenix.restapi.company_test.model.CompanyTestsResultInfo;
+import site.askephoenix.restapi.company_test.model.TestsListInfo;
 import site.askephoenix.restapi.company_test.service.CompanyTestsResultService;
 import site.askephoenix.restapi.company_test.service.CompanyTestsService;
 import site.askephoenix.restapi.company_test.service.TestsListService;
@@ -62,6 +66,10 @@ class CompanyTestsControllerTest {
 
     @Mock
     UserInfo userInfo;
+    @Mock
+    UserInfo userInfo2;
+    @Mock
+    UserInfo userInfo3;
 
     @Mock
     UserResultDto userDto;
@@ -78,20 +86,21 @@ class CompanyTestsControllerTest {
                 .password(new BCryptPasswordEncoder().encode("1234test"))
                 .type("").name("김주윤").build();
         this.userDto = new UserResultDto(userInfo);
+
+        this.userInfo2 = UserInfo.builder()
+                .id(123L).auth("ROLE_USER").email("tester")
+                .password(new BCryptPasswordEncoder().encode("1234test"))
+                .type("").name("정온유").build();
+        this.userInfo3 = UserInfo.builder()
+                .id(456L).auth("ROLE_USER").email("tester")
+                .password(new BCryptPasswordEncoder().encode("1234test"))
+                .type("").name("박정현").build();
     }
 
 
     @Test
     @DisplayName(value = "등록된 모든 모의 시험 정보 가져오기")
     void getAllTests() throws Exception {
-        UserInfo userInfo2 = UserInfo.builder()
-                .id(123L).auth("ROLE_USER").email("tester")
-                .password(new BCryptPasswordEncoder().encode("1234test"))
-                .type("").name("정온유").build();
-        UserInfo userInfo3 = UserInfo.builder()
-                .id(456L).auth("ROLE_USER").email("tester")
-                .password(new BCryptPasswordEncoder().encode("1234test"))
-                .type("").name("박정현").build();
         CompanyTestsDto dto1 = new CompanyTestsDto(
                 CompanyTestsInfo.builder()
                         .id(1L)
@@ -221,7 +230,64 @@ class CompanyTestsControllerTest {
 
     @Test
     @DisplayName(value = "로그인 사용자가 응시한 모의시험 결과 가져오기 (개인)")
-    void getDoTests() {
+    void getDoTests() throws Exception {
+        TestsListInfo listInfo = TestsListInfo
+                .builder()
+                .id(3L)
+                .title("1부터 100까지 더하기")
+                .answer("5050")
+                .build();
+        ResultDto dto1 = new ResultDto(
+                CompanyTestsResultInfo.builder()
+                        .id(2L)
+                        .title("1부터 100까지 더하기")
+                        .list(listInfo)
+                        .tester(userInfo2)
+                        .sort_num(1)
+                        .answer("5050")
+                        .createDate(LocalDateTime.now())
+                        .updateDate(LocalDateTime.now())
+                        .build()
+        );
+        ResultDto dto2 = new ResultDto(
+                CompanyTestsResultInfo.builder()
+                        .id(9L)
+                        .title("1부터 101까지 더하기")
+                        .list(listInfo)
+                        .tester(userInfo2)
+                        .sort_num(2)
+                        .answer("5151")
+                        .createDate(LocalDateTime.now())
+                        .updateDate(LocalDateTime.now())
+                        .build()
+        );
+        List<ResultDto> dtoList = List.of(dto1, dto2);
+
+        given(resultService.readResultByTester(any(UserInfo.class))).willReturn(dtoList);
+
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.get(
+                                "/api/tests/results/user")
+                        .with(csrf()).with(user(userInfo2))
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-get-results-user",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                        ),
+                        responseFields(
+                                fieldWithPath("[]").description("모의시험 결과 배열"),
+                                fieldWithPath("[].id").description("모의시험 결과 식별번호"),
+                                fieldWithPath("[].testsListDto").description("테스트 항목 (빈값)"),
+                                fieldWithPath("[].tester").description("모의시험 응시자 (빈값)"),
+                                fieldWithPath("[].sort_num").description("모의시험 응시 정렬순번"),
+                                fieldWithPath("[].title").description("문제 풀었을 때 제목"),
+                                fieldWithPath("[].answer").description("문제 풀었을 때 정답")
+                        )
+                ));
     }
 
     @Test
