@@ -366,13 +366,33 @@ class CompanyTestsControllerTest {
     }
 
     @Test
-    @DisplayName(value = "모의시험 응시하기 (개인)")
-    void postResultTests() {
+    @DisplayName(value = "모의시험 등록하기 (회사)")
+    void postCompanyTests() throws Exception {
+        given(service.save(any(UserInfo.class))).willReturn(5L);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.post(
+                                "/api/tests")
+                        .with(csrf()).with(user(userInfo))
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-post-tests",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                        ),
+                        responseFields(
+                                fieldWithPath("id").description("등록된 모의시험 식별번호"),
+                                fieldWithPath("state").description("성공 여부")
+                        )
+                ));
     }
 
     @Test
-    @DisplayName(value = "모의시험 등록하기 (회사)")
-    void postCompanyTests() {
+    @DisplayName(value = "모의시험 응시하기 (개인)")
+    void postResultTests() {
+
     }
 
     @Test
