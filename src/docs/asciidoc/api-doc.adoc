@@ -139,6 +139,19 @@ include::{snippets}/company_test-post-tests/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-post-tests/response-body.adoc[]
 
+=== 5-6. 모의시험 등록하기 (회사) : POST
+==== 5-6-1. 성공
+===== path parameter
+include::{snippets}/company_test-post-tests-lists/path-parameters.adoc[]
+===== Request
+include::{snippets}/company_test-post-tests-lists/request-fields.adoc[]
+===== Request Example
+include::{snippets}/company_test-post-tests-lists/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-post-tests-lists/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-post-tests-lists/response-body.adoc[]
+
 
 
 

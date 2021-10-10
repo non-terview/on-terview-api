@@ -1,5 +1,6 @@
 package site.askephoenix.restapi.company_test.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
@@ -38,10 +40,8 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -327,7 +327,7 @@ class CompanyTestsControllerTest {
 
         ResultActions perform = this.mvc.perform(
                 RestDocumentationRequestBuilders.get(
-                                "/api/tests/{test}/list",1L)
+                                "/api/tests/{test}/list", 1L)
                         .with(csrf()).with(user(userInfo))
         );
         perform.andExpect(status().isOk())
@@ -390,14 +390,57 @@ class CompanyTestsControllerTest {
     }
 
     @Test
-    @DisplayName(value = "모의시험 응시하기 (개인)")
-    void postResultTests() {
+    @DisplayName(value = "모의시험 항목 추가하기 (회사)")
+    void postTestList() throws Exception {
+        TestsListDto listDto = new TestsListDto(TestsListInfo.builder()
+                .id(1L)
+                .title("수학 기초 1")
+                .contents("1부터 100까지 모든 수를 더하면 몇인가요?")
+                .answer("5050")
+                .build()
+        );
 
+        given(listService.save(any(TestsListDto.class), any(UserInfo.class))).willReturn(5L);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.post(
+                                "/api/tests/{test}/list", 1L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(listDto))
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(userInfo))
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-post-tests-lists",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("test").description("게시판 식별 번호")
+                        ),
+                        requestParameters(
+                                parameterWithName("_csrf").description("인증 데이터")
+                        ),
+                        requestFields(
+                                fieldWithPath("title").description("문항 제목"),
+                                fieldWithPath("contents").description("문항 질문"),
+                                fieldWithPath("answer").description("문항 정답"),
+                                fieldWithPath("id").description("(빈값)"),
+                                fieldWithPath("tests_id").description("(빈값)"),
+                                fieldWithPath("createDate").description("(빈값)"),
+                                fieldWithPath("updateDate").description("(빈값)")
+                        ),
+                        responseFields(
+                                fieldWithPath("id").description("모의시험 항목 식별번호"),
+                                fieldWithPath("state").description("성공 여부")
+                        )
+                ));
     }
 
     @Test
-    @DisplayName(value = "모의시험 항목 추가하기 (회사)")
-    void postTestList() {
+    @DisplayName(value = "모의시험 응시하기 (개인)")
+    void postResultTests() {
+
     }
 
     @Test
