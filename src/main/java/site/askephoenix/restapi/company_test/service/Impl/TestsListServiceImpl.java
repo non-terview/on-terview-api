@@ -1,7 +1,5 @@
 package site.askephoenix.restapi.company_test.service.Impl;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import site.askephoenix.restapi.company_test.dto.TestsListDto;
@@ -12,9 +10,8 @@ import site.askephoenix.restapi.company_test.repository.TestsListInfoRepository;
 import site.askephoenix.restapi.company_test.service.TestsListService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,9 +23,7 @@ public class TestsListServiceImpl implements TestsListService {
     // 모의시험 문항 가져오기
     @Override
     public List<TestsListDto> readTestsList(Long companyTestsId) {
-        return infoListToDtoList(
-                        Objects.requireNonNull(
-                                AllTestsByThat(companyTestsInfoFindById(companyTestsId))));
+        return infoListToDtoList(AllTestsByThat(companyTestsInfoFindById(companyTestsId)));
     }
 
     @Override
@@ -50,17 +45,20 @@ public class TestsListServiceImpl implements TestsListService {
 
     @Override
     public Long update(TestsListDto dto, UserInfo userInfo) {
-        final TestsListInfo test = getTest(dto.getTests_id());
+        final TestsListInfo listInfo = repository.findById(dto.getId()).orElseGet(
+                () -> TestsListInfo.builder().build()
+        );
 
+        if (listInfo.getId() == null) return -2L;
         if (userInfo.getId().equals(-1L)) return -1L;
         return repository.save(TestsListInfo.builder()
-                        .id(test.getId())
-                        .title(dto.getTitle() == null ? test.getTitle() : dto.getTitle())
-                        .contents(dto.getContents() == null ? test.getContents() : dto.getContents())
-                        .answer(dto.getAnswer() == null ? test.getAnswer() : dto.getAnswer())
-                        .tests(test.getTests())
-                        .createDate(test.getCreateDate())
-                        .updateDate(test.getUpdateDate())
+                        .id(dto.getId())
+                        .title(dto.getTitle() == null ? listInfo.getTitle() : dto.getTitle())
+                        .contents(dto.getContents() == null ? listInfo.getContents() : dto.getContents())
+                        .answer(dto.getAnswer() == null ? listInfo.getAnswer() : dto.getAnswer())
+                        .tests(listInfo.getTests())
+                        .createDate(listInfo.getCreateDate())
+                        .updateDate(listInfo.getUpdateDate())
                         .isDeleted(false)
                         .build()
                 )
@@ -69,11 +67,11 @@ public class TestsListServiceImpl implements TestsListService {
 
 
     @Override
-    public Long delete(TestsListDto dto, UserInfo userInfo) {
-        final TestsListInfo test = getTest(dto.getTests_id());
+    public Long delete(Long list, UserInfo userInfo) {
+        final TestsListInfo test = repository.findById(list).orElseGet(() -> TestsListInfo.builder().build());
 
         if (userInfo.getId().equals(-1L)) return -1L;
-        return repository.save(TestsListInfo.builder()
+        return test.getId() == null ? -2L : repository.save(TestsListInfo.builder()
                         .id(test.getId())
                         .title(test.getTitle())
                         .contents(test.getContents())
@@ -85,12 +83,6 @@ public class TestsListServiceImpl implements TestsListService {
                         .build()
                 )
                 .getId();
-    }
-
-    private TestsListInfo getTest(long id){
-        return repository.findByTests(
-                testsRepository.getById(id)
-        );
     }
 
     // TestsListInfo 를 TestsListDto 로 변환시킵니다.
@@ -105,7 +97,7 @@ public class TestsListServiceImpl implements TestsListService {
 
     // 등록된 모의 시험의 문항 전부 가져오기
     private List<TestsListInfo> AllTestsByThat(CompanyTestsInfo info) {
-        return repository.findAllByTests(info);
+        return info.getId() == null ? Collections.emptyList() : repository.searchAllByTests(info).orElseGet(Collections::emptyList);
     }
 
 }

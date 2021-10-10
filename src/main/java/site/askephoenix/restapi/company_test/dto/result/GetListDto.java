@@ -1,4 +1,4 @@
-package site.askephoenix.restapi.company_test.dto;
+package site.askephoenix.restapi.company_test.dto.result;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ public class GetListDto {
     private Object list;
     private String state;
 
-    public GetListDto( List<Object> list ){
+    public GetListDto(List<Object> list) {
         this.list = list;
         this.state = list.size() == 0 ? "non-data" : "data";
     }

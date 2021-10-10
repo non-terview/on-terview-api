@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.company_test.dto.CompanyTestsDto;
-import site.askephoenix.restapi.company_test.dto.GetIdDto;
 import site.askephoenix.restapi.company_test.dto.ResultDto;
+import site.askephoenix.restapi.company_test.dto.ResultDtoList;
 import site.askephoenix.restapi.company_test.dto.TestsListDto;
+import site.askephoenix.restapi.company_test.dto.result.GetIdDto;
+import site.askephoenix.restapi.company_test.dto.result.GetIdDtoList;
 import site.askephoenix.restapi.company_test.service.CompanyTestsResultService;
 import site.askephoenix.restapi.company_test.service.CompanyTestsService;
 import site.askephoenix.restapi.company_test.service.TestsListService;
@@ -37,8 +39,8 @@ public class CompanyTestsController {
      * - 모의시험 문제 정답 수정하기 (개인) @PutMapping("/{test}/results")
      *
      * Delete: 삭제하기 (isDeleted -> true)
-     * - 모의시험 항목 삭제 (회사)         @DeleteMapping("/{test}/list")
-     * - 모의시험 문제 정답 삭제 (개인)     @DeleteMapping("/{test}/results")
+     * - 모의시험 항목 삭제 (회사)         @DeleteMapping("/lists/{list}")
+     * - 모의시험 문제 정답 삭제 (개인)     @DeleteMapping("/results/{result}")
      *
      * */
 
@@ -83,12 +85,12 @@ public class CompanyTestsController {
 
     // 모의시험 응시하기 (개인)
     @PostMapping("/{test}/results")
-    public GetIdDto postResultTests(
+    public GetIdDtoList postResultTests(
             @PathVariable(name = "test") Long test,
             @LoginUser UserInfo userInfo,
-            ResultDto dto
+            ResultDtoList resultDto
     ) {
-        return new GetIdDto(resultService.save(test, dto, userInfo));
+        return new GetIdDtoList(resultService.save(test, resultDto.getResultDto(), userInfo));
     }
 
     // 모의시험 등록하기 (회사)
@@ -106,17 +108,17 @@ public class CompanyTestsController {
             TestsListDto dto,
             @PathVariable Long test) {
         dto.setTests_id(test);
-        return new GetIdDto( listService.save(dto, userInfo) );
+        return new GetIdDto(listService.save(dto, userInfo));
     }
 
     // 모의시험 항목 수정하기 (회사)
-    @PutMapping("/{test}/list")
+    @PutMapping("/lists/{list}")
     public GetIdDto putTestList(
             @LoginUser UserInfo userInfo,
             TestsListDto dto,
-            @PathVariable Long test) {
-        dto.setTests_id(test);
-        return new GetIdDto( listService.update(dto, userInfo) );
+            @PathVariable Long list) {
+        dto.setId(list);
+        return new GetIdDto(listService.update(dto, userInfo));
     }
 
     // 모의시험 문제 정답 수정하기 (개인)
@@ -126,28 +128,25 @@ public class CompanyTestsController {
             @LoginUser UserInfo userInfo,
             ResultDto dto
     ) {
-        return new GetIdDto( resultService.update(test, dto, userInfo) );
+        return new GetIdDto(resultService.update(test, dto, userInfo));
     }
 
 
     // 모의시험 항목 삭제 (회사)
-    @DeleteMapping("/{test}/list")
+    @DeleteMapping("/lists/{list}")
     public GetIdDto deleteTestList(
             @LoginUser UserInfo userInfo,
-            TestsListDto dto,
-            @PathVariable Long test) {
-        dto.setTests_id(test);
-        return new GetIdDto( listService.delete(dto, userInfo) );
+            @PathVariable Long list) {
+        return new GetIdDto(listService.delete(list, userInfo));
     }
 
     // 모의시험 문제 정답 삭제 (개인)
-    @DeleteMapping("/{test}/results")
+    @DeleteMapping("/results/{result}")
     public GetIdDto deleteResultTests(
-            @PathVariable(name = "test") Long test,
             @LoginUser UserInfo userInfo,
-            ResultDto dto
+            @PathVariable Long result
     ) {
-        return new GetIdDto( resultService.delete(test, dto, userInfo) );
+        return new GetIdDto(resultService.delete(result, userInfo));
     }
 
 }

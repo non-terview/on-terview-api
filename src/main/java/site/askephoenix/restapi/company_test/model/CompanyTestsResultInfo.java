@@ -1,5 +1,6 @@
 package site.askephoenix.restapi.company_test.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tests_result")
@@ -21,9 +22,9 @@ public class CompanyTestsResultInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "tests")
+    @JoinColumn(name = "list")
     @ManyToOne
-    private CompanyTestsInfo tests;
+    private TestsListInfo list;
 
     @ManyToOne
     @JoinColumn(name = "tester")
@@ -38,22 +39,24 @@ public class CompanyTestsResultInfo {
     @Column(name = "answer")
     private String answer;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @CreationTimestamp
-    private LocalDate createDate;
+    private LocalDateTime createDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDateTime updateDate;
 
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
     @Builder
     public CompanyTestsResultInfo(
-        Long id, CompanyTestsInfo tests, UserInfo tester, int sort_num,
-        String title, String answer, LocalDate createDate, LocalDate updateDate,
-        boolean isDeleted
-    ){
+            Long id, TestsListInfo list, UserInfo tester, int sort_num,
+            String title, String answer, LocalDateTime createDate, LocalDateTime updateDate,
+            boolean isDeleted
+    ) {
         this.id = id;
-        this.tests = tests;
+        this.list = list;
         this.tester = tester;
         this.sort_num = sort_num;
         this.title = title;

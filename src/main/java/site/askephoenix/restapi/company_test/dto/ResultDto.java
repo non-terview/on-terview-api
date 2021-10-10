@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.company_test.model.CompanyTestsResultInfo;
-import site.askephoenix.restapi.user.dto.UserInfoDto;
+import site.askephoenix.restapi.user.dto.UserResultDto;
 
 @Getter
 @Setter
@@ -12,16 +12,16 @@ import site.askephoenix.restapi.user.dto.UserInfoDto;
 public class ResultDto {
     private Long id;
     // 테스트 문항
-    private CompanyTestsDto companyTestsDto;
+    private TestsListDto testsListDto;
     // 테스트를 응시한 유저
-    private UserInfoDto tester;
+    private UserResultDto tester;
     private int sort_num;
     // 제목
     private String title;
     // 고른 정답
     private String answer;
 
-    public ResultDto(CompanyTestsResultInfo info){
+    public ResultDto(CompanyTestsResultInfo info) {
         this.id = info.getId();
         this.sort_num = info.getSort_num();
         this.title = info.getTitle();

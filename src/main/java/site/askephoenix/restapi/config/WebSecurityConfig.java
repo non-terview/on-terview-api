@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/api/login")
                 .and()
                 .logout()
+                .logoutUrl("/api/logout")
                 .logoutSuccessUrl("/api/user/token")
                 .invalidateHttpSession(true);
     }

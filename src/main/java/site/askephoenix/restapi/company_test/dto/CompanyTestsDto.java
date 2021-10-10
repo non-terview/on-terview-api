@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.company_test.model.CompanyTestsInfo;
-import site.askephoenix.restapi.user.model.UserInfo;
+import site.askephoenix.restapi.user.dto.UserResultDto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -16,16 +16,16 @@ public class CompanyTestsDto {
     private Long id;
 
     // 작성자
-    private UserInfo writer;
+    private UserResultDto writer;
     // 응시 문항 & 답지
     private List<TestsListDto> testsListDto;
 
-    private LocalDate createDate;
-    private LocalDate updateDate;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
 
     public CompanyTestsDto(CompanyTestsInfo info) {
         this.id = info.getId();
-        this.writer = info.getWriter();
+        this.writer = new UserResultDto(info.getWriter());
         this.createDate = info.getCreateDate();
         this.updateDate = info.getUpdateDate();
     }

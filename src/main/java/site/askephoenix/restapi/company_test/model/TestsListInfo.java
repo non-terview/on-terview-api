@@ -1,5 +1,6 @@
 package site.askephoenix.restapi.company_test.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /*
  * 모의 시험 작성 리스트의 문항 내용
@@ -42,10 +43,12 @@ public class TestsListInfo {
     private CompanyTestsInfo tests;
 
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @CreationTimestamp
-    private LocalDate createDate;
+    private LocalDateTime createDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDateTime updateDate;
 
     @Column(name = "is_deleted")
     private boolean isDeleted;
@@ -54,7 +57,7 @@ public class TestsListInfo {
     public TestsListInfo(
             Long id, String title,
             String contents, String answer, CompanyTestsInfo tests,
-            LocalDate createDate, LocalDate updateDate,
+            LocalDateTime createDate, LocalDateTime updateDate,
             boolean isDeleted
     ) {
         this.id = id;
