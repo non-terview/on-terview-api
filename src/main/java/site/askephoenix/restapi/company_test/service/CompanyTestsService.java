@@ -11,5 +11,5 @@ public interface CompanyTestsService {
 
     List<CompanyTestsDto> readUserTests(UserInfo userInfo);
 
-    Long save(CompanyTestsDto dto, UserInfo userInfo);
+    Long save(UserInfo userInfo);
 }

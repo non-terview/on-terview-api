@@ -34,12 +34,13 @@ public class CompanyTestsServiceImpl implements CompanyTestsService {
 
     // 특정 사용자의 모의 시험을 등록합니다.
     @Override
-    public Long save(CompanyTestsDto dto, UserInfo userInfo) {
+    public Long save(UserInfo userInfo) {
         if (userInfo.getId().equals(-1L)) return -1L;
-        return repository.save(CompanyTestsInfo.builder()
+        final CompanyTestsInfo result = repository.save(CompanyTestsInfo.builder()
                 .writer(userInfo)
                 .isDeleted(false)
-                .build()).getId();
+                .build());
+        return result.getId();
     }
 
 

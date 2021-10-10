@@ -21,6 +21,7 @@ import java.time.LocalDate;
 public class TestsListInfo {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     // 문항의 제목

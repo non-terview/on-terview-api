@@ -23,6 +23,7 @@ import java.time.LocalDate;
 public class CompanyTestsInfo {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JoinColumn(name = "writer")
