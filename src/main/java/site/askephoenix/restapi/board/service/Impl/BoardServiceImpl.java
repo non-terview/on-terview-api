@@ -11,6 +11,7 @@ import site.askephoenix.restapi.board.repository.BoardRepository;
 import site.askephoenix.restapi.board.service.BoardService;
 import site.askephoenix.restapi.page.vo.PageMaker;
 import site.askephoenix.restapi.page.vo.PageVO;
+import site.askephoenix.restapi.user.model.UserInfo;
 
 import java.util.HashMap;
 
@@ -20,11 +21,20 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository repo;
 
     @Override
-    public HashMap<String,Object> getBoardPage( int pageNum ){
+    public HashMap<String, Object> getBoardPage(int pageNum) {
         PageVO vo = new PageVO();
         vo.setPage(pageNum);
         Pageable pageable = vo.makePageable(0, "seq");
         Page<BoardInfo> result = repo.findAllByCompanyNameContainingOrderBySeq("번째", pageable);
         return Maps.newHashMap(ImmutableMap.of("pageInfo", new PageMaker(result)));
+    }
+
+    @Override
+    public HashMap<String, Object> hashTest(UserInfo userInfo) {
+        return Maps.newHashMap(ImmutableMap.<String, Object>builder()
+                .put("test", "success")
+                .put("userinfo", userInfo)
+                .build()
+        );
     }
 }

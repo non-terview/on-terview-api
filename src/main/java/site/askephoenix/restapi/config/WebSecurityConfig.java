@@ -31,11 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/api/user/token")
                 .loginProcessingUrl("/api/login")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login")
+                .logoutUrl("/api/logout")
+                .logoutSuccessUrl("/api/user/token")
                 .invalidateHttpSession(true);
     }
 
