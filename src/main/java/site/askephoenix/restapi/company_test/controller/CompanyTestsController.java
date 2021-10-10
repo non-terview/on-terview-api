@@ -122,13 +122,13 @@ public class CompanyTestsController {
     }
 
     // 모의시험 문제 정답 수정하기 (개인)
-    @PutMapping("/{test}/results")
+    @PutMapping("/results/{result}")
     public GetIdDto putResultTests(
-            @PathVariable(name = "test") Long test,
+            @PathVariable(name = "result") Long result,
             @LoginUser UserInfo userInfo,
             ResultDto dto
     ) {
-        return new GetIdDto(resultService.update(test, dto, userInfo));
+        return new GetIdDto(resultService.update(result, dto, userInfo));
     }
 
 

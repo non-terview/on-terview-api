@@ -1,8 +1,6 @@
 package site.askephoenix.restapi.company_test.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +33,6 @@ import site.askephoenix.restapi.user.service.UserService;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -468,7 +465,7 @@ class CompanyTestsControllerTest {
 
         List<Long> longs = List.of(1L, 2L, 5L);
 
-        given(resultService.save(anyLong(),any(), any(UserInfo.class))).willReturn(longs);
+        given(resultService.save(anyLong(), any(), any(UserInfo.class))).willReturn(longs);
 
         ResultActions perform = this.mvc.perform(
                 RestDocumentationRequestBuilders.post(
@@ -556,12 +553,77 @@ class CompanyTestsControllerTest {
 
     @Test
     @DisplayName(value = "모의시험 문제 정답 수정하기 (개인)")
-    void putResultTests() {
+    void putResultTests() throws Exception {
+        ResultDto listDto = new ResultDto(CompanyTestsResultInfo.builder()
+                .answer("5051")
+                .build()
+        );
+
+        given(resultService.update(anyLong(), any(), any(UserInfo.class))).willReturn(1L);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.put(
+                                "/api/tests/results/{result}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(listDto))
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(userInfo))
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-put-tests-results",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("result").description("응시결과 문제 식별번호")
+                        ),
+                        requestParameters(
+                                parameterWithName("_csrf").description("인증 데이터")
+                        ),
+                        requestFields(
+                                fieldWithPath("answer").description("수정할 결과 입력값"),
+                                fieldWithPath("id").description("(빈값)"),
+                                fieldWithPath("testsListDto").description("(빈값)"),
+                                fieldWithPath("tester").description("(빈값)"),
+                                fieldWithPath("sort_num").description("(빈값)"),
+                                fieldWithPath("title").description("(빈값)")
+                        ),
+                        responseFields(
+                                fieldWithPath("id").description("결과 식별번호"),
+                                fieldWithPath("state").description("성공 여부")
+                        )
+                ));
     }
 
     @Test
     @DisplayName(value = "모의시험 항목 삭제 (회사)")
-    void deleteTestList() {
+    void deleteTestList() throws Exception {
+        given(listService.delete(anyLong(), any(UserInfo.class))).willReturn(1L);
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.delete(
+                                "/api/tests/lists/{list}", 1L)
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(userInfo))
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("company_test-delete-tests-lists",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        pathParameters(
+                                parameterWithName("list").description("응시결과 문제 식별번호")
+                        ),
+                        requestParameters(
+                                parameterWithName("_csrf").description("인증 데이터")
+                        ),
+                        responseFields(
+                                fieldWithPath("id").description("삭제된 모의시험 항목 식별번호"),
+                                fieldWithPath("state").description("성공 여부")
+                        )
+                ));
     }
 
     @Test

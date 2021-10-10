@@ -48,8 +48,8 @@ public class CompanyTestsResultServiceImpl implements CompanyTestsResultService 
     }
 
     @Override
-    public Long update(Long test, ResultDto dto, UserInfo userInfo) {
-        final CompanyTestsResultInfo info = getTestResult(test);
+    public Long update(Long result, ResultDto dto, UserInfo userInfo) {
+        final CompanyTestsResultInfo info = getTestResult(result);
         if (userInfo == null) return -1L;
         return info.getId() == null ? -2L : repository.save(
                 CompanyTestsResultInfo.builder()

@@ -99,7 +99,6 @@ include::{snippets}/company_test-get/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-get/response-body.adoc[]
 
-
 === 5-2. 로그인 사용자가 작성한 모의시험 리스트 가져오기 (회사) : GET
 ==== 5-2-1. 성공
 ===== Request Example
@@ -177,6 +176,28 @@ include::{snippets}/company_test-put-tests-lists/http-request.adoc[]
 include::{snippets}/company_test-put-tests-lists/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-put-tests-lists/response-body.adoc[]
+
+=== 5-9. 모의시험 문제 정답 수정하기 (개인) : PUT
+==== 5-9-1. 성공
+===== path parameter
+include::{snippets}/company_test-put-tests-results/path-parameters.adoc[]
+===== Request
+include::{snippets}/company_test-put-tests-results/request-fields.adoc[]
+===== Request Example
+include::{snippets}/company_test-put-tests-results/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-put-tests-results/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-put-tests-results/response-body.adoc[]
+
+=== 5-10. 모의시험 항목 삭제 (회사) : DELETE
+==== 5-10-1. 성공
+===== Request Example
+include::{snippets}/company_test-delete-tests-lists/http-request.adoc[]
+===== Response
+include::{snippets}/company_test-delete-tests-lists/response-fields.adoc[]
+===== Response Example
+include::{snippets}/company_test-delete-tests-lists/response-body.adoc[]
 
 
 
