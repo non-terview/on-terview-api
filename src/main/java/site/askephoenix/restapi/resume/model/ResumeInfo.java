@@ -79,7 +79,7 @@ public class ResumeInfo{
     @Builder
     public ResumeInfo(
             Long id,
-            @LoginUser UserInfo userInfo,
+            UserInfo userInfo,
             String title ,String introduction ,String final_edu,String edu_status,
             String career, String certificate,String portfolio,String job,
             LocalDate createDate,LocalDate updateDate,
