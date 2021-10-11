@@ -9,6 +9,8 @@ import site.askephoenix.restapi.resume.repository.ResumeRepository;
 import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
+import java.time.LocalDateTime;
+
 
 @RequiredArgsConstructor
 @Service
@@ -62,7 +64,7 @@ public class ResumeServiceImpl implements ResumeService {
                         .portfolio(resumeInfoDto.getPortfolio())
                         .job(resumeInfoDto.getJob())
                         .createDate(modifyResume.getCreateDate())
-                        .updateDate(resumeInfoDto.getUpdateDate())
+                        .updateDate(LocalDateTime.now())
                         .isDeleted(modifyResume.isDeleted())
                         .build()
         ).getId();

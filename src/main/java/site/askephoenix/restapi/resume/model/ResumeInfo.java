@@ -1,5 +1,8 @@
 package site.askephoenix.restapi.resume.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +12,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -61,14 +64,15 @@ public class ResumeInfo{
     private String job;
 
     //이력서 생성 날짜
-    @Column(name = "create_date")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @CreationTimestamp
-    private LocalDate createDate;
-
+    private LocalDateTime createDate;
     //이력서 수정 날짜
-    @Column(name = "update_date")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDateTime updateDate;
 
     //이력서 삭제 상태
     @Column(name = "is_deleted")
@@ -81,7 +85,7 @@ public class ResumeInfo{
             UserInfo userInfo,
             String title ,String introduction ,String final_edu,String edu_status,
             String career, String certificate,String portfolio,String job,
-            LocalDate createDate,LocalDate updateDate,
+            LocalDateTime createDate,LocalDateTime updateDate,
             boolean isDeleted
     ){
         this.id = id;

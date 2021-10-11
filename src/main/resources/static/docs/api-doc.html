@@ -558,6 +558,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
+<li><a href="#_6_이력서">6. 이력서</a>
+<ul class="sectlevel2">
+<li><a href="#_6_1_이력서_만들기_post">6-1. 이력서 만들기 : POST</a>
+<ul class="sectlevel3">
+<li><a href="#_6_1_1_성공">6-1-1. 성공</a></li>
+</ul>
+</li>
+<li><a href="#_6_2_이력서_수정_put">6-2. 이력서 수정 : PUT</a>
+<ul class="sectlevel3">
+<li><a href="#_6_2_1_성공">6-2-1. 성공</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -632,7 +646,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "f0785785-1be3-4bf2-9627-ba89df229bb8",
+    "token" : "67d656e6-5943-4c06-99ae-4fc8bf5fb403",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -704,7 +718,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_2">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user?_csrf=1749eb28-8f85-4aaf-87b9-fc76a16e13b6 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user?_csrf=3d52a812-1eb6-4e68-8634-afc012b51ae7 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 145
 Host: localhost:8080
@@ -765,7 +779,7 @@ Host: localhost:8080
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=e648103a-0039-4234-b2eb-a04dc56f2f27</code></pre>
+_csrf=decaac83-47f1-4785-b7e9-3ef6fd683a0e</code></pre>
 </div>
 </div>
 </div>
@@ -866,7 +880,7 @@ _csrf=e648103a-0039-4234-b2eb-a04dc56f2f27</code></pre>
 <h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user?_csrf=0b1bf41e-6de1-4d52-a4bc-d2a8177680d3 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user?_csrf=fdd64cad-a7a2-4c44-973c-d778e34e2801 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 136
 Host: localhost:8080
@@ -926,7 +940,7 @@ Host: localhost:8080
 <h5 id="_request_example_5">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=8b0422f1-8a6c-4ff7-be01-3ebeb58a4c60 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=3a1cb871-b69f-46c3-a0e8-65c05c5aa790 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1055,7 +1069,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=d34c7487-88e1-4d1f-a9b6-f7e3534271ab HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=2d219045-9b16-49cb-8b95-a80d46cef9ac HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1334,7 +1348,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_7">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=387d69b2-5ec2-4fdc-b63f-90fa6b107b71 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=e93ae800-8fde-48f2-b805-798240286509 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 509
 Host: localhost:8080
@@ -1434,7 +1448,7 @@ Host: localhost:8080
 <h5 id="_request_example_8">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=fee29933-6f86-4e57-b3ae-997dfd6879ed HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=9f56f082-0f36-4177-b893-dd3bfa5bad6d HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1529,7 +1543,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_9">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests?_csrf=3835005d-8650-48f9-97c1-bafa3d2f7981 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests?_csrf=fbe129c2-4735-415c-98b0-542cf344a0df HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1674,8 +1688,8 @@ Host: localhost:8080</code></pre>
     "name" : "김주윤"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 11, 1, 3, 53, 913762000 ],
-  "updateDate" : [ 2021, 10, 11, 1, 3, 53, 913782000 ]
+  "createDate" : [ 2021, 10, 11, 13, 11, 52, 464850000 ],
+  "updateDate" : [ 2021, 10, 11, 13, 11, 52, 464877000 ]
 }, {
   "id" : 123,
   "writer" : {
@@ -1683,8 +1697,8 @@ Host: localhost:8080</code></pre>
     "name" : "정온유"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 11, 1, 3, 53, 913794000 ],
-  "updateDate" : [ 2021, 10, 11, 1, 3, 53, 913800000 ]
+  "createDate" : [ 2021, 10, 11, 13, 11, 52, 464888000 ],
+  "updateDate" : [ 2021, 10, 11, 13, 11, 52, 464893000 ]
 }, {
   "id" : 234,
   "writer" : {
@@ -1692,8 +1706,8 @@ Host: localhost:8080</code></pre>
     "name" : "박정현"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 11, 1, 3, 53, 913807000 ],
-  "updateDate" : [ 2021, 10, 11, 1, 3, 53, 913812000 ]
+  "createDate" : [ 2021, 10, 11, 13, 11, 52, 464900000 ],
+  "updateDate" : [ 2021, 10, 11, 13, 11, 52, 464904000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -1708,7 +1722,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_10">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/user?_csrf=2d867397-66a9-43e1-9017-535cce454dfc HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/user?_csrf=7e48ace6-6a20-4155-92da-e626a448c3af HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1853,8 +1867,8 @@ Host: localhost:8080</code></pre>
     "name" : "김주윤"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 11, 1, 3, 52, 919899000 ],
-  "updateDate" : [ 2021, 10, 11, 1, 3, 52, 919920000 ]
+  "createDate" : [ 2021, 10, 11, 13, 11, 51, 542765000 ],
+  "updateDate" : [ 2021, 10, 11, 13, 11, 51, 542785000 ]
 }, {
   "id" : 2,
   "writer" : {
@@ -1862,8 +1876,8 @@ Host: localhost:8080</code></pre>
     "name" : "김주윤"
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 11, 1, 3, 52, 919987000 ],
-  "updateDate" : [ 2021, 10, 11, 1, 3, 52, 919994000 ]
+  "createDate" : [ 2021, 10, 11, 13, 11, 51, 542851000 ],
+  "updateDate" : [ 2021, 10, 11, 13, 11, 51, 542858000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -1878,7 +1892,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_11">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/results/user?_csrf=519de749-27fd-4173-9b63-51659e0b0415 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/results/user?_csrf=d7737d48-7937-4bf5-92d7-45dd3b72f613 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1991,7 +2005,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_12">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/1/list?_csrf=fd4a2235-841d-4547-9396-274ea1fbd339 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/1/list?_csrf=6a91235f-fedc-4d01-bff3-09f5af9d0d48 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -2135,16 +2149,16 @@ Host: localhost:8080</code></pre>
   "contents" : "1부터 100까지 모든 수를 더하면 몇인가요?",
   "answer" : "5050",
   "tests_id" : null,
-  "createDate" : [ 2021, 10, 11, 1, 3, 54, 535715000 ],
-  "updateDate" : [ 2021, 10, 11, 1, 3, 54, 535737000 ]
+  "createDate" : [ 2021, 10, 11, 13, 11, 53, 63202000 ],
+  "updateDate" : [ 2021, 10, 11, 13, 11, 53, 63222000 ]
 }, {
   "id" : 99999,
   "title" : "수학 기초 2",
   "contents" : "1부터 101까지 모든 수를 더하면 몇인가요?",
   "answer" : "5151",
   "tests_id" : null,
-  "createDate" : [ 2021, 10, 11, 1, 3, 54, 535758000 ],
-  "updateDate" : [ 2021, 10, 11, 1, 3, 54, 535766000 ]
+  "createDate" : [ 2021, 10, 11, 13, 11, 53, 63239000 ],
+  "updateDate" : [ 2021, 10, 11, 13, 11, 53, 63244000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -2163,7 +2177,7 @@ Host: localhost:8080</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=315f31a2-020b-4a6a-bea5-182ad3c8da7d</code></pre>
+_csrf=41ecf22c-c834-45b1-8994-ed23515215f1</code></pre>
 </div>
 </div>
 </div>
@@ -2293,7 +2307,7 @@ _csrf=315f31a2-020b-4a6a-bea5-182ad3c8da7d</code></pre>
 <h5 id="_request_example_14">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/list?_csrf=e690cf4d-7a8a-43c3-af77-ebcd4062e7da HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/list?_csrf=30cb49b9-77bf-46c9-829f-c6092e7b8759 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 207
 Host: localhost:8080
@@ -2436,7 +2450,7 @@ Host: localhost:8080
 <h5 id="_request_example_15">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/results?_csrf=d945fca5-4fab-4097-b345-5042ca56bd47 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/results?_csrf=0f141fd0-9d46-4b07-923b-c4a563b42072 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 391
 Host: localhost:8080
@@ -2592,7 +2606,7 @@ Host: localhost:8080
 <h5 id="_request_example_16">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/lists/1234?_csrf=191a9aee-93d5-4f90-a4fb-bd054404657c HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/lists/1234?_csrf=c1160452-7180-4a4a-8f32-9dc9fec7b8d1 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 231
 Host: localhost:8080
@@ -2730,7 +2744,7 @@ Host: localhost:8080
 <h5 id="_request_example_17">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/results/1?_csrf=13474866-37a8-4a65-98cf-2d561e2b7bf3 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/results/1?_csrf=010bb32a-5c7f-43bd-af1a-0eb15a4d2367 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 118
 Host: localhost:8080
@@ -2796,7 +2810,7 @@ Host: localhost:8080
 <h5 id="_request_example_18">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/lists/1?_csrf=54fc7c1e-0201-42bf-9356-91844edae8b3 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/lists/1?_csrf=d902820f-7645-4c1d-b77f-16ce44d2ed09 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -2851,7 +2865,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_19">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/results/1?_csrf=7b034ecc-3efa-4e19-852d-ce5852e35e12 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/results/1?_csrf=ca23b38f-a499-4471-bc62-dca8062835dc HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -2900,11 +2914,334 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_6_이력서">6. 이력서</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_6_1_이력서_만들기_post">6-1. 이력서 만들기 : POST</h3>
+<div class="sect3">
+<h4 id="_6_1_1_성공">6-1-1. 성공</h4>
+<div class="sect4">
+<h5 id="_request_8">Request</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이력서 식별번호 (빈칸)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>userInfoDto.id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성자 식별번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>userInfoDto.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성자 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이력서 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">간단한 소개</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>final_edu</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">최종학력</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edu_status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">최종 학력 상태 ex(재학,졸업,휴학)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>career</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">경력</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자격증</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>portfolio</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">포트폴리오</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>job</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">희망 업종</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(빈칸)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>updateDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(빈칸)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이력서 삭제 상태</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_request_example_20">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/resume?_csrf=7358eda9-35c7-469c-8b8f-df6ce4922980 HTTP/1.1
+Content-Type: application/json;charset=utf-8
+Content-Length: 574
+Host: localhost:8080
+
+{
+  "id" : null,
+  "userInfoDto" : {
+    "id" : 1,
+    "name" : "김주윤"
+  },
+  "title" : "젊고 건강한 개발자",
+  "introduction" : "spring, jsp, php 를 통해 여러 프로젝트를 5년 간 개발하고 운영했습니다.",
+  "final_edu" : "4년제 대학 졸업",
+  "edu_status" : null,
+  "career" : "5년 System Instruct 기업 정규직",
+  "certificate" : "정보처리기사,리눅스마스터 1/2급",
+  "portfolio" : "www.askephoenix.site, github.askehoenix.io",
+  "job" : "개발자",
+  "createDate" : null,
+  "updateDate" : null,
+  "deleted" : false
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_20">Response</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>create_resume_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">만들어진 이력서 식별번호</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_response_example_20">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "create_resume_id" : 1
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_6_2_이력서_수정_put">6-2. 이력서 수정 : PUT</h3>
+<div class="sect3">
+<h4 id="_6_2_1_성공">6-2-1. 성공</h4>
+<div class="sect4">
+<h5 id="_request_9">Request</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이력서 식별번호 (빈칸)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>userInfoDto.id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성자 식별번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>userInfoDto.name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">작성자 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이력서 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">간단한 소개</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>final_edu</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">최종학력</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edu_status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">최종 학력 상태 ex(재학,졸업,휴학)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>career</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">경력</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>certificate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자격증</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>portfolio</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">포트폴리오</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>job</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">희망 업종</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(빈칸)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>updateDate</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(빈칸)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이력서 삭제 상태</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_request_example_21">Request Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/resume?_csrf=ca8966c9-fb38-406d-a77a-4caf2c03f06e HTTP/1.1
+Content-Type: application/json;charset=utf-8
+Content-Length: 574
+Host: localhost:8080
+
+{
+  "id" : null,
+  "userInfoDto" : {
+    "id" : 1,
+    "name" : "김주윤"
+  },
+  "title" : "젊고 건강한 개발자",
+  "introduction" : "spring, jsp, php 를 통해 여러 프로젝트를 5년 간 개발하고 운영했습니다.",
+  "final_edu" : "4년제 대학 졸업",
+  "edu_status" : null,
+  "career" : "5년 System Instruct 기업 정규직",
+  "certificate" : "정보처리기사,리눅스마스터 1/2급",
+  "portfolio" : "www.askephoenix.site, github.askehoenix.io",
+  "job" : "개발자",
+  "createDate" : null,
+  "updateDate" : null,
+  "deleted" : false
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_21">Response</h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>modify_resume_id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정한 이력서 식별번호</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_response_example_21">Response Example</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "modify_resume_id" : 1
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-10-11 01:03:11 +0900
+Last updated 2021-10-11 13:11:38 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
