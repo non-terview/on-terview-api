@@ -1,5 +1,6 @@
 package site.askephoenix.restapi.resume.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -133,8 +134,8 @@ class ResumeControllerTest {
                                 fieldWithPath("certificate").description("자격증"),
                                 fieldWithPath("portfolio").description("포트폴리오"),
                                 fieldWithPath("job").description("희망 업종"),
-                                fieldWithPath("createDate").description("이력서 생성 날짜"),
-                                fieldWithPath("updateDate").description("이력서 수정 날짜"),
+                                fieldWithPath("createDate").description("(빈칸)"),
+                                fieldWithPath("updateDate").description("(빈칸)"),
                                 fieldWithPath("deleted").description("이력서 삭제 상태")
                         ),
                         responseFields(
@@ -145,6 +146,56 @@ class ResumeControllerTest {
 
     @Test
     @DisplayName("이력서 수정하기 : PUT")
-    void modifyResume() {
+    void modifyResume() throws Exception {
+        ResumeInfo info = ResumeInfo.builder()
+                .userInfo(userInfo)
+                .title("젊고 건강한 개발자")
+                .introduction("spring, jsp, php 를 통해 여러 프로젝트를 5년 간 개발하고 운영했습니다.")
+                .final_edu("4년제 대학 졸업")
+                .career("5년 System Instruct 기업 정규직")
+                .certificate("정보처리기사,리눅스마스터 1/2급")
+                .portfolio("www.askephoenix.site, github.askehoenix.io")
+                .job("개발자")
+                .isDeleted(false)
+                .build();
+        ResumeInfoDto dto = new ResumeInfoDto(info);
+        given(resumeService.update(any(ResumeInfoDto.class), any(UserInfo.class))).willReturn(1L);
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.put(
+                                "/api/resume")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(dto))
+                        .characterEncoding("utf-8")
+                        .with(csrf()).with(user(userInfo))
+        );
+
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("resume-put",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        requestParameters(
+                                parameterWithName("_csrf").description("인증 데이터")
+                        ),
+                        requestFields(
+                                fieldWithPath("id").description("이력서 식별번호 (빈칸)"),
+                                fieldWithPath("userInfoDto.id").description("작성자 식별번호"),
+                                fieldWithPath("userInfoDto.name").description("작성자 이름"),
+                                fieldWithPath("title").description("이력서 제목"),
+                                fieldWithPath("introduction").description("간단한 소개"),
+                                fieldWithPath("final_edu").description("최종학력"),
+                                fieldWithPath("edu_status").description("최종 학력 상태 ex(재학,졸업,휴학)"),
+                                fieldWithPath("career").description("경력"),
+                                fieldWithPath("certificate").description("자격증"),
+                                fieldWithPath("portfolio").description("포트폴리오"),
+                                fieldWithPath("job").description("희망 업종"),
+                                fieldWithPath("createDate").description("(빈칸)"),
+                                fieldWithPath("updateDate").description("(빈칸)"),
+                                fieldWithPath("deleted").description("이력서 삭제 상태")
+                        ),
+                        responseFields(
+                                fieldWithPath("modify_resume_id").description("수정한 이력서 식별번호")
+                        )
+                ));
     }
 }

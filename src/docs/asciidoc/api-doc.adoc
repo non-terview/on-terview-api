@@ -220,3 +220,14 @@ include::{snippets}/resume-post/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/resume-post/response-body.adoc[]
 
+=== 6-2. 이력서 수정 : PUT
+==== 6-2-1. 성공
+===== Request
+include::{snippets}/resume-put/request-fields.adoc[]
+===== Request Example
+include::{snippets}/resume-put/http-request.adoc[]
+===== Response
+include::{snippets}/resume-put/response-fields.adoc[]
+===== Response Example
+include::{snippets}/resume-put/response-body.adoc[]
+
