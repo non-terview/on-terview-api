@@ -208,6 +208,15 @@ include::{snippets}/company_test-delete-tests-results/response-fields.adoc[]
 ===== Response Example
 include::{snippets}/company_test-delete-tests-results/response-body.adoc[]
 
-
-
+== 6. 이력서
+=== 6-1. 이력서 만들기 : POST
+==== 6-1-1. 성공
+===== Request
+include::{snippets}/resume-post/request-fields.adoc[]
+===== Request Example
+include::{snippets}/resume-post/http-request.adoc[]
+===== Response
+include::{snippets}/resume-post/response-fields.adoc[]
+===== Response Example
+include::{snippets}/resume-post/response-body.adoc[]
 
