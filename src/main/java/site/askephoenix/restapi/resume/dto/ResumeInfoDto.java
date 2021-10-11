@@ -1,20 +1,24 @@
 package site.askephoenix.restapi.resume.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.askephoenix.restapi.resume.model.ResumeInfo;
 import site.askephoenix.restapi.user.dto.UserInfoDto;
+import site.askephoenix.restapi.user.dto.UserResultDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class ResumeInfoDto {
     private Long id;
-    private UserInfoDto userInfoDto;
+    private UserResultDto userInfoDto;
     private String title;
     private String introduction;
     private String final_edu;
@@ -23,13 +27,15 @@ public class ResumeInfoDto {
     private String certificate;
     private String portfolio;
     private String job;
-    private LocalDate createDate;
-    private LocalDate updateDate;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime createDate;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime updateDate;
     private boolean isDeleted;
 
     public ResumeInfoDto(ResumeInfo resumeInfo){
         this.id = resumeInfo.getId();
-        this.userInfoDto = new UserInfoDto(resumeInfo.getUserInfo());
+        this.userInfoDto = new UserResultDto(resumeInfo.getUserInfo());
         this.title = resumeInfo.getTitle();
         this.introduction = resumeInfo.getIntroduction();
         this.final_edu = resumeInfo.getFinal_edu();
