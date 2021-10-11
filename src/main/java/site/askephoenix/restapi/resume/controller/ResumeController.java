@@ -22,8 +22,6 @@ public class ResumeController {
         return Maps.newHashMap(ImmutableMap.of("UserInfo", userInfo));
     }
 
-
-
     @PostMapping(value = "")
     public HashMap<String, Object> creatResume(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo){
         Long id = resumeService.save(resumeInfoDto,userInfo);
@@ -40,6 +38,17 @@ public class ResumeController {
 
         if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("modify_resume_id", id));
+    }
+
+    @DeleteMapping(value = "")
+    public HashMap<String,Object> deleteResume(
+            ResumeInfoDto resumeInfoDto,
+            @LoginUser UserInfo userInfo
+    ){
+        Long id = resumeService.deleteResume(resumeInfoDto,userInfo);
+
+        if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
+        return Maps.newHashMap(ImmutableMap.of("delete_resume_id", id));
     }
 
 }

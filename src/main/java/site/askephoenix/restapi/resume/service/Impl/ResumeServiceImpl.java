@@ -69,4 +69,34 @@ public class ResumeServiceImpl implements ResumeService {
                         .build()
         ).getId();
     }
+
+    @Override
+    public Long deleteResume(ResumeInfoDto resumeInfoDto, UserInfo userInfo) {
+        if (userInfo==null||userInfo.getId().equals(-1L))
+            return -1L;
+
+        ResumeInfo modifyResume = resumeRepository.findByUserInfo(userInfo).orElseGet(
+                () -> ResumeInfo.builder().build()
+        );
+
+        return resumeRepository.save(
+                ResumeInfo.builder()
+                        .id(modifyResume.getId())
+                        .userInfo(modifyResume.getUserInfo())
+                        .title(modifyResume.getTitle())
+                        .introduction(modifyResume.getIntroduction())
+                        .final_edu(modifyResume.getFinal_edu())
+                        .edu_status(modifyResume.getEdu_status())
+                        .career(modifyResume.getCareer())
+                        .certificate(modifyResume.getCertificate())
+                        .portfolio(modifyResume.getPortfolio())
+                        .job(modifyResume.getJob())
+                        .createDate(modifyResume.getCreateDate())
+                        .updateDate(LocalDateTime.now())
+                        .isDeleted(true)
+                        .build()
+        ).getId();
+    }
+
+
 }
