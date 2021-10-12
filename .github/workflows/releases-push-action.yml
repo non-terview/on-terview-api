@@ -38,7 +38,7 @@ jobs:
       - name: run bootJar
         run: |
           cd ${{ github.workspace }}
-          ./gradlew bootJar
+          ./gradlew clean bootJar -Pprofile=prod
 
       - name: load DockerFile
         run: |
