@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import site.askephoenix.restapi.user.dto.UserInfoDto;
+import site.askephoenix.restapi.user.dto.UserResultDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.service.UserService;
 
@@ -56,6 +57,40 @@ class UserControllerTest {
                 .apply(springSecurity())
                 .apply(documentationConfiguration(restDocumentation))
                 .build();
+    }
+
+    @Test
+    @DisplayName("로그인 정보 가져오기")
+    void get_LoginUser() throws Exception {
+        UserInfo info = UserInfo.builder()
+                .id(1L)
+                .name("김주윤")
+                .type("USER")
+                .email("aske@naver.com")
+                .password( new BCryptPasswordEncoder().encode("passTests2123") )
+                .auth("USER_ROLE")
+                .build();
+
+        given(userService.getUserDto(any(UserInfo.class))).willReturn(new UserResultDto(info));
+
+        ResultActions perform = this.mvc.perform(
+                RestDocumentationRequestBuilders.get("/api/user")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("utf-8")
+        );
+        perform.andExpect(status().isOk())
+                .andDo(print())
+                .andDo(document("user-get",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint()),
+                        responseFields(
+                                fieldWithPath("id").description("사용자 번호"),
+                                fieldWithPath("name").description("이름"),
+                                fieldWithPath("email").description("이메일"),
+                                fieldWithPath("type").description("일반 사용자/회사 계정 구분")
+                        )
+                ));
     }
 
     @Test
