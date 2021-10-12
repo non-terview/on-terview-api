@@ -30,7 +30,7 @@ public class UserHandlerMethodArgumentResolver implements HandlerMethodArgumentR
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null)
             throw new IllegalArgumentException("사용자 정보가 존재하지 않습니다.");
-        final UserInfo userInfo = (UserInfo) auth.getPrincipal();
+        final UserInfo userInfo = auth.getPrincipal().equals("anonymousUser") ? UserInfo.builder().build() : (UserInfo) auth.getPrincipal();
         final LoginUser loginUser = parameter.getParameterAnnotation(LoginUser.class);
 
         if (loginUser == null || userInfo == null) {
