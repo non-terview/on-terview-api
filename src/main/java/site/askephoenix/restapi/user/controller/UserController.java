@@ -7,6 +7,7 @@ import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.user.dto.UserInfoDto;
+import site.askephoenix.restapi.user.dto.UserResultDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.service.UserService;
 
@@ -28,6 +29,11 @@ public class UserController {
         return Maps.newHashMap(ImmutableMap.of(
                         "token", token
                 ));
+    }
+
+    @GetMapping(value = "")
+    public UserResultDto getUserInfo(@LoginUser UserInfo userInfo){
+        return userService.getUserDto(userInfo);
     }
 
     @PostMapping(value = "")
