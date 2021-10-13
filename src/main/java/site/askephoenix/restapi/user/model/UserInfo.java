@@ -34,6 +34,7 @@ public class UserInfo implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    // 관리자 : ROLE_ADMIN, 사용자 : ROLE_USER
     @Column(name = "auth")
     private String auth;
 
