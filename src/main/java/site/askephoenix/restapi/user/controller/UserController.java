@@ -27,19 +27,19 @@ public class UserController {
     @GetMapping(value = "/token")
     public HashMap<String, Object> getToken(CsrfToken token) {
         return Maps.newHashMap(ImmutableMap.of(
-                        "token", token
-                ));
+                "token", token
+        ));
     }
 
     @GetMapping(value = "")
-    public UserResultDto getUserInfo(@LoginUser UserInfo userInfo){
+    public UserResultDto getUserInfo(@LoginUser UserInfo userInfo) {
         return userService.getUserDto(userInfo);
     }
 
     @PostMapping(value = "")
     public HashMap<String, Object> signup(UserInfoDto infoDto) {
         Long id = userService.save(infoDto);
-//            이미 이메일이 있는 경우
+        //   이미 이메일이 있는 경우
         if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("create_user_id", id));
     }
@@ -48,14 +48,13 @@ public class UserController {
     @PutMapping(value = "")
     public HashMap<String, Object> update(
             @LoginUser UserInfo userInfo,
-            UserInfoDto infoDto){
-        Long id = userService.update(userInfo,infoDto);
+            UserInfoDto infoDto) {
+        Long id = userService.update(userInfo, infoDto);
 
-        //이메일이 없는 경우
+        //   이메일이 없는 경우
         if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
         return Maps.newHashMap(ImmutableMap.of("modify_user_id", id));
     }
-
 
 
 }
