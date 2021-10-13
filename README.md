@@ -1,5 +1,5 @@
 # Develop
-[![Gradle Package](https://github.com/non-terview/on-terview-api/actions/workflows/gradle-publish.yml/badge.svg?branch=master)](https://github.com/non-terview/on-terview-api/actions/workflows/gradle-publish.yml)
+[![master Push Check](https://github.com/non-terview/on-terview-api/actions/workflows/master-push-action.yml/badge.svg)](https://github.com/non-terview/on-terview-api/actions/workflows/master-push-action.yml)
 
 ## Rest Api
 https://non-terview.github.io/rest-json.github.io/docs/api-doc.html
