@@ -125,8 +125,8 @@ class UserControllerTest {
                                 fieldWithPath("id").description("사용자 식별번호 (null)"),
                                 fieldWithPath("name").description("가입자 성명"),
                                 fieldWithPath("password").description("가입자 비밀번호"),
-                                fieldWithPath("auth").description("가입자 권한"),
-                                fieldWithPath("type").description("가입자 종류(USER)"),
+                                fieldWithPath("auth").description("가입자 권한(관리자 : ROLE_ADMIN, 사용자 : ROLE_USER)"),
+                                fieldWithPath("type").description("가입자 종류(USER, COMPANY)"),
                                 fieldWithPath("email").description("가입자 이메일")
                         ),
                         responseFields(
