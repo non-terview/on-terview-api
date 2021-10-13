@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.user.dto.UserInfoDto;
+import site.askephoenix.restapi.user.dto.UserResultDto;
 import site.askephoenix.restapi.user.model.UserInfo;
 import site.askephoenix.restapi.user.repository.UserRepository;
 
@@ -65,4 +66,7 @@ public class UserService implements UserDetailsService {
     }
 
 
+    public UserResultDto getUserDto(UserInfo userInfo) {
+        return userInfo == null ? new UserResultDto() : new UserResultDto(userInfo);
+    }
 }
