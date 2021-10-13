@@ -655,7 +655,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "token" : {
-    "token" : "67762b64-6fcc-4371-8743-aa465b1e01c9",
+    "token" : "7dde28a7-a58b-4c07-a498-f755b8b9cf9b",
     "parameterName" : "_csrf",
     "headerName" : "X-CSRF-TOKEN"
   }
@@ -708,12 +708,12 @@ Host: localhost:8080</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>auth</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 권한</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 권한(관리자 : ROLE_ADMIN, 사용자 : ROLE_USER)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 종류(USER)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">가입자 종류(USER, COMPANY)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
@@ -727,7 +727,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_2">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user?_csrf=ea46ca26-dd80-40ee-9f2a-757ec2575e91 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/user?_csrf=5134291e-838c-4bdb-99a6-8f3315eaf624 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 145
 Host: localhost:8080
@@ -788,7 +788,7 @@ Host: localhost:8080
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=17b86fc6-4303-4368-bfca-64b83a360c08</code></pre>
+_csrf=4f4cd7cf-c02f-4300-b703-9231e74ecb40</code></pre>
 </div>
 </div>
 </div>
@@ -847,7 +847,7 @@ _csrf=17b86fc6-4303-4368-bfca-64b83a360c08</code></pre>
 <h5 id="_request_example_4">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user?_csrf=25a1ed34-4f17-4142-80e5-34a58cda98f4 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/user?_csrf=c8e4252b-71dd-4330-b4bb-1a98d5ab1db6 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Host: localhost:8080</code></pre>
 </div>
@@ -964,7 +964,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_5">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user?_csrf=7e501243-fbba-41f5-a077-ca9568ee256d HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/user?_csrf=c6b2cab0-b99d-4bec-8be3-79584f3c4aed HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 136
 Host: localhost:8080
@@ -1024,7 +1024,7 @@ Host: localhost:8080
 <h5 id="_request_example_6">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=4384ce04-c29f-4ee8-807a-f80459620996 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/status?_csrf=d82a6d18-ef25-4de8-a471-ed8473370578 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1153,7 +1153,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_7">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=ab3cfa6d-4090-4633-90ac-54860ee32d17 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1?_csrf=5a0c3daa-4804-4df8-b989-47a172017edf HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1432,7 +1432,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_8">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=795efce5-3d31-4347-97f4-91cb24e46919 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/boards/1/evaluations/1?_csrf=0f06a081-6074-4db5-bf7e-283fca2e0b1e HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 509
 Host: localhost:8080
@@ -1532,7 +1532,7 @@ Host: localhost:8080
 <h5 id="_request_example_9">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=2e009e99-c794-4c21-9844-9322333e3c3e HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/boards/1/evaluations/1/types?_csrf=bb3e08f4-c362-4b58-979c-20038888ad48 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1627,7 +1627,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_10">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests?_csrf=a29fe9cd-7019-401c-b85d-69f57eca1801 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests?_csrf=d72df326-8f5d-420e-aa18-a757bb9c6144 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1784,8 +1784,8 @@ Host: localhost:8080</code></pre>
     "type" : ""
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 13, 2, 31, 54, 639126000 ],
-  "updateDate" : [ 2021, 10, 13, 2, 31, 54, 639147000 ]
+  "createDate" : [ 2021, 10, 13, 10, 45, 59, 766897000 ],
+  "updateDate" : [ 2021, 10, 13, 10, 45, 59, 766916000 ]
 }, {
   "id" : 123,
   "writer" : {
@@ -1795,8 +1795,8 @@ Host: localhost:8080</code></pre>
     "type" : ""
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 13, 2, 31, 54, 639160000 ],
-  "updateDate" : [ 2021, 10, 13, 2, 31, 54, 639165000 ]
+  "createDate" : [ 2021, 10, 13, 10, 45, 59, 766928000 ],
+  "updateDate" : [ 2021, 10, 13, 10, 45, 59, 766934000 ]
 }, {
   "id" : 234,
   "writer" : {
@@ -1806,8 +1806,8 @@ Host: localhost:8080</code></pre>
     "type" : ""
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 13, 2, 31, 54, 639172000 ],
-  "updateDate" : [ 2021, 10, 13, 2, 31, 54, 639177000 ]
+  "createDate" : [ 2021, 10, 13, 10, 45, 59, 766941000 ],
+  "updateDate" : [ 2021, 10, 13, 10, 45, 59, 766945000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -1822,7 +1822,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_11">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/user?_csrf=ef5d0943-78d2-4102-ac29-12532f37d416 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/user?_csrf=cae7afec-ffce-403c-bd49-169b07c87ff6 HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -1979,8 +1979,8 @@ Host: localhost:8080</code></pre>
     "type" : ""
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 13, 2, 31, 53, 544083000 ],
-  "updateDate" : [ 2021, 10, 13, 2, 31, 53, 544103000 ]
+  "createDate" : [ 2021, 10, 13, 10, 45, 58, 788953000 ],
+  "updateDate" : [ 2021, 10, 13, 10, 45, 58, 788973000 ]
 }, {
   "id" : 2,
   "writer" : {
@@ -1990,8 +1990,8 @@ Host: localhost:8080</code></pre>
     "type" : ""
   },
   "testsListDto" : null,
-  "createDate" : [ 2021, 10, 13, 2, 31, 53, 544160000 ],
-  "updateDate" : [ 2021, 10, 13, 2, 31, 53, 544168000 ]
+  "createDate" : [ 2021, 10, 13, 10, 45, 58, 789027000 ],
+  "updateDate" : [ 2021, 10, 13, 10, 45, 58, 789034000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -2006,7 +2006,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_12">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/results/user?_csrf=10bd4342-60b1-405c-abbe-70bdf5112b54 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/results/user?_csrf=fb0c7130-baf9-4154-98d4-95155da196aa HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -2119,7 +2119,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_13">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/1/list?_csrf=559e0ed8-c171-4dfa-88e1-7fd1556ed623 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /api/tests/1/list?_csrf=7d1733e7-1312-49ac-8430-44103e7bb5fc HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -2263,16 +2263,16 @@ Host: localhost:8080</code></pre>
   "contents" : "1부터 100까지 모든 수를 더하면 몇인가요?",
   "answer" : "5050",
   "tests_id" : null,
-  "createDate" : [ 2021, 10, 13, 2, 31, 55, 424515000 ],
-  "updateDate" : [ 2021, 10, 13, 2, 31, 55, 424536000 ]
+  "createDate" : [ 2021, 10, 13, 10, 46, 0, 392698000 ],
+  "updateDate" : [ 2021, 10, 13, 10, 46, 0, 392719000 ]
 }, {
   "id" : 99999,
   "title" : "수학 기초 2",
   "contents" : "1부터 101까지 모든 수를 더하면 몇인가요?",
   "answer" : "5151",
   "tests_id" : null,
-  "createDate" : [ 2021, 10, 13, 2, 31, 55, 424557000 ],
-  "updateDate" : [ 2021, 10, 13, 2, 31, 55, 424564000 ]
+  "createDate" : [ 2021, 10, 13, 10, 46, 0, 392736000 ],
+  "updateDate" : [ 2021, 10, 13, 10, 46, 0, 392742000 ]
 } ]</code></pre>
 </div>
 </div>
@@ -2291,7 +2291,7 @@ Host: localhost:8080</code></pre>
 Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
-_csrf=1bb71503-5d25-4f45-8f89-eb10cc2dd554</code></pre>
+_csrf=f64e9a04-6d6b-434b-8125-4d12cef714bf</code></pre>
 </div>
 </div>
 </div>
@@ -2421,7 +2421,7 @@ _csrf=1bb71503-5d25-4f45-8f89-eb10cc2dd554</code></pre>
 <h5 id="_request_example_15">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/list?_csrf=317b546d-64a9-4c63-bf24-b6193bb3f35b HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/list?_csrf=05945a7a-6bac-4168-9f05-800fdc8129dc HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 207
 Host: localhost:8080
@@ -2564,7 +2564,7 @@ Host: localhost:8080
 <h5 id="_request_example_16">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/results?_csrf=97972b9c-5e36-4a68-81ab-7da38aab3885 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/tests/1/results?_csrf=794b6e57-a857-4ef8-8881-c48cabd93e20 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 391
 Host: localhost:8080
@@ -2720,7 +2720,7 @@ Host: localhost:8080
 <h5 id="_request_example_17">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/lists/1234?_csrf=53936dfe-d37a-443c-8b1f-d49e5325b0f4 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/lists/1234?_csrf=319a16f8-493a-4d11-b9c6-073c1970ba50 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 231
 Host: localhost:8080
@@ -2858,7 +2858,7 @@ Host: localhost:8080
 <h5 id="_request_example_18">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/results/1?_csrf=c90d0ce5-31ac-4bf1-8d45-53f83b7b928a HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/tests/results/1?_csrf=0486d629-776c-4791-b6d5-6ee9f63ffdee HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 118
 Host: localhost:8080
@@ -2924,7 +2924,7 @@ Host: localhost:8080
 <h5 id="_request_example_19">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/lists/1?_csrf=6c05cfbc-192f-4262-bf6a-84583bec62fd HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/lists/1?_csrf=44c72ca1-7ca7-4272-9868-8308af817b7b HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -2979,7 +2979,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_20">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/results/1?_csrf=a57e407a-a984-47e2-8614-2a26d876d196 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">DELETE /api/tests/results/1?_csrf=9ae53ec0-9cdb-4121-bc0e-2c1adb3ee61c HTTP/1.1
 Host: localhost:8080</code></pre>
 </div>
 </div>
@@ -3138,7 +3138,7 @@ Host: localhost:8080</code></pre>
 <h5 id="_request_example_21">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/resume?_csrf=3a3865b0-4630-4138-9c10-4e187d6f4aee HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /api/resume?_csrf=871b92f2-5268-4173-bc78-6f0f0169daef HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 615
 Host: localhost:8080
@@ -3309,7 +3309,7 @@ Host: localhost:8080
 <h5 id="_request_example_22">Request Example</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/resume?_csrf=e9f01127-ac2b-4398-9abb-45455ff7f417 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">PUT /api/resume?_csrf=ab7f8a68-5e37-4e34-8f07-b0f96dfd7ea5 HTTP/1.1
 Content-Type: application/json;charset=utf-8
 Content-Length: 615
 Host: localhost:8080
@@ -3379,7 +3379,7 @@ Host: localhost:8080
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2021-10-13 02:26:22 +0900
+Last updated 2021-10-13 10:36:00 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
