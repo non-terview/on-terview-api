@@ -10,6 +10,7 @@ import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -18,6 +19,8 @@ public class ResumeServiceImpl implements ResumeService {
 
     private final ResumeRepository resumeRepository;
 
+
+    //저장
     @Override
     public Long save(ResumeInfoDto resumeInfoDto,UserInfo userInfo) {
         if (resumeRepository.findByUserInfo(userInfo).
@@ -42,6 +45,8 @@ public class ResumeServiceImpl implements ResumeService {
         return resumeInfo.getId();
     }
 
+    
+    //수정
     @Override
     public Long update(ResumeInfoDto resumeInfoDto,UserInfo userInfo) {
         if (userInfo==null||userInfo.getId().equals(-1L))
@@ -70,6 +75,8 @@ public class ResumeServiceImpl implements ResumeService {
         ).getId();
     }
 
+    
+    //삭제
     @Override
     public Long deleteResume(ResumeInfoDto resumeInfoDto, UserInfo userInfo) {
         if (userInfo==null||userInfo.getId().equals(-1L))
@@ -96,6 +103,13 @@ public class ResumeServiceImpl implements ResumeService {
                         .isDeleted(true)
                         .build()
         ).getId();
+    }
+
+    @Override
+    public ResumeInfoDto readResumeInfo(ResumeInfoDto resumeInfoDto ,Long userId) {
+        userId = resumeInfoDto.getUserInfoDto().getId();
+
+        return resumeRepository.readResume(userId);
     }
 
 
