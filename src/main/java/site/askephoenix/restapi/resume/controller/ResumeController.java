@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.resume.dto.ResumeInfoDto;
+import site.askephoenix.restapi.resume.model.ResumeInfo;
 import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
@@ -54,12 +55,12 @@ public class ResumeController {
         return Maps.newHashMap(ImmutableMap.of("delete_resume_id", id));
     }
 
-    //내 이력서 조회
-    @GetMapping(value = "/resume/{userId}")
+    //이력서 조회
+    @GetMapping(value = "/resume-info/{userId}")
     public ResumeInfoDto readResume(
-            ResumeInfoDto resumeInfoDto,
             @PathVariable(name = "userId") Long userId
     ){
-        return resumeService.readResumeInfo(resumeInfoDto , userId);
+        if(-1L == userId) return new ResumeInfoDto(ResumeInfo.builder().id(-1L).build());
+        return resumeService.readResumeInfo(userId);
     }
 }

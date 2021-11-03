@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+
 public class ResumeInfoDto {
     private Long id;
     private UserResultDto userInfoDto;
@@ -32,6 +33,7 @@ public class ResumeInfoDto {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime updateDate;
     private boolean isDeleted;
+
 
     public ResumeInfoDto(ResumeInfo resumeInfo){
         this.id = resumeInfo.getId();

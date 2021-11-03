@@ -8,6 +8,7 @@ import site.askephoenix.restapi.resume.model.ResumeInfo;
 import site.askephoenix.restapi.resume.repository.ResumeRepository;
 import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
+import site.askephoenix.restapi.user.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class ResumeServiceImpl implements ResumeService {
 
     private final ResumeRepository resumeRepository;
+    private final UserRepository userRepository;
 
 
     //저장
@@ -106,10 +108,11 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public ResumeInfoDto readResumeInfo(ResumeInfoDto resumeInfoDto ,Long userId) {
-        userId = resumeInfoDto.getUserInfoDto().getId();
+    public ResumeInfoDto readResumeInfo(Long userId) {
 
-        return resumeRepository.readResume(userId);
+        return resumeRepository.readResume(userRepository.findById(userId).orElseGet(
+                ()-> UserInfo.builder().id(-1L).build()
+        ));
     }
 
 

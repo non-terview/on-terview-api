@@ -19,9 +19,7 @@ public interface ResumeRepository extends JpaRepository<ResumeInfo,Long> {
     @NonNull
     Optional<ResumeInfo> findById(@NonNull Long resumeId);
 
-
-
     @Query("select resume from ResumeInfo resume where resume.isDeleted = false AND resume.userInfo = ?1 ")
-    ResumeInfoDto readResume(Long userId);
+    ResumeInfoDto readResume(UserInfo userId);
 
 }

@@ -14,5 +14,5 @@ public interface ResumeService {
 
     Long deleteResume(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo);
 
-    ResumeInfoDto readResumeInfo(ResumeInfoDto resumeInfoDto , Long userId);
+    ResumeInfoDto readResumeInfo(Long userId);
 }
