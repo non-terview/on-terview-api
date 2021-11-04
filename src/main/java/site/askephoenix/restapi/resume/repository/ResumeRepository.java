@@ -19,6 +19,7 @@ public interface ResumeRepository extends JpaRepository<ResumeInfo,Long> {
     @NonNull
     Optional<ResumeInfo> findById(@NonNull Long resumeId);
 
+    //조건 . userId값 , 삭제여부가 false인 값을 출력한다
     @Query("select resume from ResumeInfo resume where resume.isDeleted = false AND resume.userInfo = ?1 ")
     ResumeInfoDto readResume(UserInfo userId);
 
