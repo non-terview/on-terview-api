@@ -11,4 +11,8 @@ public interface ResumeService {
     Long save(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo);
 
     Long update(ResumeInfoDto resumeInfoDto, @LoginUser UserInfo userInfo);
+
+    Long deleteResume(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo);
+
+    ResumeInfoDto readResumeInfo(Long userId);
 }

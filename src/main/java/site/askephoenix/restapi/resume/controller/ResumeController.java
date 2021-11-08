@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.resume.dto.ResumeInfoDto;
+import site.askephoenix.restapi.resume.model.ResumeInfo;
 import site.askephoenix.restapi.resume.service.ResumeService;
 import site.askephoenix.restapi.user.model.UserInfo;
 
@@ -22,8 +23,7 @@ public class ResumeController {
         return Maps.newHashMap(ImmutableMap.of("UserInfo", userInfo));
     }
 
-
-
+    //이력서 입력 (저장)
     @PostMapping(value = "")
     public HashMap<String, Object> creatResume(ResumeInfoDto resumeInfoDto,@LoginUser UserInfo userInfo){
         Long id = resumeService.save(resumeInfoDto,userInfo);
@@ -32,6 +32,7 @@ public class ResumeController {
         return Maps.newHashMap(ImmutableMap.of("create_resume_id", id));
     }
 
+    //이력서 수정 (수정)
     @PutMapping(value = "")
     public HashMap<String, Object> modifyResume(
             ResumeInfoDto resumeInfoDto,
@@ -42,4 +43,24 @@ public class ResumeController {
         return Maps.newHashMap(ImmutableMap.of("modify_resume_id", id));
     }
 
+    //이력서 삭제 (삭제)
+    @DeleteMapping(value = "")
+    public HashMap<String,Object> deleteResume(
+            ResumeInfoDto resumeInfoDto,
+            @LoginUser UserInfo userInfo
+    ){
+        Long id = resumeService.deleteResume(resumeInfoDto,userInfo);
+
+        if (-1L == id) return Maps.newHashMap(ImmutableMap.of("status", "fail"));
+        return Maps.newHashMap(ImmutableMap.of("delete_resume_id", id));
+    }
+
+    //이력서 조회
+    @GetMapping(value = "/resume-info/{userId}")
+    public ResumeInfoDto readResume(
+            @PathVariable(name = "userId") Long userId
+    ){
+        if(-1L == userId) return new ResumeInfoDto(ResumeInfo.builder().id(-1L).build());
+        return resumeService.readResumeInfo(userId);
+    }
 }

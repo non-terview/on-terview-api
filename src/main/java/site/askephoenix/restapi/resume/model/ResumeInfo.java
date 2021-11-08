@@ -59,15 +59,16 @@ public class ResumeInfo{
     @Column(name="portfolio")
     private String portfolio;
 
-    //희망 업종
+    //희망 업종, 지원 분야
     @Column(name="job")
     private String job;
 
     //이력서 생성 날짜
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH", timezone = "Asia/Seoul")
     @CreationTimestamp
     private LocalDateTime createDate;
+
     //이력서 수정 날짜
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")

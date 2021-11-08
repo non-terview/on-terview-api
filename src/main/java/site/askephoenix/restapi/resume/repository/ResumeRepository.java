@@ -2,6 +2,7 @@ package site.askephoenix.restapi.resume.repository;
 
 import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import site.askephoenix.restapi.annotation.LoginUser;
 import site.askephoenix.restapi.resume.dto.ResumeInfoDto;
 import site.askephoenix.restapi.resume.model.ResumeInfo;
@@ -17,5 +18,9 @@ public interface ResumeRepository extends JpaRepository<ResumeInfo,Long> {
 
     @NonNull
     Optional<ResumeInfo> findById(@NonNull Long resumeId);
+
+    //조건 . userId값 , 삭제여부가 false인 값을 출력한다
+    @Query("select resume from ResumeInfo resume where resume.isDeleted = false AND resume.userInfo = ?1 ")
+    ResumeInfoDto readResume(UserInfo userId);
 
 }
